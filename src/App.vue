@@ -1,12 +1,12 @@
-<script setup>
-</script>
-
 <template>
-  <header>
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  </header>
-
+  <router-view></router-view>
 </template>
 
+<script>
+import Login from "./views/Auth/login.vue";
+export default {
+  components: {
+    Login,
+  },
+};
+</script>
