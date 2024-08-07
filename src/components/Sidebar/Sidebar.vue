@@ -1,6 +1,6 @@
+<!-- Sidebar.vue -->
 <template>
-  <div class="bg-[#FBFBFB]">
-
+  <div>
     <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog class="relative z-50 lg:hidden" @close="sidebarOpen = false">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
@@ -18,7 +18,6 @@
                   </button>
                 </div>
               </TransitionChild>
-              <!-- Sidebar component, -->
               <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-[#003965] px-6 pb-2 ring-1 ring-white/10 ">
                 <div class="flex h-16 shrink-0 mt-5 justify-center items-center border-b-2 border-white">
                   <img class="h-12 w-auto" src="../../assets/images/logo-horinzontal.png" alt="Your Company" />
@@ -28,10 +27,10 @@
                     <li>
                       <ul role="list" class="-mx-2 space-y-1">
                         <li v-for="item in navigation" :key="item.name">
-                          <a :href="item.href" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
+                          <router-link :to="item.route" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
                             <component :is="item.icon" class="h-6 w-6 shrink-0" aria-hidden="true" />
                             {{ item.name }}
-                          </a>
+                          </router-link>
                         </li>
                       </ul>
                     </li>
@@ -55,10 +54,10 @@
             <li>
               <ul role="list" class="-mx-2 space-y-1">
                 <li v-for="item in navigation" :key="item.name">
-                  <a :href="item.href" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
+                  <router-link :to="item.route" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
                     <component :is="item.icon" class="h-6 w-6 shrink-0" aria-hidden="true" />
                     {{ item.name }}
-                  </a>
+                  </router-link>
                 </li>
               </ul>
             </li>
@@ -85,29 +84,17 @@
         <img class="h-8 w-8 rounded-full bg-gray-800" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
       </a>
     </div>
-
-    <main class="flex flex-row items-center h-screen justify-center py-10 lg:pl-72">
-      <div class="px-4 sm:px-6 lg:px-8">
-        <h3 class="text-lg font-medium leading-6 text-gray-400">Bem-vindo(a), Matheus Gabriel Grawe</h3>
-      </div>
-    </main>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import {
-  Bars3Icon,
-  CalculatorIcon,
-  XMarkIcon,
-  ChartBarIcon,
-} from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: 'Novo Cálculo', href: '#', icon: CalculatorIcon, current: true },
-  { name: 'Cálculo Anteriores', href: '#', icon: ChartBarIcon , current: false },
-
+  { name: 'Novo Cálculo', route: '/admin/newcal', icon: CalculatorIcon, current: true },
+  { name: 'Cálculo Anteriores', route: '#', icon: ChartBarIcon, current: false },
 ]
 
 const sidebarOpen = ref(false)

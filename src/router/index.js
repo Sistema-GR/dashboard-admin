@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import login from '../views/Auth/login.vue'
-import overview from '../views/Admin/Overview.vue'
+///////////////////////////////////////////////////////////////////////////////
+import admin from '../views/Admin/index.vue'
+import newcal from '../views/Admin/NewCal/index.vue'
+import overview from "@/views/Admin/Overview/index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +14,21 @@ const router = createRouter({
       component: login
     },
     {
-      path: '/overview',
-      name: 'overview',
-      component: overview
+      path: '/admin',
+      name: 'admin',
+      component: admin,
+      children: [
+        {
+          path: 'overview',
+          name: 'overview',
+          component : overview
+        },
+        {
+          path: 'newcal',
+          name: 'newcal',
+          component : newcal
+        }
+      ]
     },
   ]
 })

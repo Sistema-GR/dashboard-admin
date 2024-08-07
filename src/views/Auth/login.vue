@@ -7,7 +7,7 @@
           <div class="w-full max-w-md space-y-5 px-2">
             <TextInput type="text" label="Matrícula" placeholder="00000" />
             <TextInput type="password" label="Senha" placeholder="Senha" />
-            <router-link to="/overview"> <PrimaryButton class="mt-5" value="Login" custom-color="bg-[#06A6D8]" /></router-link>"
+            <router-link to="/admin/overview"> <PrimaryButton class="mt-5" value="Login" custom-color="bg-[#06A6D8]" /></router-link>"
 
           </div>
         </div>
