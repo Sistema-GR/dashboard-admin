@@ -4,6 +4,8 @@ import login from '../views/Auth/login.vue'
 import admin from '../views/Admin/index.vue'
 import newcal from '../views/Admin/NewCal/index.vue'
 import overview from "@/views/Admin/Overview/index.vue";
+import inports from "@/views/Admin/Inports/index.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +29,11 @@ const router = createRouter({
           path: 'newcal',
           name: 'newcal',
           component : newcal
+        },
+        {
+          path: 'inports',
+          name: 'inports',
+          component : inports
         }
       ]
     },

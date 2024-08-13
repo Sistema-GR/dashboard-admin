@@ -1,8 +1,9 @@
 <template>
-  <div class="bg-[#FBFBFB]">
+  <div class="bg-[#edf8f9]">
     <Sidebar />
-
-    <router-view></router-view>
+    <div class="h-screen">
+     <router-view></router-view>
+    </div>
   </div>
 </template>
 

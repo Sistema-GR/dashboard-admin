@@ -1,16 +1,116 @@
-<template>
-  <main class="flex flex-row items-center h-screen justify-center py-10 lg:pl-72">
-    <div class="px-4 sm:px-6 lg:px-8">
-      <h3 class="text-lg font-medium leading-6 text-gray-400">teste</h3>
-    </div>
-  </main>
-</template>
+  <template>
+    <Whiteboard tittle="Novo Cálculo">
+      <div class="flex flex-col w-full lg:flex-row">
+        
+        <div class="flex-1 flex items-center justify-center my-36">
+          <div class="text-start space-y-5 w-4/6">
+            <div class="space-y-2">
+              <p>Selecione o Ano</p>
+              <TextInput
+              v-model="textValue"
+              :error="errorMessage"
+              :success="isSuccess"
+              :info="isInfo"
+              :warning="isWarning"
+              :disabled="isDisabled"
+              type="date"
+            />
+            </div>
+            <div class="space-y-2">
+              <p>Selecione a Data Final a considerar</p>
+              <TextInput
+              v-model="textValue"
+              :error="errorMessage"
+              :success="isSuccess"
+              :info="isInfo"
+              :warning="isWarning"
+              :disabled="isDisabled"
+              type="date"
+            />
+            </div>
+            <div class="space-y-2">
+              <p>Selecione a Data Final a considerar</p>
+              <TextInput
+              v-model="textValue"
+              :error="errorMessage"
+              :success="isSuccess"
+              :info="isInfo"
+              :warning="isWarning"
+              :disabled="isDisabled"
+              type="date"
+            />
+            </div>
+          </div>
+        </div>
+        <div class="border lg:py-5 my-5"></div>
+        
+        <div class="flex-1 flex items-center justify-center my-36">
+          <div class="text-start space-y-5 w-4/6">
+            <div class="space-y-2">
+              <p>Valor Global</p>
+              <TextInput
+              placeholder="R$:"
+              v-model="textValue"
+              :error="errorMessage"
+              :success="isSuccess"
+              :info="isInfo"
+              :warning="isWarning"
+              :disabled="isDisabled"
+              type="text"
+            />
+            </div>
+            <div class="space-y-2">
+              <p>Valor Rede</p>
+              <TextInput
+              placeholder="R$:"
+              v-model="textValue"
+              :error="errorMessage"
+              :success="isSuccess"
+              :info="isInfo"
+              :warning="isWarning"
+              :disabled="isDisabled"
+              type="text"
+            />
+            </div>
+            <div class="space-y-2">
+              <p>Valor UE</p>
+              <TextInput
+              placeholder="R$:"
+              v-model="textValue"
+              :error="errorMessage"
+              :success="isSuccess"
+              :info="isInfo"
+              :warning="isWarning"
+              :disabled="isDisabled"
+              type="text"
+            />
+            </div>
+          </div>
+        </div>
 
-<script>
-import Sidebar from "@/components/Sidebar/Sidebar.vue";
+      </div>
 
-export default {
-  name: "NewCal",
-  components: {Sidebar},
-}
-</script>
+        <div class="flex w-full items-end justify-end">
+            <div>
+              <RouterLink to="/admin/inports">
+              <PrimaryButton
+              customColor="bg-blue-500 py-2 px-3 text-sm "
+              value="Continuar"
+              @click="handleClick"
+             />
+          </RouterLink>
+        </div>
+      </div>
+    </Whiteboard>
+  </template>
+
+  <script>
+  import PrimaryButton from "@/components/Buttons/PrimaryButton.vue";
+  import TextInput from "@/components/Inputs/TextInput.vue";
+  import Whiteboard from "@/components/Whiteboard/Whiteboard.vue";
+
+  export default {
+    name: "NewCal",
+    components: {TextInput, Whiteboard, PrimaryButton },
+  }
+  </script>

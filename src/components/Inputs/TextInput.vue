@@ -8,7 +8,7 @@
         role="input-container"
         :class="`
       ${this.$props.disabled ? disabledClass : enabledClass}
-      flex flex-row items-center justify-between bg-white space-x-2 px-2 py-4 w-full rounded-lg border border-lw-neutral-cold-100 focus-within:ring-lw-tasks-500 focus-within:ring-2 focus-within:border-none
+      flex flex-row items-center justify-between bg-white space-x-2 px-2 py-3 w-full rounded-lg border border-lw-neutral-cold-100 focus-within:ring-lw-tasks-500 focus-within:ring-2 focus-within:border-none
       ${error ? 'border-2 border-red-600' : ''}
       ${success ? 'border-2 border-green-600' : ''}
       ${info ? 'border-2 border-blue-600' : ''}
