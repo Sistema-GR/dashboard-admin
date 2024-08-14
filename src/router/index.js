@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import login from '../views/Auth/login.vue'
+///////////////////////////////////////////////////////////////////////////////
+import login from '../views/Auth/Login/login.vue'
 ///////////////////////////////////////////////////////////////////////////////
 import admin from '../views/Admin/index.vue'
+import home from "@/views/Admin/Home/index.vue";
 import newcal from '../views/Admin/NewCal/index.vue'
-import overview from "@/views/Admin/Overview/index.vue";
 import inports from "@/views/Admin/Inports/index.vue";
+///////////////////////////////////////////////////////////////////////////////
+import adminPanel from '@/views/AdminPanel/index.vue'
+import result from '@/views/AdminPanel/Results/index.vue'
 
 
 const router = createRouter({
@@ -16,14 +20,14 @@ const router = createRouter({
       component: login
     },
     {
-      path: '/admin',
-      name: 'admin',
+      path: '/home',
+      name: 'home',
       component: admin,
       children: [
         {
           path: 'overview',
           name: 'overview',
-          component : overview
+          component : home
         },
         {
           path: 'newcal',
@@ -35,6 +39,18 @@ const router = createRouter({
           name: 'inports',
           component : inports
         }
+      ]
+    },
+    {
+      path: '/admin',
+      name: 'adminPanel',
+      component: adminPanel,
+      children: [
+        {
+          path: 'results',
+          name: 'results',
+          component : result
+        },
       ]
     },
   ]
