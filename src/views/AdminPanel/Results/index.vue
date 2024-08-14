@@ -47,6 +47,11 @@
                         type="text"
                         />
                 </div> 
+                
+            </div>
+            
+            <div class="flex w-full items-center justify-start px-4 mt-8">
+                <Search />
             </div>
         
         <PrimaryTable />
@@ -55,11 +60,12 @@
 
 <script>
 import TextInput from '@/components/Inputs/TextInput.vue';
+import Search from '@/components/Search/Search.vue';
 import PrimaryTable from '@/components/Table/PrimaryTable.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 
 export default {
     name: "Resultados IDEM",
-    components: {Whiteboard, PrimaryTable, TextInput}
+    components: {Whiteboard, PrimaryTable, TextInput, Search}
 }
 </script>

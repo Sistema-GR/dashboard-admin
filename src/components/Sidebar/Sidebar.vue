@@ -97,8 +97,8 @@ const routes = {
     { name: 'Cálculo Anteriores', route: '/home/previouscal', icon: ChartBarIcon, current: false },
   ],
   'admin-panel': [
-    { name: 'Resultados IDEM', route: '', icon: CalculatorIcon, current: false },
-    { name: 'Profissionais', route: '', icon: UsersIcon , current: false },
+    { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },
+    { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
     { name: 'Grupos', route: '', icon: UserGroupIcon, current: false },
     { name: 'Frequência', route: '', icon: ChartBarSquareIcon , current: false },
     { name: 'Atividades', route: '', icon: DocumentCheckIcon , current: false },
