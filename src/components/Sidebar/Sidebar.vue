@@ -89,7 +89,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon  } from '@heroicons/vue/24/outline'
 
 const routes = {
   'admin': [
@@ -100,6 +100,7 @@ const routes = {
     { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },
     { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
     { name: 'Grupos', route: '', icon: UserGroupIcon, current: false },
+    { name: 'Etapas Ues', route: '/admin/steps', icon: Square3Stack3DIcon , current: false },
     { name: 'Frequência', route: '', icon: ChartBarSquareIcon , current: false },
     { name: 'Atividades', route: '', icon: DocumentCheckIcon , current: false },
     { name: 'Tempo de Atuação', route: '', icon: CalendarDaysIcon , current: false },

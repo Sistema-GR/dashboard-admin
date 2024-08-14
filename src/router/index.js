@@ -10,6 +10,7 @@ import inports from "@/views/Admin/Inports/index.vue";
 import adminPanel from '@/views/AdminPanel/index.vue'
 import result from '@/views/AdminPanel/Results/index.vue'
 import professional from '@/views/AdminPanel/Professional/index.vue'
+import steps from '@/views/AdminPanel/Steps/index.vue'
 
 
 const router = createRouter({
@@ -56,6 +57,11 @@ const router = createRouter({
           path: 'professional',
           name: 'professional',
           component : professional
+        },
+        {
+          path: 'steps',
+          name: 'steps',
+          component : steps
         },
       ]
     },
