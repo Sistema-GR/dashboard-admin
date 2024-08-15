@@ -3,7 +3,7 @@
         <div class="flex w-full items-start justify-start px-4 mt-4">
             <Search />
         </div>   
-        <PrimaryTable />
+        <PrimaryTable :route="'Steps'" />
     </Whiteboard>
 </template>
 

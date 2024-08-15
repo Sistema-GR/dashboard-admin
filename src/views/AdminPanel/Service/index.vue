@@ -1,9 +1,9 @@
 <template>
-    <Whiteboard title="Profissionais">
+    <Whiteboard title="Tempo de Atuação">
         <div class="flex w-full items-start justify-start px-4 mt-4">
             <Search />
         </div>   
-        <PrimaryTable :route="'Profissional'" />
+        <PrimaryTable :route="'Service'"/>
     </Whiteboard>
 </template>
 
@@ -14,7 +14,7 @@ import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import Search from '@/components/Search/Search.vue';
 
 export default {
-    name: "Resultados IDEM",
+    name: "Frequência",
     components: {Whiteboard, PrimaryTable, TextInput, Search}
 }
 </script>

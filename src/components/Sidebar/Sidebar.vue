@@ -101,11 +101,11 @@ const routes = {
     { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
     { name: 'Grupos', route: '', icon: UserGroupIcon, current: false },
     { name: 'Etapas Ues', route: '/admin/steps', icon: Square3Stack3DIcon , current: false },
-    { name: 'Frequência', route: '', icon: ChartBarSquareIcon , current: false },
-    { name: 'Atividades', route: '', icon: DocumentCheckIcon , current: false },
-    { name: 'Tempo de Atuação', route: '', icon: CalendarDaysIcon , current: false },
-    { name: 'Formação', route: '', icon: AcademicCapIcon , current: false },
-    { name: 'Relatórios Finais', route: '', icon: DocumentTextIcon , current: false },
+    { name: 'Frequência', route: '/admin/frequency', icon: ChartBarSquareIcon , current: false },
+    { name: 'Atividades', route: '/admin/activities', icon: DocumentCheckIcon , current: false },
+    { name: 'Tempo de Atuação', route: '/admin/service', icon: CalendarDaysIcon , current: false },
+    { name: 'Formação', route: '/admin/training', icon: AcademicCapIcon , current: false },
+    { name: 'Relatórios Finais', route: '/admin/report', icon: DocumentTextIcon , current: false },
   ]
 }
 

@@ -54,7 +54,7 @@
                 <Search />
             </div>
         
-        <PrimaryTable />
+            <PrimaryTable :route="'Results'" />
     </Whiteboard>
 </template>
 
