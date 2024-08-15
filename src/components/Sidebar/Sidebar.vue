@@ -26,8 +26,8 @@
                   <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
                       <ul role="list" class="-mx-2 space-y-1">
-                        <li v-for="item in navigation" :key="item.name">
-                          <router-link :to="item.route" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
+                        <li v-for="item in filteredNavigation" :key="item.name">
+                          <router-link :to="item.route" :class="[item.current ? 'bg-gray-800 text-white' : 'text-white hover:bg-primary-900 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
                             <component :is="item.icon" class="h-6 w-6 shrink-0" aria-hidden="true" />
                             {{ item.name }}
                           </router-link>
@@ -44,7 +44,7 @@
     </TransitionRoot>
 
     <!-- Static sidebar for desktop -->
-    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-60 lg:flex-col">
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-[#003965] px-6">
         <div class="flex py-5 shrink-0 items-center justify-center border-b border-white">
           <img class="h-14 w-auto" src="../../assets/images/logo-horinzontal.png" alt="Your Company" />
@@ -53,9 +53,9 @@
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
               <ul role="list" class="-mx-2 space-y-1">
-                <li v-for="item in navigation" :key="item.name">
-                  <router-link :to="item.route" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6']">
-                    <component :is="item.icon" class="h-6 w-6 shrink-0" aria-hidden="true" />
+                <li v-for="item in filteredNavigation" :key="item.name">
+                  <router-link :to="item.route" :class="[item.current ? 'bg-gray-800 text-white' : 'text-white hover:bg-primary-900 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all duration-200']">
+                    <component :is="item.icon" class="h-6 w-6 shrink-0 stroke-white" aria-hidden="true" />
                     {{ item.name }}
                   </router-link>
                 </li>
@@ -64,7 +64,6 @@
             <li class="-mx-6 mt-auto">
               <a href="#" class="flex items-center gap-x-4 px-6 py-4 text-sm font-semibold leading-6 text-white hover:bg-gray-800">
                 <img class="h-8 w-8 rounded-full bg-gray-800" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                <span class="sr-only">Your profile</span>
                 <span aria-hidden="true">Tom Cook Harris</span>
               </a>
             </li>
@@ -88,14 +87,38 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon  } from '@heroicons/vue/24/outline'
 
-const navigation = [
-  { name: 'Novo Cálculo', route: '/admin/newcal', icon: CalculatorIcon, current: true },
-  { name: 'Cálculo Anteriores', route: '#', icon: ChartBarIcon, current: false },
-]
+const routes = {
+  'admin': [
+    { name: 'Novo Cálculo', route: '/home/newcal', icon: CalculatorIcon, current: true },
+    { name: 'Cálculo Anteriores', route: '/home/previouscal', icon: ChartBarIcon, current: false },
+  ],
+  'admin-panel': [
+    { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },
+    { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
+    { name: 'Grupos', route: '', icon: UserGroupIcon, current: false },
+    { name: 'Etapas Ues', route: '/admin/steps', icon: Square3Stack3DIcon , current: false },
+    { name: 'Frequência', route: '/admin/frequency', icon: ChartBarSquareIcon , current: false },
+    { name: 'Atividades', route: '/admin/activities', icon: DocumentCheckIcon , current: false },
+    { name: 'Tempo de Atuação', route: '/admin/service', icon: CalendarDaysIcon , current: false },
+    { name: 'Formação', route: '/admin/training', icon: AcademicCapIcon , current: false },
+    { name: 'Relatórios Finais', route: '/admin/report', icon: DocumentTextIcon , current: false },
+  ]
+}
+
+const props = defineProps({
+  route: {
+    type: String,
+    required: true
+  }
+})
 
 const sidebarOpen = ref(false)
+
+const filteredNavigation = computed(() => {
+  return routes[props.route] || []
+})
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[#edf8f9]">
-    <Sidebar />
+    <Sidebar route="admin"/>
     <div class="h-screen">
      <router-view></router-view>
     </div>

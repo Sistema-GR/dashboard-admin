@@ -1,5 +1,5 @@
   <template>
-    <Whiteboard tittle="Novo Cálculo">
+    <Whiteboard title="Novo Cálculo">
       <div class="flex flex-col w-full lg:flex-row">
         
         <div class="flex-1 flex items-center justify-center my-36">
@@ -92,7 +92,7 @@
 
         <div class="flex w-full items-end justify-end">
             <div>
-              <RouterLink to="/admin/inports">
+              <RouterLink to="/home/inports">
               <PrimaryButton
               customColor="bg-blue-500 py-2 px-3 text-sm "
               value="Continuar"

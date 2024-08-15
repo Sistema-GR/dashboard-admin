@@ -1,5 +1,5 @@
 <template>
-    <Whiteboard tittle="Inports">
+    <Whiteboard title="Inports">
         <div class="w-full space-y-10">
             <FileInput Label="Importar Arquivo com Nome Senior.csv" />
             <FileInput Label="Importar Arquivo com Nome Evn.csv" />
@@ -8,7 +8,7 @@
         </div>
         <div class="flex w-full items-end justify-end mt-8">
             <div>
-              <RouterLink to="/admin/inports">
+              <RouterLink to="/admin/results">
               <PrimaryButton
               customColor="bg-blue-500 py-2 px-3 text-sm "
               value="Continuar"
