@@ -24,7 +24,11 @@
                       </div>
                     </div>
                     <div class="relative mt-6 flex-1 px-4 sm:px-6">
-                      <!-- Your content -->
+                        <!-- Render multiple TextInput components based on table data -->
+                        <div v-for="(value, key) in rowData" :key="key" class="mb-4">
+                            <p>{{ key }}</p>
+                            <TextInput v-model="rowData[key]" />
+                        </div>
                     </div>
                   </div>
                 </DialogPanel>
@@ -40,16 +44,21 @@
 import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
+import TextInput from '../Inputs/TextInput.vue';
 
 const props = defineProps({
   title: {
     type: String,
-    required: true,
-    default: 'default Title'
+    required: true
+  },
+  rowData: {
+    type: Object,
+    default: () => ({})
   }
 })
   
 const open = ref(false)
+
 
 function openDrawer() {
   open.value = true

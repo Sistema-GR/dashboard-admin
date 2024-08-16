@@ -9,11 +9,7 @@
                 <th v-for="column in filteredColumns" :key="column.key" scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3">
                   {{ column.label }}
                 </th>
-                <th
-                  v-if="showEdit"
-                  scope="col"
-                  class="relative py-3.5 pl-3 pr-4 sm:pr-3"
-                >
+                <th v-if="showEdit" scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-3">
                 </th>
               </tr>
             </thead>
@@ -23,11 +19,8 @@
                 <td v-for="column in filteredColumns" :key="column.key" class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                   {{ person[column.key] }}
                 </td>
-                <td
-                  v-if="showEdit"
-                  class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3"
-                >
-                  <a href="#" @click="openDrawer" class="text-indigo-600 hover:text-indigo-900">
+                <td v-if="showEdit" class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
+                  <a href="#" @click.prevent="openDrawer(person)" class="text-indigo-600 hover:text-indigo-900">
                     Edit<span class="sr-only">, {{ person }}</span>
                   </a>
                 </td>
@@ -39,8 +32,7 @@
     </div>
   </div>
 
-  <Drawer ref="drawerRef" :title="drawerTitle"/>
-
+  <Drawer ref="drawerRef" :title="drawerTitle" :rowData="selectedRowData"/>
 </template>
 
 <script setup>
@@ -51,6 +43,45 @@ const props = defineProps({
   route: {
     type: String,
     required: true
+  }
+})
+
+const filteredColumns = computed(() => {
+  return tableData[props.route]?.columns || []
+})
+
+const filteredPeople = computed(() => {
+  return tableData[props.route]?.people || []
+})
+
+const showEdit = computed(() => props.route === 'Frequency' || props.route === 'Activities' || props.route === 'Service' || props.route === 'Training')
+
+const drawerRef = ref(null)
+const selectedRowData = ref({}) 
+
+function openDrawer(person) {
+  selectedRowData.value = person // Set the data of the selected row
+  if (drawerRef.value) {
+    drawerRef.value.openDrawer()
+  }
+}
+
+function closeDrawer() {
+  if (drawerRef.value) {
+    drawerRef.value.closeDrawer()
+  }
+}
+
+const drawerTitle = computed(() => {
+  switch (props.route) {
+    case 'Frequency':
+      return 'Frequência'
+    case 'Activities':
+      return 'Atividades'
+    case 'Service':
+      return 'Tempo de Atuação'
+    case 'Training':
+      return 'Formação'
   }
 })
 
@@ -239,41 +270,5 @@ const tableData = {
 }
 }
 
-const filteredColumns = computed(() => {
-  return tableData[props.route]?.columns || []
-})
-
-const filteredPeople = computed(() => {
-  return tableData[props.route]?.people || []
-})
-
-const showEdit = computed(() => props.route === 'Frequency' || props.route === 'Activities' || props.route === 'Service' || props.route === 'Training')
-
-const drawerRef = ref(null)
-
-function openDrawer() {
-  if (drawerRef.value) {
-    drawerRef.value.openDrawer()
-  }
-}
-
-function closeDrawer() {
-  if (drawerRef.value) {
-    drawerRef.value.closeDrawer()
-  }
-}
-
-const drawerTitle = computed(() => {
-  switch (props.route) {
-    case 'Frequency':
-      return 'Frequência'
-    case 'Activities':
-      return 'Atividades'
-    case 'Service':
-      return 'Tempo de Atuação'
-    case 'Training':
-      return 'Formação'
-  }
-})
 
 </script>
