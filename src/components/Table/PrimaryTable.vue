@@ -4,7 +4,6 @@
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <table class="min-w-full divide-y divide-gray-300">
-
             <thead>
               <tr>
                 <th v-for="column in filteredColumns" :key="column.key" scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3">
@@ -15,13 +14,12 @@
                   scope="col"
                   class="relative py-3.5 pl-3 pr-4 sm:pr-3"
                 >
-                  <span class="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
 
             <tbody class="bg-white">
-              <tr v-for="person in filteredPeople" :key="person" class="even:bg-gray-50">
+              <tr v-for="person in filteredPeople" :key="person.id" class="even:bg-gray-50">
                 <td v-for="column in filteredColumns" :key="column.key" class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                   {{ person[column.key] }}
                 </td>
@@ -29,8 +27,8 @@
                   v-if="showEdit"
                   class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3"
                 >
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                    Edit<span class="sr-only">, {{ person.name }}</span>
+                  <a href="#" @click="openDrawer" class="text-indigo-600 hover:text-indigo-900">
+                    Edit<span class="sr-only">, {{ person }}</span>
                   </a>
                 </td>
               </tr>
@@ -40,10 +38,14 @@
       </div>
     </div>
   </div>
+
+  <Drawer ref="drawerRef" :title="drawerTitle"/>
+
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import Drawer from '../Drawer/Drawer.vue';
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   route: {
@@ -118,7 +120,7 @@ const tableData = {
       { nome_escola_sgp: 'EM Alfredo G. Henrique', nome_escola_sgp: 'Alfredo Germano Henrique Hardt', tem_ai_1_2ano: 'Sim', tem_ai_2_5ano: 'Não', tem_af_9ano: 'Não', tipo: 'Urbanas de 1° ao 9°' },
     ],
   },
-  'Frequencia': {
+  'Frequency': {
     columns: [
       { key: 'nome', label: 'Nome' },
       { key: 'motivo', label: 'Motivo' },
@@ -237,8 +239,6 @@ const tableData = {
 }
 }
 
-
-
 const filteredColumns = computed(() => {
   return tableData[props.route]?.columns || []
 })
@@ -249,5 +249,31 @@ const filteredPeople = computed(() => {
 
 const showEdit = computed(() => props.route === 'Frequency' || props.route === 'Activities' || props.route === 'Service' || props.route === 'Training')
 
+const drawerRef = ref(null)
+
+function openDrawer() {
+  if (drawerRef.value) {
+    drawerRef.value.openDrawer()
+  }
+}
+
+function closeDrawer() {
+  if (drawerRef.value) {
+    drawerRef.value.closeDrawer()
+  }
+}
+
+const drawerTitle = computed(() => {
+  switch (props.route) {
+    case 'Frequency':
+      return 'Frequência'
+    case 'Activities':
+      return 'Atividades'
+    case 'Service':
+      return 'Tempo de Atuação'
+    case 'Training':
+      return 'Formação'
+  }
+})
 
 </script>
