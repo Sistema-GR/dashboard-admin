@@ -24,11 +24,10 @@
                       </div>
                     </div>
                     <div class="relative mt-6 flex-1 px-4 sm:px-6">
-                        <!-- Render multiple TextInput components based on table data -->
-                        <div v-for="(value, key) in rowData" :key="key" class="mb-4">
-                            <p>{{ key }}</p>
-                            <TextInput v-model="rowData[key]" />
-                        </div>
+                      <div v-for="(value, key) in rowData" :key="key" class="mb-4">
+                         <p>{{ getLabelByKey(key) }}</p>
+                         <TextInput v-model="rowData[key]" />
+                      </div>
                     </div>
                   </div>
                 </DialogPanel>
@@ -54,6 +53,10 @@ const props = defineProps({
   rowData: {
     type: Object,
     default: () => ({})
+  },
+  columns: {
+    type: Array,
+    required: true
   }
 })
   
@@ -66,6 +69,11 @@ function openDrawer() {
 
 function closeDrawer() {
   open.value = false
+}
+
+function getLabelByKey(key) {
+  const column = props.columns.find(col => col.key === key)
+  return column ? column.label : key
 }
 
 defineExpose({ openDrawer, closeDrawer })

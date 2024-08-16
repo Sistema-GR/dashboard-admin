@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <Drawer ref="drawerRef" :title="drawerTitle" :rowData="selectedRowData"/>
+  <Drawer ref="drawerRef" :title="drawerTitle" :rowData="selectedRowData" :columns="filteredColumns" />
 </template>
 
 <script setup>
