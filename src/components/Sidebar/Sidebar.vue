@@ -89,12 +89,13 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon  } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon  } from '@heroicons/vue/24/outline'
 
 const routes = {
   'admin': [
     { name: 'Novo Cálculo', route: '/home/newcal', icon: CalculatorIcon, current: true },
-    { name: 'Cálculo Anteriores', route: '/home/previouscal', icon: ChartBarIcon, current: false },
+    { name: 'Cálculo Anteriores', route: '/home/previousresults', icon: ChartBarIcon, current: false },
+    { name: 'Recurso', route: '/home/previousresults', icon: ExclamationCircleIcon, current: false },
   ],
   'admin-panel': [
     { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },

@@ -5,6 +5,7 @@ import login from '../views/Auth/Login/login.vue'
 import admin from '../views/Admin/index.vue'
 import home from "@/views/Admin/Home/index.vue";
 import newcal from '../views/Admin/NewCal/index.vue'
+import previousresults from '@/views/Admin/PreviousResults/index.vue'
 import inports from "@/views/Admin/Inports/index.vue";
 ///////////////////////////////////////////////////////////////////////////////
 import adminPanel from '@/views/AdminPanel/index.vue'
@@ -41,6 +42,11 @@ const router = createRouter({
           path: 'newcal',
           name: 'newcal',
           component : newcal
+        },
+        {
+          path: 'previousresults',
+          name: 'previousresults',
+          component : previousresults
         },
         {
           path: 'inports',
