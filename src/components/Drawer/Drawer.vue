@@ -1,5 +1,6 @@
 <template>
     <TransitionRoot as="template" :show="open">
+
       <Dialog class="relative z-10" @close="open = false">
         <TransitionChild as="template" enter="ease-in-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in-out duration-500" leave-from="opacity-100" leave-to="opacity-0">
           <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
@@ -23,12 +24,14 @@
                         </div>
                       </div>
                     </div>
+
                     <div class="relative mt-6 flex-1 px-4 sm:px-6">
                       <div v-for="(value, key) in rowData" :key="key" class="mb-4">
-                         <p>{{ getLabelByKey(key) }}</p>
-                         <TextInput v-model="rowData[key]" />
+                        <p class="leading-auto font-normal">{{ getLabelByKey(key) }}</p> 
+                        <TextInput v-model="rowData[key]" /> 
                       </div>
                     </div>
+
                   </div>
                 </DialogPanel>
               </TransitionChild>
@@ -37,6 +40,7 @@
         </div>
       </Dialog>
     </TransitionRoot>
+
   </template>
   
 <script setup>

@@ -53,19 +53,24 @@
             <div class="flex w-full items-center justify-start px-4 mt-8">
                 <Search />
             </div>
-        
-            <PrimaryTable :route="'Results'" />
+            
+            <div class="w-full pb-5">
+                <PrimaryTable :route="'Results'" />
+                <Pagination />
+            </div> 
+           
     </Whiteboard>
 </template>
 
 <script>
 import TextInput from '@/components/Inputs/TextInput.vue';
+import Pagination from '@/components/Pagination/Pagination.vue';
 import Search from '@/components/Search/Search.vue';
 import PrimaryTable from '@/components/Table/PrimaryTable.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 
 export default {
     name: "Resultados IDEM",
-    components: {Whiteboard, PrimaryTable, TextInput, Search}
+    components: {Whiteboard, PrimaryTable, TextInput, Search, Pagination}
 }
 </script>

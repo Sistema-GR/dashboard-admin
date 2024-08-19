@@ -16,6 +16,7 @@ import activities from '@/views/AdminPanel/Activities/index.vue'
 import service from '@/views/AdminPanel/Service/index.vue'
 import training from '@/views/AdminPanel/Training/index.vue'
 import report from '@/views/AdminPanel/Report/index.vue'
+import groups from '@/views/AdminPanel/Groups/index.vue'
 
 
 const router = createRouter({
@@ -62,6 +63,11 @@ const router = createRouter({
           path: 'professional',
           name: 'professional',
           component : professional
+        },
+        {
+          path: 'groups',
+          name: 'groups',
+          component : groups
         },
         {
           path: 'steps',

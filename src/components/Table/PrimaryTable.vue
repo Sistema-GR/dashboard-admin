@@ -3,10 +3,10 @@
     <div class="mt-6 flow-root">
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <table class="min-w-full divide-y divide-gray-300">
+          <table class="min-w-full divide-y divide-gray-300 bg-primary-900 rounded-t-md shadow-md">
             <thead>
               <tr>
-                <th v-for="column in filteredColumns" :key="column.key" scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3">
+                <th v-for="column in filteredColumns" :key="column.key" scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-3 whitespace-nowrap break-words">
                   {{ column.label }}
                 </th>
                 <th v-if="showEdit" scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-3">
@@ -60,9 +60,9 @@ const drawerRef = ref(null)
 const selectedRowData = ref({}) 
 
 function openDrawer(person) {
-  selectedRowData.value = person // Set the data of the selected row
+  selectedRowData.value = { ...person }; 
   if (drawerRef.value) {
-    drawerRef.value.openDrawer()
+    drawerRef.value.openDrawer();
   }
 }
 
@@ -128,6 +128,50 @@ const tableData = {
       { matricula: 'u04444', nome: 'Alice Brown', cpf: '123.456.789-00', admissao: '01/01/2020', local_alocacao: 'EM João Costa', cargo: 'Auxiliar Educador', vinculo: 'Estat.Temp.(H.A)', situacao: 'Trabalhando' },
       { matricula: 'u04444', nome: 'Alice Brown', cpf: '123.456.789-00', admissao: '01/01/2020', local_alocacao: 'EM João Costa', cargo: 'Auxiliar Educador', vinculo: 'Estat.Temp.(H.A)', situacao: 'Trabalhando' },
       { matricula: 'u04444', nome: 'Alice Brown', cpf: '123.456.789-00', admissao: '01/01/2020', local_alocacao: 'EM João Costa', cargo: 'Auxiliar Educador', vinculo: 'Estat.Temp.(H.A)', situacao: 'Trabalhando' },
+    ],
+  },
+  'unitMax': {
+    columns: [
+      { key: 'groupsUnit', label: 'Grupos' },
+      { key: 'value', label: 'Valor' },
+    ],
+    people: [
+      { groupsUnit: 'Grupo I', value: 'R$:' },
+      { groupsUnit: 'Grupo II', value: 'R$:' },
+      { groupsUnit: 'Grupo III', value: 'R$:' },
+      { groupsUnit: 'Grupo VI', value: 'R$:' },
+      { groupsUnit: 'Grupo V', value: 'R$:' },
+    ],
+  },
+  'redeMax': {
+    columns: [
+      { key: 'groupsMax', label: 'Grupos' },
+      { key: 'value', label: 'Valor' },
+    ],
+    people: [
+      { groupsMax: 'Grupo I', value: 'R$:' },
+      { groupsMax: 'Grupo II', value: 'R$:' },
+      { groupsMax: 'Grupo III', value: 'R$:' },
+      { groupsMax: 'Grupo VI', value: 'R$:' },
+      { groupsMax: 'Grupo V', value: 'R$:' },
+    ],
+  },
+  'finalResults': {
+    columns: [
+      { key: 'groupsMax', label: 'Grupos' },
+      { key: 'stage1', label: 'Etapa 1' },
+      { key: 'stage2', label: 'Etapa 2' },
+      { key: 'stage3', label: 'Etapa 3' },
+      { key: 'totalStageResults', label: 'Total Etapas' },
+      { key: 'value', label: 'Valor' },
+    ],
+    people: [
+      { groupsMax: 'Grupo I', stage1: 'R$:', stage2: 'R$:', stage3: 'R$:', totalStageResults: 'R$:', value: 'R$:' },
+      { groupsMax: 'Grupo II', stage1: 'R$:', stage2: 'R$:', stage3: 'R$:', totalStageResults: 'R$:', value: 'R$:' },
+      { groupsMax: 'Grupo III', stage1: 'R$:', stage2: 'R$:', stage3: 'R$:', totalStageResults: 'R$:', value: 'R$:' },
+      { groupsMax: 'Grupo IV', stage1: 'R$:', stage2: 'R$:', stage3: 'R$:', totalStageResults: 'R$:', value: 'R$:' },
+      { groupsMax: 'Grupo V', stage1: 'R$:', stage2: 'R$:', stage3: 'R$:', totalStageResults: 'R$:', value: 'R$:' },
+      
     ],
   },
   'Steps': {
@@ -205,16 +249,16 @@ const tableData = {
       { key: 'data_fim_alocacao', label: 'Data de Fim de Alocação' },
     ],
    people: [
-      { matricula: '001', nome: 'Alice Johnson', admissao: '2021-01-10', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2023-03-01', data_fim_alocacao: '2024-02-29' },
-      { matricula: '002', nome: 'Bob Smith', admissao: '2022-05-22', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2023-01-15', data_fim_alocacao: '2024-01-14' },
-      { matricula: '003', nome: 'Charlie Davis', admissao: '2023-07-05', demissao: null, atua_ha_mais_de_6_meses: 'Não', data_inicio_alocacao: '2023-07-10', data_fim_alocacao: '2024-07-09' },
-      { matricula: '004', nome: 'Diana Ross', admissao: '2021-11-18', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-12-01', data_fim_alocacao: '2024-11-30' },
-      { matricula: '005', nome: 'Edward Jones', admissao: '2022-04-02', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-04-15', data_fim_alocacao: '2024-04-14' },
-      { matricula: '006', nome: 'Fiona Green', admissao: '2023-01-25', demissao: null, atua_ha_mais_de_6_meses: 'Não', data_inicio_alocacao: '2023-01-30', data_fim_alocacao: '2024-01-29' },
-      { matricula: '007', nome: 'George Black', admissao: '2022-08-30', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-09-01', data_fim_alocacao: '2024-08-31' },
-      { matricula: '008', nome: 'Hannah White', admissao: '2021-10-14', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2021-11-01', data_fim_alocacao: '2024-10-31' },
-      { matricula: '009', nome: 'Ian Brown', admissao: '2023-03-15', demissao: null, atua_ha_mais_de_6_meses: 'Não', data_inicio_alocacao: '2023-03-20', data_fim_alocacao: '2024-03-19' },
-      { matricula: '010', nome: 'Jane Cooper', admissao: '2022-06-07', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-06-10', data_fim_alocacao: '2024-06-09' },
+      { matricula: 'u04444', nome: 'Alice Johnson', admissao: '2021-01-10', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2023-03-01', data_fim_alocacao: '2024-02-29' },
+      { matricula: 'u04444', nome: 'Bob Smith', admissao: '2022-05-22', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2023-01-15', data_fim_alocacao: '2024-01-14' },
+      { matricula: 'u04444', nome: 'Charlie Davis', admissao: '2023-07-05', demissao: null, atua_ha_mais_de_6_meses: 'Não', data_inicio_alocacao: '2023-07-10', data_fim_alocacao: '2024-07-09' },
+      { matricula: 'u04444', nome: 'Diana Ross', admissao: '2021-11-18', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-12-01', data_fim_alocacao: '2024-11-30' },
+      { matricula: 'u04444', nome: 'Edward Jones', admissao: '2022-04-02', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-04-15', data_fim_alocacao: '2024-04-14' },
+      { matricula: 'u04444', nome: 'Fiona Green', admissao: '2023-01-25', demissao: null, atua_ha_mais_de_6_meses: 'Não', data_inicio_alocacao: '2023-01-30', data_fim_alocacao: '2024-01-29' },
+      { matricula: 'u04444', nome: 'George Black', admissao: '2022-08-30', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-09-01', data_fim_alocacao: '2024-08-31' },
+      { matricula: 'u04444', nome: 'Hannah White', admissao: '2021-10-14', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2021-11-01', data_fim_alocacao: '2024-10-31' },
+      { matricula: 'u04444', nome: 'Ian Brown', admissao: '2023-03-15', demissao: null, atua_ha_mais_de_6_meses: 'Não', data_inicio_alocacao: '2023-03-20', data_fim_alocacao: '2024-03-19' },
+      { matricula: 'u04444', nome: 'Jane Cooper', admissao: '2022-06-07', demissao: null, atua_ha_mais_de_6_meses: 'Sim', data_inicio_alocacao: '2022-06-10', data_fim_alocacao: '2024-06-09' },
     ],
    },
   'Training': {

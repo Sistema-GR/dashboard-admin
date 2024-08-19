@@ -99,7 +99,7 @@ const routes = {
   'admin-panel': [
     { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },
     { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
-    { name: 'Grupos', route: '', icon: UserGroupIcon, current: false },
+    { name: 'Grupos', route: '/admin/groups', icon: UserGroupIcon, current: false },
     { name: 'Etapas Ues', route: '/admin/steps', icon: Square3Stack3DIcon , current: false },
     { name: 'Frequência', route: '/admin/frequency', icon: ChartBarSquareIcon , current: false },
     { name: 'Atividades', route: '/admin/activities', icon: DocumentCheckIcon , current: false },
