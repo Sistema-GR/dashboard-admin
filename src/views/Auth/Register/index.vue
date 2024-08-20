@@ -10,7 +10,7 @@
               <TextInput type="text" label="CPF" placeholder="CPF" />
               <TextInput type="password" label="Senha" placeholder="Senha" />
               <TextInput type="password" label="Confirmar Senha" placeholder="Confirmar Senha" />
-              <router-link to="/home/overview"> <PrimaryButton class="mt-8" value="Cadastrar" custom-color="bg-[#06A6D8]" /></router-link>"
+              <router-link to="/"> <PrimaryButton class="mt-8" value="Cadastrar" custom-color="bg-[#06A6D8]" /></router-link>"
             <div class="w-full flex justify-center mt-1">
               <router-link to="/" class="text-sm text-amber-50 hover:underline -translate-y-5">Possui login? Clique aqui</router-link>
             </div>

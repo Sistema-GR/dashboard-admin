@@ -5,9 +5,10 @@
           <div class="flex flex-col h-screen items-center justify-center">
             <img src="../../../assets/images/logo.png" alt="" class="w-max scale-75 drop-shadow-lg py-0" />
             <div class="w-full max-w-md space-y-3 px-2">
-                <p class="text-sm text-amber-50">Digite seu e-mail abaixo. Se existir um usuário cadastrado com essa credencial, vamos enviar um código para o e-mail digitado. </p>
-              <TextInput type="text" label="Email" placeholder="E-mail" />
-              <router-link to="/insertcode"> <PrimaryButton class="mt-8" value="Continuar" custom-color="bg-[#06A6D8]" /></router-link>"
+                <!-- <p class="text-sm text-amber-50"></p>-->
+                <TextInput type="text" label="Nova Senha" placeholder="Nova Senha" />
+                <TextInput type="text" label="Confirmar Senha" placeholder="Confirmar Senha" />
+              <router-link to="/"> <PrimaryButton class="mt-8" value="Confirmar" custom-color="bg-[#06A6D8]" /></router-link>"
             <div class="w-full flex justify-center mt-1">
               <router-link to="/" class="text-sm text-amber-50 hover:underline -translate-y-5">Possui login? Clique aqui</router-link>
             </div>
@@ -26,7 +27,7 @@
   import PrimaryButton from "@/components/Buttons/PrimaryButton.vue";
   
   export default {
-    name: 'ForgotPassword',
+    name: 'ChangePassword',
     components: {PrimaryButton, TextInput},
   }
   </script>
