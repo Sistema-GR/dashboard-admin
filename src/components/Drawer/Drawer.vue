@@ -32,6 +32,11 @@
                       </div>
                     </div>
 
+                    <div class="flex items-end justify-end mx-5 gap-4">
+                      <SecondaryButton label="Cancelar"/>
+                      <SecondaryButton label="Salvar"/>
+                    </div>
+
                   </div>
                 </DialogPanel>
               </TransitionChild>
@@ -48,6 +53,9 @@ import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import TextInput from '../Inputs/TextInput.vue';
+import SecondaryButton from '../Buttons/SecondaryButton.vue';
+
+components: {SecondaryButton}
 
 const props = defineProps({
   title: {

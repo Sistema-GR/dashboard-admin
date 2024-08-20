@@ -17,7 +17,7 @@
 
         </div>
 
-        <div class="flex flex-col w-full items-center justify-center mt-8 pb-5">
+        <div class="flex flex-col w-full items-center justify-center mt-5 pb-5">
             <p class="text-xl font-semibold mt-5">Resultados</p>
             <PrimaryTable :route="'finalResults'" />
         </div>
