@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 ///////////////////////////////////////////////////////////////////////////////
-import login from '../views/Auth/Login/login.vue'
+import login from '../views/Auth/Login/index.vue'
+import register from '../views/Auth/Register/index.vue'
+import forgotpassword from '../views/Auth/ForgotPassword/index.vue'
 ///////////////////////////////////////////////////////////////////////////////
 import admin from '../views/Admin/index.vue'
 import home from "@/views/Admin/Home/index.vue";
@@ -27,6 +29,16 @@ const router = createRouter({
       path: '/',
       name: 'login',
       component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/forgotpassword',
+      name: 'forgotpassword',
+      component: forgotpassword
     },
     {
       path: '/home',
