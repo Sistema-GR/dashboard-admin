@@ -12,7 +12,7 @@
           <div 
             v-for="item in versions" 
             :key="item.version" 
-            class="flex flex-col p-3 border-b border-gray-200 cursor-pointer hover:bg-gray-50"
+            class="flex flex-col p-3 border-b border-gray-200  hover:bg-gray-50"
             @click="toggleDetails(item)"
           >
             <div class="flex items-center justify-between">
@@ -35,6 +35,12 @@
                     <p class="font-medium">Descrição:</p>
                     <p class="text-gray-600">{{ item.description }}</p>
                 </div>
+                
+                <div class="flex flex-row w-full items-center justify-end gap-3">
+                  <SecondaryButton label="Excluir" customClass=""/>
+                  <SecondaryButton label="Criar Cópiar" customClass=""/>
+                </div>
+
             </div>
           </div>
         </div>
@@ -43,12 +49,13 @@
   </template>
   
   <script>
+  import SecondaryButton from '@/components/Buttons/SecondaryButton.vue';
   import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
   import { ChevronDownIcon } from "@heroicons/vue/24/outline";
   
   export default {
     name: "PreviousResults",
-    components: { Whiteboard, ChevronDownIcon },
+    components: { Whiteboard, ChevronDownIcon, SecondaryButton },
     data() {
       return {
         year: '2024',
@@ -58,7 +65,7 @@
           { version: '2024_Terceira_versão_v1.2', createdBy: 'Charlie', date: '2024-03-20', description: 'Nova funcionalidade adicionada.' }
         ],
         dropdownOpen: false,
-        selectedVersion: null
+        selectedVersion: false
       };
     },
     methods: {
