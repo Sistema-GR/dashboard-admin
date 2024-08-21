@@ -95,7 +95,7 @@ const routes = {
   'admin': [
     { name: 'Novo Cálculo', route: '/home/newcal', icon: CalculatorIcon, current: true },
     { name: 'Cálculo Anteriores', route: '/home/previousresults', icon: ChartBarIcon, current: false },
-    { name: 'Recurso', route: '/home/previousresults', icon: ExclamationCircleIcon, current: false },
+    { name: 'Recurso', route: '/home/resource', icon: ExclamationCircleIcon, current: false },
   ],
   'admin-panel': [
     { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },
