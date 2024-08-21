@@ -315,12 +315,10 @@
 </template>
 
 <script>
-import RewardDashboard from '@/components/RewardDashboard/RewardDashboard.vue';
-
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 
 export default {
     name: "RewardDashboard",
-    components: {RewardDashboard, Whiteboard}
+    components: {Whiteboard}
 }
 </script>

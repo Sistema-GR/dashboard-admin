@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import login from '../views/Auth/Login/index.vue'
 import register from '../views/Auth/Register/index.vue'
 import forgotpassword from '../views/Auth/ForgotPassword/index.vue'
+import changepassword from '../views/Auth/ChangePassword/index.vue'
+import insertcode from '../views/Auth/InsertCode/index.vue'
 ///////////////////////////////////////////////////////////////////////////////
 import admin from '../views/Admin/index.vue'
 import home from "@/views/Admin/Home/index.vue";
@@ -20,6 +22,7 @@ import service from '@/views/AdminPanel/Service/index.vue'
 import training from '@/views/AdminPanel/Training/index.vue'
 import report from '@/views/AdminPanel/Report/index.vue'
 import groups from '@/views/AdminPanel/Groups/index.vue'
+import rewards from '@/views/AdminPanel/Rewards/index.vue'
 
 
 const router = createRouter({
@@ -36,9 +39,19 @@ const router = createRouter({
       component: register
     },
     {
+      path: '/changepassword',
+      name: 'changepassword',
+      component: changepassword
+    },
+    {
       path: '/forgotpassword',
       name: 'forgotpassword',
       component: forgotpassword
+    },
+    {
+      path: '/insertcode',
+      name: 'insertcode',
+      component: insertcode
     },
     {
       path: '/home',
@@ -116,6 +129,11 @@ const router = createRouter({
           path: 'report',
           name: 'report',
           component : report
+        },
+        {
+          path: 'rewards',
+          name: 'rewards',
+          component : rewards
         },
       ]
     },
