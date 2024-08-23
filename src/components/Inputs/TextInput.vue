@@ -1,84 +1,68 @@
 <template>
-  <div
-      :class="`flex flex-col justify-center w-full gap-2 ${this.$props.containerClassName}`"
-  >
-    <label for="text-input" class="text-amber-50" v-if="label">{{ label }}</label>
+  <div :class="`flex flex-col justify-center w-full gap-2 ${containerClassName}`">
+    <label v-if="label" :for="inputId" class="text-amber-50">{{ label }}</label>
 
-    <div
-        role="input-container"
-        :class="`
-      ${this.$props.disabled ? disabledClass : enabledClass}
-      flex flex-row items-center justify-between bg-white space-x-2 px-2 py-3 w-full rounded-lg border border-lw-neutral-cold-100 focus-within:ring-lw-tasks-500 focus-within:ring-2 focus-within:border-none
-      ${error ? 'border-2 border-red-600' : ''}
-      ${success ? 'border-2 border-green-600' : ''}
-      ${info ? 'border-2 border-blue-600' : ''}
-      ${warning ? 'border-2 border-yellow-400' : ''}
-      `"
-    >
+    <div role="input-container" :class="inputContainerClass">
       <input
-          :id="value + type"
-          :disabled="disabled"
-          :placeholder="placeholder"
-          :type="type"
-          v-model="value"
-          v-bind="$attrs"
-          class="bg-transparent appearance-none h-full border-none outline-none w-full"
-          @input="updateInput"
+        :id="inputId"
+        :disabled="disabled"
+        :placeholder="placeholder"
+        :type="type"
+        v-model="modelValue"
+        @input="updateInput"
+        v-bind="$attrs"
+        class="bg-transparent appearance-none h-full border-none outline-none w-full"
       />
     </div>
-    <div
-        :class="`${
-        error
-          ? 'text-sm font-medium text-label text-lw-health-600 truncate'
-          : 'hidden'
-      }`"
-    >
+
+    <div v-if="error" class="text-sm font-medium text-label text-red-600 truncate">
       {{ error }}
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "TextInput",
-  props: {
-    placeholder: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    containerClassName: {
-      type: String,
-    },
-    error: {
-      type: String,
-      default: "",
-    },
-    label: {
-      type: String,
-      required: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    type: { type: String, required: true },
-    success: Boolean,
-    info: Boolean,
-    warning: Boolean,
-    disabledClass: "bg-gray-200 border-none",
-    enabledClass: "bg-lw-neutral-cold-50 hover:bg-lw-neutral-warm-50",
+<script setup>
+import { ref, computed } from 'vue';
+
+const props = defineProps({
+  id: String,
+  placeholder: {
+    type: String,
+    default: '',
   },
-  methods() {
-    const emit = defineEmits(["update:value"]);
-    const updateInput = ($event) => {
-      emit("update:value", $event.target.value);
-    };
+  containerClassName: String,
+  error: String,
+  label: String,
+  disabled: Boolean,
+  type: {
+    type: String,
+    default: 'text', 
   },
-  data() {
-    return {
-      value: "",
-    };
+  success: Boolean,
+  info: Boolean,
+  warning: Boolean,
+  modelValue: {
+    type: [String, Number],
+    default: '',
   },
-};
+});
+
+const emit = defineEmits(['update:modelValue']);
+
+const modelValue = ref(props.modelValue);
+
+function updateInput(event) {
+  emit('update:modelValue', event.target.value);
+}
+
+const inputId = computed(() => props.id || `${props.type}-${Math.random()}`);
+
+const inputContainerClass = computed(() => {
+  return `${props.disabled ? 'disabledClass' : 'enabledClass'}
+    flex flex-row items-center justify-between bg-white space-x-2 px-2 py-3 w-full rounded-lg border border-neutral-cold-100
+    ${props.error ? 'border-2 border-red-600' : ''}
+    ${props.success ? 'border-2 border-green-600' : ''}
+    ${props.info ? 'border-2 border-blue-600' : ''}
+    ${props.warning ? 'border-2 border-yellow-400' : ''}`;
+});
 </script>

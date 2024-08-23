@@ -9,13 +9,12 @@
                 <th v-for="column in filteredColumns" :key="column.key" scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-3 whitespace-nowrap break-words">
                   {{ column.label }}
                 </th>
-                <th v-if="showEdit" scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-3">
-                </th>
+                <th v-if="showEdit" scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-3"></th>
               </tr>
             </thead>
 
             <tbody class="bg-white">
-              <tr v-for="person in filteredPeople" :key="person.matricula" class="even:bg-gray-50">
+              <tr v-for="person in filteredPeople" :key="person.id" class="even:bg-gray-50">
                 <td v-for="column in filteredColumns" :key="column.key" class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                   {{ person[column.key] }}
                 </td>
@@ -32,45 +31,65 @@
                 </td>
               </tr>
             </tbody>
-
           </table>
         </div>
       </div>
     </div>
   </div>
 
-  <Drawer ref="drawerRef" :title="drawerTitle" :rowData="selectedRowData" :columns="filteredColumns" />
+  <Drawer ref="drawerRef" :title="drawerTitle" v-model:rowData="selectedRowData" :columns="filteredColumns" @update:rowData="updateRowData" @drawer-closed="handleDrawerClosed" />
   
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from 'vue';
 import Drawer from '../Drawer/Drawer.vue';
-import { ref, computed } from 'vue'
-import tableData from '@/components/Table/data.json';  
 import { EyeIcon } from "@heroicons/vue/24/outline";
-
-components: {EyeIcon}
 
 const props = defineProps({
   route: {
     type: String,
     required: true
   }
-})
+});
 
-const filteredColumns = computed(() => {
-  return tableData[props.route]?.columns || []
-})
+const filteredColumns = ref([]);
+const filteredPeople = ref([]);
+const selectedRowData = ref();
+const drawerTitle = computed(() => {
+  switch (props.route) {
+    case 'Frequency': return 'Frequência';
+    case 'Activities': return 'Atividades';
+    case 'Service': return 'Tempo de Atuação';
+    case 'Training': return 'Formação';
+    default: return '';
+  }
+});
+const showEdit = computed(() => ['Frequency', 'Activities', 'Service', 'Training'].includes(props.route));
+const showGr = computed(() => props.route === 'Report');
 
-const filteredPeople = computed(() => {
-  return tableData[props.route]?.people || []
-})
+const drawerRef = ref(null);
 
-const showEdit = computed(() => props.route === 'Frequency' || props.route === 'Activities' || props.route === 'Service' || props.route === 'Training')
-const showGr = computed(() => props.route === 'Report')
+onMounted(async () => {
+  try {
+    const response = await fetch("/src/components/Table/data.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    filteredColumns.value = data[props.route]?.columns || [];
+    filteredPeople.value = data[props.route]?.people || [];
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+});
 
-const drawerRef = ref(null)
-const selectedRowData = ref({}) 
+function updateRowData(updatedRowData) {
+  const index = filteredPeople.value.findIndex(person => person.id === updatedRowData.id);
+  if (index !== -1) {
+    filteredPeople.value[index] = updatedRowData;
+  }
+}
 
 function openDrawer(person) {
   selectedRowData.value = { ...person }; 
@@ -79,22 +98,8 @@ function openDrawer(person) {
   }
 }
 
-function closeDrawer() {
-  if (drawerRef.value) {
-    drawerRef.value.closeDrawer()
-  }
+function handleDrawerClosed() {
+  selectedRowData.value = {undefined};
 }
 
-const drawerTitle = computed(() => {
-  switch (props.route) {
-    case 'Frequency':
-      return 'Frequência'
-    case 'Activities':
-      return 'Atividades'
-    case 'Service':
-      return 'Tempo de Atuação'
-    case 'Training':
-      return 'Formação'
-  }
-})
 </script>
