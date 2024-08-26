@@ -77,8 +77,14 @@ onMounted(async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+
+    filteredPeople.value = (data[props.route]?.people || []).map((person, index) => ({
+      ...person,
+      id: index + 1 
+    }));
+
     filteredColumns.value = data[props.route]?.columns || [];
-    filteredPeople.value = data[props.route]?.people || [];
+
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -88,6 +94,8 @@ function updateRowData(updatedRowData) {
   const index = filteredPeople.value.findIndex(person => person.id === updatedRowData.id);
   if (index !== -1) {
     filteredPeople.value[index] = updatedRowData;
+  } else {
+    console.error("No matching row found for id:", updatedRowData.id);
   }
 }
 
