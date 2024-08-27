@@ -1,5 +1,5 @@
 <template>
-    <Whiteboard title="Cálculo Anteriores">
+    <Whiteboard title="Cálculo Anteriores" :isSidebarMinimized="isSidebarMinimized">
       <div class="flex flex-row w-full items-center justify-between p-4 rounded-md cursor-pointer" @click="toggleDropdown">
         <p class="text-3xl font-semibold">{{ year }}</p>
         <ChevronDownIcon class="w-6 h-6 text-gray-500 cursor-pointer" />
@@ -49,6 +49,7 @@
   </template>
   
   <script>
+  import { inject } from 'vue'
   import SecondaryButton from '@/components/Buttons/SecondaryButton.vue';
   import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
   import { ChevronDownIcon } from "@heroicons/vue/24/outline";
@@ -75,6 +76,13 @@
       toggleDetails(selectedItem) {
         this.selectedVersion = this.selectedVersion === selectedItem ? null : selectedItem;
       }
+    },
+    setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized')
+
+    return {
+      isSidebarMinimized
     }
+  }
   }
   </script>

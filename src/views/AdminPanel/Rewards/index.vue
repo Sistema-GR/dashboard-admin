@@ -1,5 +1,5 @@
 <template>
-     <main class="flex flex-col items-center justify-center mx-10 my-10 lg:pl-60 overflow-hidden">
+     <main class="flex flex-col items-center justify-center mx-10 my-10 lg:pl-60 overflow-hidden" :class="{'lg:pl-20': isSidebarMinimized}">
 
         <div class="flex items-center justify-center rounded-b-lg py-4 w-full bg-primary-900 shadow-lg">
             <p class="text-white font-bold text-2xl">Painel de Gratificação</p>
@@ -120,10 +120,19 @@
 <script>
 import Card from '@/views/AdminPanel/Rewards/Card/Card.vue'
 import Table from "@/views/AdminPanel/Rewards/Table/Table.vue"
+import { inject } from 'vue'
 
 export default {
     name: "RewardDashboard",
     components: {Card, Table},
+
+    setup() {
+        const isSidebarMinimized = inject('isSidebarMinimized')
+        
+        return {
+            isSidebarMinimized
+        }
+    },
 
     data() {
         return {

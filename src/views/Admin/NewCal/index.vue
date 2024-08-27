@@ -1,5 +1,5 @@
   <template>
-    <Whiteboard title="Novo Cálculo">
+    <Whiteboard title="Novo Cálculo" :isSidebarMinimized="isSidebarMinimized">
       <div class="flex flex-col w-full lg:flex-row">
         
         <div class="flex-1 flex items-center justify-center my-36">
@@ -108,9 +108,18 @@
   import PrimaryButton from "@/components/Buttons/PrimaryButton.vue";
   import TextInput from "@/components/Inputs/TextInput.vue";
   import Whiteboard from "@/components/Whiteboard/Whiteboard.vue";
-
+  import { inject } from 'vue'
+  
   export default {
     name: "NewCal",
     components: {TextInput, Whiteboard, PrimaryButton },
+
+    setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized')
+
+    return {
+      isSidebarMinimized
+    }
+  }
   }
   </script>

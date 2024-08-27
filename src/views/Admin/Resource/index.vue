@@ -1,5 +1,5 @@
 <template>
-    <Whiteboard title="Recurso">
+    <Whiteboard title="Recurso" :isSidebarMinimized="isSidebarMinimized">
 
         <div class="flex flex-row items-center w-full justify-start border border-gray-200 rounded-lg shadow-md overflow-auto">
             <Block title="Novo" number="100" customClass="bg-blue-500 hover:bg-blue-600" />
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { inject } from 'vue'
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import Block from '@/views/Admin/Resource/Block/index.vue'
 import infoCard from '@/views/Admin/Resource/infoCard/index.vue'
@@ -55,6 +56,15 @@ import { FunnelIcon } from "@heroicons/vue/24/outline";
 1
 export default {
     name:"Recurso",
-    components: {Whiteboard, Block, infoCard, FunnelIcon}
+    components: {Whiteboard, Block, infoCard, FunnelIcon},
+
+    setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized')
+
+    return {
+      isSidebarMinimized
+    }
+  }
 }
+
 </script>

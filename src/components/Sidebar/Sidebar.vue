@@ -95,7 +95,6 @@
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon  } from '@heroicons/vue/24/outline'
-import Whiteboard from '../Whiteboard/Whiteboard.vue';
 
 const routes = {
   'admin': [
@@ -126,11 +125,14 @@ const props = defineProps({
 const sidebarOpen = ref(false)
 const isSidebarMinimized = ref(false)
 
+const emit = defineEmits(['update:isSidebarMinimized'])
+
 const filteredNavigation = computed(() => {
   return routes[props.route] || []
 })
 
 function toggleSidebar() {
   isSidebarMinimized.value = !isSidebarMinimized.value
+  emit('update:isSidebarMinimized', isSidebarMinimized.value)
 }
 </script>

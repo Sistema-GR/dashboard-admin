@@ -1,18 +1,32 @@
 <template>
   <div class="bg-[#edf8f9]">
-    <Sidebar route="admin"/>
+    <Sidebar route="admin" @update:isSidebarMinimized="handleSidebarMinimized" />
     <div class="h-screen">
-     <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
+import { ref, provide } from 'vue'
 import Sidebar from '../../components/Sidebar/Sidebar.vue'
+
 export default {
-  index: 'admin',
   components: {
     Sidebar
+  },
+  setup() {
+    const isSidebarMinimized = ref(false)
+
+    function handleSidebarMinimized(value) {
+      isSidebarMinimized.value = value
+    }
+
+    provide('isSidebarMinimized', isSidebarMinimized)
+
+    return {
+      handleSidebarMinimized
+    }
   }
 }
 </script>

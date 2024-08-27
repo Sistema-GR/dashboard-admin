@@ -1,5 +1,5 @@
 <template>
-    <Whiteboard title="Resultados IDEM">
+    <Whiteboard title="Resultados IDEM" :isSidebarMinimized="isSidebarMinimized">
 
         <div class="flex flex-col items-center justify-center py-2">
             <p class="font-semibold text-sm lg:text-lg">Resultado da Rede</p>
@@ -68,9 +68,17 @@ import Pagination from '@/components/Pagination/Pagination.vue';
 import Search from '@/components/Search/Search.vue';
 import PrimaryTable from '@/components/Table/PrimaryTable.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
+import { inject } from 'vue'
 
 export default {
     name: "Resultados IDEM",
-    components: {Whiteboard, PrimaryTable, TextInput, Search, Pagination}
+    components: {Whiteboard, PrimaryTable, TextInput, Search, Pagination},
+    setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized')
+
+    return {
+      isSidebarMinimized
+    }
+  }
 }
 </script>

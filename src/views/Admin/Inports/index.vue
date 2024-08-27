@@ -1,5 +1,5 @@
 <template>
-    <Whiteboard title="Inports">
+    <Whiteboard title="Inports" :isSidebarMinimized="isSidebarMinimized">
         <div class="w-full space-y-10">
             <FileInput Label="Importar Arquivo com Nome Senior.csv" />
             <FileInput Label="Importar Arquivo com Nome Evn.csv" />
@@ -23,9 +23,17 @@
 import FileInput from '@/components/Inputs/FileInput.vue';
 import Whiteboard from "@/components/Whiteboard/Whiteboard.vue";
 import PrimaryButton from "@/components/Buttons/PrimaryButton.vue";
+import { inject } from 'vue'
 
-export default{
+export default {
     name:"Inports",
-    components: {FileInput, Whiteboard, PrimaryButton}
+    components: {FileInput, Whiteboard, PrimaryButton},
+    setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized')
+
+    return {
+      isSidebarMinimized
+    }
+  }
 }
 </script>
