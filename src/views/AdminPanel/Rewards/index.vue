@@ -1,5 +1,5 @@
 <template>
-     <main class="flex flex-col items-center justify-center mx-10 my-10 lg:pl-60 overflow-hidden" :class="{'lg:pl-20': isSidebarMinimized}">
+     <main :class="['flex flex-col items-center justify-center mx-10 my-10 overflow-hidden', isSidebarMinimized ? 'lg:pl-20' : 'lg:pl-60']">
 
         <div class="flex items-center justify-center rounded-b-lg py-4 w-full bg-primary-900 shadow-lg">
             <p class="text-white font-bold text-2xl">Painel de Gratificação</p>
