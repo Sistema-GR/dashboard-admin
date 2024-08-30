@@ -112,7 +112,12 @@ const routes = {
     { name: 'Tempo de Atuação', route: '/admin/service', icon: CalendarDaysIcon , current: false },
     { name: 'Formação', route: '/admin/training', icon: AcademicCapIcon , current: false },
     { name: 'Relatórios Finais', route: '/admin/report', icon: DocumentTextIcon , current: false },
-  ]
+  ],
+  'user': [
+    { name: 'Novo Cálculo', route: '/home', icon: CalculatorIcon, current: true },
+    { name: 'Cálculo Anteriores', route: '/home', icon: ChartBarIcon, current: false },
+    { name: 'Recurso', route: '/home', icon: ExclamationCircleIcon, current: false },
+  ],
 }
 
 const props = defineProps({
