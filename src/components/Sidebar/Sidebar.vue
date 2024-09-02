@@ -94,7 +94,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon, QuestionMarkCircleIcon  } from '@heroicons/vue/24/outline'
 
 const routes = {
   'admin': [
@@ -116,7 +116,7 @@ const routes = {
   'user': [
     { name: 'Resultados', route: '/user/rewards', icon: ChartBarIcon, current: true },
     { name: 'Recurso', route: '/user/form', icon: ShieldExclamationIcon , current: false },
-    { name: 'FAq', route: '/user', icon: ExclamationCircleIcon, current: false },
+    { name: 'FAq', route: '/user/faqs', icon: QuestionMarkCircleIcon , current: false },
   ],
 }
 
