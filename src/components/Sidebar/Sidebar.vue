@@ -115,7 +115,7 @@ const routes = {
   ],
   'user': [
     { name: 'Resultados', route: '/user/rewards', icon: ChartBarIcon, current: true },
-    { name: 'Recurso', route: '/user', icon: ShieldExclamationIcon , current: false },
+    { name: 'Recurso', route: '/user/form', icon: ShieldExclamationIcon , current: false },
     { name: 'FAq', route: '/user', icon: ExclamationCircleIcon, current: false },
   ],
 }

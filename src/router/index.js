@@ -28,6 +28,7 @@ import groups from '@/views/AdminPanel/Groups/index.vue'
 import rewards from '@/views/AdminPanel/Rewards/index.vue'
 ///////////////////////////////////////////////////////////////////////////////
 import user from '@/views/User/index.vue'
+import form from '@/views/User/ResourceForm/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -71,7 +72,8 @@ const router = createRouter({
       name: 'user', 
       component: user,
       children: [
-        { path: 'rewards', name: 'rewards', component: rewards }
+        { path: 'rewards', name: 'rewards', component: rewards },
+        { path: 'form', name: 'form', component: form },
       ]
     },
   ]
