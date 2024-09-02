@@ -67,7 +67,13 @@ const router = createRouter({
         { path: 'rewards', name: 'rewards', component: rewards }
       ]
     },
-    { path: '/user', name: 'user', component: user },
+    { path: '/user', 
+      name: 'user', 
+      component: user,
+      children: [
+        { path: 'rewards', name: 'rewards', component: rewards }
+      ]
+    },
   ]
 })
 

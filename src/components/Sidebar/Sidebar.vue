@@ -20,7 +20,7 @@
               </TransitionChild>
               <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-2 ring-1 ring-white/10">
                 <div class="flex h-16 shrink-0 mt-5 justify-center items-center border-b-2 border-white">
-                  <img class="h-12 w-auto" src="../../assets/images/logo-horizontal.png" alt="Your Company" />
+                  <img class="h-12 w-auto" src="../../assets/images/logo-horinzontal.png" alt="Your Company" />
                 </div>
                 <nav class="flex flex-1 flex-col">
                   <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -94,7 +94,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon  } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon } from '@heroicons/vue/24/outline'
 
 const routes = {
   'admin': [
@@ -114,9 +114,9 @@ const routes = {
     { name: 'Relatórios Finais', route: '/admin/report', icon: DocumentTextIcon , current: false },
   ],
   'user': [
-    { name: 'Novo Cálculo', route: '/home', icon: CalculatorIcon, current: true },
-    { name: 'Cálculo Anteriores', route: '/home', icon: ChartBarIcon, current: false },
-    { name: 'Recurso', route: '/home', icon: ExclamationCircleIcon, current: false },
+    { name: 'Resultados', route: '/user/rewards', icon: ChartBarIcon, current: true },
+    { name: 'Recurso', route: '/user', icon: ShieldExclamationIcon , current: false },
+    { name: 'FAq', route: '/user', icon: ExclamationCircleIcon, current: false },
   ],
 }
 
