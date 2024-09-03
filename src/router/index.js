@@ -11,9 +11,17 @@ import admin from '../views/Admin/index.vue'
 import home from "@/views/Admin/Home/index.vue"
 import newcal from '../views/Admin/NewCal/index.vue'
 import previousresults from '@/views/Admin/PreviousResults/index.vue'
-import resource from '@/views/Admin/Resource/index.vue'
 import info from '@/views/Admin/InfoResource/index.vue'
 import inports from "@/views/Admin/Inports/index.vue"
+//
+import resource from '@/views/Admin/Resource/index.vue'
+import newResource from '@/views/Admin/Resource/NewResource/index.vue'
+import inprogress from '@/views/Admin/Resource/InProgress/index.vue'
+import awaiting from '@/views/Admin/Resource/Awaiting/index.vue'
+import reopened from '@/views/Admin/Resource/Reopened/index.vue'
+import completed from '@/views/Admin/Resource/Completed/index.vue'
+import cancel from '@/views/Admin/Resource/Cancel/index.vue'
+
 ///////////////////////////////////////////////////////////////////////////////
 import adminPanel from '@/views/AdminPanel/index.vue'
 import result from '@/views/AdminPanel/Results/index.vue'
@@ -47,7 +55,6 @@ const router = createRouter({
         { path: 'overview', name: 'overview', component: home },
         { path: 'newcal', name: 'newcal', component: newcal },
         { path: 'previousresults', name: 'previousresults', component: previousresults },
-        { path: 'resource', name: 'resource', component: resource,},
         { path: 'info', name: 'info', component: info,},
         { path: 'inports', name: 'inports', component: inports }
       ]
@@ -76,6 +83,18 @@ const router = createRouter({
         { path: 'rewards', name: 'rewards', component: rewards },
         { path: 'form', name: 'form', component: form },
         { path: 'faqs', name: 'faqs', component: faqs },
+      ]
+    },
+    { path: '/resource', 
+      name: 'resource', 
+      component: resource,
+      children: [
+        { path: 'new', name: 'newResource', component: newResource },
+        { path: 'inprogress', name: 'inprogress', component: inprogress },
+        { path: 'awaiting', name: 'awaiting', component: awaiting },
+        { path: 'reopened', name: 'reopened', component: reopened },
+        { path: 'completed', name: 'completed', component: completed },
+        { path: 'canceled', name: 'cancel', component: cancel },
       ]
     },
   ]
