@@ -21,7 +21,7 @@ import awaiting from '@/views/Admin/Resource/Awaiting/index.vue'
 import reopened from '@/views/Admin/Resource/Reopened/index.vue'
 import completed from '@/views/Admin/Resource/Completed/index.vue'
 import cancel from '@/views/Admin/Resource/Cancel/index.vue'
-
+import infodetails from '@/views/Admin/Resource/InfoDetails/index.vue'
 ///////////////////////////////////////////////////////////////////////////////
 import adminPanel from '@/views/AdminPanel/index.vue'
 import result from '@/views/AdminPanel/Results/index.vue'
@@ -95,6 +95,7 @@ const router = createRouter({
         { path: 'reopened', name: 'reopened', component: reopened },
         { path: 'completed', name: 'completed', component: completed },
         { path: 'canceled', name: 'cancel', component: cancel },
+        { path: 'info', name: 'info', component: infodetails },
       ]
     },
   ]

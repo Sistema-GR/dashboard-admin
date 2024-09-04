@@ -23,7 +23,7 @@
                         <p>01/02/2023</p>
 
                         <div> 
-                            <Badges text="Grupo" />
+                            <Badges text="Formação" />
                         </div>
                 </div>
 
@@ -45,6 +45,5 @@ export default {
             type: String,
         }
     }
-
 }
 </script>
