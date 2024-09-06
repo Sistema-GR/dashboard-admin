@@ -12,7 +12,7 @@
         </select>
       </div>
   
-      <div class="flex flex-row items-center justify-between w-full py-3 mt-1 transition-all duration-300 ease-in-out transform hover:scale-105">
+      <div class="flex flex-row items-center justify-between w-full py-3 mt-1 ">
   
         <div class="flex flex-col w-full justify-between md:flex-row items-center border rounded-lg p-4 shadow-md bg-white">
 

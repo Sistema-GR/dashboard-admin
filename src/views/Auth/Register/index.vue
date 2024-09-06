@@ -3,7 +3,7 @@
       <div class="flex flex-row">
         <div class="flex-1">
           <div class="flex flex-col h-screen items-center justify-center">
-            <img src="../../../assets/images/logo.png" alt="" class="w-max scale-75 drop-shadow-lg py-0" />
+            <img src="../../../assets/images/logo.png" alt="" class="w-3/12 scale-75 drop-shadow-lg py-0" />
             <div class="w-full max-w-md space-y-3 px-2">
               <TextInput type="text" label="Matrícula" placeholder="00000" />
               <TextInput type="text" label="Email" placeholder="E-mail" />

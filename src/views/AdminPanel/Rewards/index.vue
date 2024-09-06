@@ -1,140 +1,147 @@
 <template>
-     <main :class="['flex flex-col items-center justify-center mx-10 my-10 overflow-hidden', isSidebarMinimized ? 'lg:pl-20' : 'lg:pl-60']">
+    <Whiteboard title="" :isSidebarMinimized="isSidebarMinimized" customClass="bg-blue-500 px-0" class="-translate-y-10">
 
-        <div class="flex items-center justify-center rounded-b-lg py-4 w-full bg-primary-900 shadow-lg">
-            <p class="text-white font-bold text-2xl">Painel de Gratificação</p>
+        <div class="flex w-full items-center justify-center bg-gradient-to-r from-azure-800 to-primary-900 -translate-y-3">
+            <p class="text-white text-3xl py-5 uppercase font-bold">Painel da Gratificação</p>
         </div>
-        
-        <div class="flex flex-col w-full items-center justify-between px-8 py-5 mt-5 gap-10 lg:flex-row lg:gap-5">
 
-            <Card title="Matrícula" label="u04444" customClass="text-2xl w-full lg:w-4/6" />
+        <div class="flex flex-col justify-center items-center w-full mt-10 gap-10 px-5 lg:flex-row lg:px-20">
             <Card title="Servidor" label="Tom Cook Harris" customClass="text-2xl w-full lg:w-full" />
-            <Card title="Valor" label="R$ 4.867,00" customClass="text-2xl w-full lg:w-4/6" />
-
+            <Card title="Valor" label="R$ 4.867,00" customClass="text-2xl  lg:w-2/6" />
         </div>
 
-        <div class="flex w-full items-center justify-center py-8">
-            <p class="text-red-600 text-2xl font-medium">Aviso: os valores nesta página não consideram eventuais descontos de impostos.</p>
+        <div class="flex w-full items-center justify-center py-8 px-5 lg:px-0">
+            <p class="text-red-600 text-2xl font-medium text-center">Aviso: os valores nesta página não consideram eventuais descontos de impostos.</p>
         </div>
 
-        <div class="flex w-full items-center justify-center pt-8 pb-5 border-b-2">
-            <p class="font-semibold text-3xl">Detalhamento da Gratificação</p>
-        </div>
-
-        <div class="flex w-full items-center justify-center pt-4 pb-3">
-            <p class="font-medium text-xl">Gratificação pelos Resultados Atingidos</p>
-        </div>
-
-        <div class="flex w-full flex-col gap-10 items-center justify-center mt-4 lg:flex-row">
-
-            <Table 
-                title="Valor máximo pelos resultados das unidades escolares de atuação" 
-                :columns="unitValue" 
-                :data="unitValueData" 
-            />
-
-            <Table 
-                title="Valor máximo pelos resultados da rede" 
-                :columns="redeValue" 
-                :data="redeValueData" 
-            />
-
-        </div>
-
-        <div class="flex items-center justify-center w-full lg:w-3/6 mt-8 mb-4">
-
-                <Table 
-                    title="Valor máximo total da Gratificação" 
-                    :columns="grValue" 
-                    :data="grValueData" 
-                />
+        <div class="flex flex-row w-full items-center bg-solitude-200">
+            <div class="flex w-full items-center justify-center">
+                <img src="../../../assets/images/Ilustração.png" class="w-3/4 lg:-translate-x-8 pt-4"/>
             </div>
 
-        <div class="w-full flex justify-center items-center border-t-2 mt-4 py-3">
-            <p class="font-medium text-xl mt-4">Análise dos Critérios Individuais</p>
+            <div class="flex flex-col items-center justify-center w-full text-normal mx-2 lg:text-2xl gap-3 lg:gap-0">
+                <p>Ficou com alguma <span class="font-bold uppercase">DÚVIDA</span> sobre <span class="font-bold uppercase">VALOR</span>?</p>
+                <p>Consulte o <span class="font-bold uppercase">DETALHAMENTO</span> abaixo!</p>
+                <div class="flex items-center justify-center p-1 border-2 border-black rounded-full animate-bounce lg:mt-6">
+                    <ArrowDownIcon class="w-6 h-auto stroke-black" />
+                </div>
+            </div>
         </div>
 
-        <div class="flex flex-col items-center justify-center w-full gap-6 mb-6 lg:w-3/6">
-
-            <Table 
-                title="Tempo de Atuação Mínimo" 
-                :columns="serviceValue" 
-                :data="serviceValueData" 
-            />
-
+        <div class="flex w-full items-center justify-center bg-primary-800">
+            <p class="text-white text-3xl py-5">Detalhamento da Gratificação</p>
         </div>
 
-        <div class="flex flex-col items-center justify-center w-full gap-8 py-5">
+        <Disclosure>
+            <template #default="{ open }">
+                <DisclosureButton class="flex flex-row w-full items-center justify-between mt-0.5 py-4 px-5 bg-solitude-200 hover:bg-gray-400 ease-in-out duration-200 cursor-pointer">
+                    <p class="text-lg font-medium">Gratificação pelos resultados atingidos</p>
+                    <ChevronDownIcon :class="`w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}`" />
+                </DisclosureButton>
+                <DisclosurePanel class="w-full py-10 px-5 space-y-10 lg:px-10">
+                    <Table 
+                        title="Valor máximo pelos resultados das unidades escolares de atuação" 
+                        :columns="unitValue" 
+                        :data="unitValueData" 
+                    />
+                    <Table 
+                        title="Valor máximo pelos resultados da rede" 
+                        :columns="redeValue" 
+                        :data="redeValueData" 
+                    />
+                    <Table 
+                        title="Valor máximo total da Gratificação" 
+                        :columns="grValue" 
+                        :data="grValueData" 
+                    />
+                </DisclosurePanel>
+            </template>
+        </Disclosure>
 
-            <Table 
-                title="Frequência" 
-                :columns="freqValue" 
-                :data="freqValueData" 
-            />
-
-            <Table 
-                title="Detalhe do Afastamento" 
-                :columns="leaveValue" 
-                :data="leaveValueData" 
-            />
-            
-            <div class="flex flex-col md:flex-row w-full gap-10 items-center justify-center py-5">
-
-                <div class="flex flex-col md:flex-row w-full shadow-lg gap-8">
-                    
+        <Disclosure>
+            <template #default="{ open }">
+                <DisclosureButton class="flex flex-row w-full items-center justify-between mt-0.5 py-4 px-5 bg-solitude-200 cursor-pointer hover:bg-gray-400 ease-in-out duration-200">
+                    <p class="text-lg font-medium">Análise dos critérios individuais</p>
+                    <ChevronDownIcon :class="`w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}`" />
+                </DisclosureButton>
+                <DisclosurePanel class="w-full py-10 px-5 space-y-10 lg:px-10">
+                    <Table 
+                        title="Tempo de Atuação Mínimo" 
+                        :columns="serviceValue" 
+                        :data="serviceValueData" 
+                    />
+                    <Table 
+                        title="Frequência" 
+                        :columns="freqValue" 
+                        :data="freqValueData" 
+                    />
+                    <Table 
+                        title="Detalhe do Afastamento" 
+                        :columns="leaveValue" 
+                        :data="leaveValueData" 
+                    />
                     <Table 
                         title="Formação" 
                         :columns="trainingValue" 
                         :data="trainingValueData" 
                     />
-
                     <Table 
                         title="Atividades" 
                         :columns="activitiesValue" 
                         :data="activitiesValueData" 
                     />
+                </DisclosurePanel>
+            </template>
+        </Disclosure>
 
-                </div>
-
-            </div>
-
-            <div class="flex items-center justify-center w-full py-3">
-
+        <Disclosure>
+            <template #default="{ open }">
+                <DisclosureButton class="flex flex-row w-full items-center justify-between mt-0.5 py-4 px-5 bg-cornflowe-blue-500 cursor-pointer hover:bg-gray-400 ease-in-out duration-200">
+                    <p class="text-lg font-medium">Resumo</p>
+                    <ChevronDownIcon :class="`w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}`" />
+                </DisclosureButton>
+                <DisclosurePanel class="w-full py-10 px-5 space-y-10 lg:px-10">
                     <Table 
                         title="Resumo" 
                         :columns="summaryValue" 
                         :data="summaryValueData" 
                      />
-                
-            </div>
-         
-            <div class="w-full flex justify-center items-center border-t-2 mt-4 py-3 mb-3">
-                <p class="font-medium text-center text-xl mt-4">Dúvidas: Telefone: 3431-3008 / Email: sed.upl@edu.joinville.sc.gov.br <br> Rua Itajaí, 390 - Centro - 89201090</p>
-            </div>  
+                </DisclosurePanel>
+            </template>
+        </Disclosure>
 
+        <div class="flex w-full items-center justify-end">
+            <router-link to="/user/form">
+                <div class="flex flex-row items-center justify-center px-3 py-2 mt-3 gap-1 bg-tropical-blue-200 hover:bg-gray-400 ease-in-out duration-200 cursor-pointer">
+                    <ExclamationCircleIcon class="w-6 h-auto" />
+                    <p class="font-medium">Recurso</p>
+                </div>
+            </router-link>
         </div>
 
-    </main>
+    </Whiteboard>
 </template>
 
 <script>
-import Card from '@/views/AdminPanel/Rewards/Card/Card.vue'
-import Table from "@/views/AdminPanel/Rewards/Table/Table.vue"
-import { inject } from 'vue'
+import { inject } from 'vue';
+import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
+import Card from './Card/Card.vue';
+import Table from './Table/Table.vue';
+import { ChevronDownIcon, ExclamationCircleIcon, ArrowDownIcon  } from "@heroicons/vue/24/outline";
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
 export default {
-    name: "RewardDashboard",
-    components: {Card, Table},
+    components: {
+        Whiteboard,Card, ChevronDownIcon,Table,Disclosure,DisclosureButton,DisclosurePanel,ExclamationCircleIcon,ArrowDownIcon },
 
-    setup() {
+        setup() {
         const isSidebarMinimized = inject('isSidebarMinimized')
         
         return {
             isSidebarMinimized
         }
     },
-
-    data() {
+        data() {
         return {
             unitValue: [
                 { key: 'matricula', label: 'Matrícula' },
@@ -148,7 +155,8 @@ export default {
                     unidade: 'SED - Sede',
                     funcao: 'Analista',
                     valorMaximo: 'R$ 1000,00'
-                }
+                },
+                
             ],
 
             redeValue: [
