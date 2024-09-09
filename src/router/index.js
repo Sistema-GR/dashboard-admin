@@ -38,6 +38,8 @@ import rewards from '@/views/AdminPanel/Rewards/index.vue'
 import user from '@/views/User/index.vue'
 import form from '@/views/User/ResourceForm/index.vue'
 import faqs from '@/views/User/Faqs/index.vue'
+import criteria from '@/views/User/Criteria/index.vue'
+import status from '@/views/User/Status/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -83,6 +85,8 @@ const router = createRouter({
         { path: 'rewards', name: 'rewards', component: rewards },
         { path: 'form', name: 'form', component: form },
         { path: 'faqs', name: 'faqs', component: faqs },
+        { path: 'criteria', name: 'criteria', component: criteria },
+        { path: 'status', name: 'status', component: status },
       ]
     },
     { path: '/resource', 

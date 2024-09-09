@@ -32,50 +32,19 @@
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
                     <label class="font-semibold w-1/4 text-sm">Matrícula</label>
-                    <select v-model="selectedMatricula" class="border rounded-md p-2 text-sm w-3/4 ml-4">
-                        <option disabled value="">Selecione a Matrícula</option>
-                        <option v-for="matricula in matriculas" :key="matricula" :value="matricula">
-                            {{ matricula }}
-                        </option>
-                    </select>
+                    <span class="text-gray-700 w-3/4 ml-4 text-sm">u04444</span>
                 </div>
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
                     <label class="font-semibold w-1/4 text-sm">Unidade de Atuação</label>
-                    <select v-model="selectedUnidade" class="border rounded-md p-2 text-sm w-3/4 ml-4">
-                        <option disabled value="">Selecione a Unidade</option>
-                        <option v-for="unidade in unidades" :key="unidade" :value="unidade">
-                            {{ unidade }}
-                        </option>
-                    </select>
+                    <span class="text-gray-700 w-3/4 ml-4 text-sm">Abdon Batista</span>
                 </div>
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
-                    <label class="font-semibold w-1/4 text-sm">Razão do Recurso</label>
-                    <div class="w-3/4 ml-4">
-                        <button @click="toggleBadgeDropdown" class="flex items-center space-x-2">
-                            <Badges :text="selectedBadge" />
-                            <ChevronDownIcon class="w-5 h-auto"/>
-                        </button>
-                        <TransitionRoot :show="isBadgeDropdownOpen" as="div" class="absolute mt-2 w-64 bg-white rounded-md shadow-lg z-10">
-                            <TransitionChild
-                            as="div"
-                            enter="transition ease-out duration-200"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
-                            class="max-h-96 overflow-y-auto"
-                            >
-                            <ul>
-                                <li v-for="(badge, index) in badges" :key="index" @click="selectBadge(badge)" class="cursor-pointer px-4 py-2 hover:bg-gray-100 flex items-center space-x-2 whitespace-nowrap">
-                                <Badges :text="badge" />
-                                </li>
-                            </ul>
-                            </TransitionChild>
-                        </TransitionRoot>
-                    </div>
+                    <label class="font-semibold w-1/4 text-sm">Motivo de Não Recebimento</label>
+                    <RouterLink to="criteria">
+                        <span class="text-blue-700 font-medium w-3/4 ml-4 text-sm cursor-pointer">Não Recebeu? Clique Aqui e veja o Detalhamento</span>
+                    </RouterLink>
                 </div>
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
@@ -84,6 +53,7 @@
                         <textarea v-model="description" class="w-full border rounded-md p-2 text-sm" rows="4" placeholder="Descreva o motivo do recurso aqui..."></textarea>
                     </div>
                 </div>
+                
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
                     <label class="font-semibold w-1/4 text-sm">Documentos</label>
@@ -158,12 +128,7 @@ export default {
         };
 
         return {
-            isSidebarMinimized,
-            files,
-            description,
-            selectedMatricula,
-            selectedUnidade,
-            handleFileUpload
+            isSidebarMinimized, files, description, selectedMatricula, selectedUnidade, handleFileUpload
         };
     },
     data() {
@@ -172,10 +137,7 @@ export default {
         selectedBadge: 'Grupo', 
         isBadgeDropdownOpen: false, 
         badges: [
-          "Falta", "Formação", "Impostos", "Mudança de matrícula/Unidade",
-          "Carga horária", "Grupo", "Tempo de atuação", "Esclarecimento",
-          "Discordância", "Pagamento Indevido", "Local", 
-          "Alega atuação em outra etapa", "Atividades", "Mais de um critério"
+          "Falta", "Formação", "Impostos", "Mudança de matrícula/Unidade","Carga horária", "Grupo", "Tempo de atuação", "Esclarecimento","Discordância", "Pagamento Indevido", "Local","Alega atuação em outra etapa", "Atividades", "Mais de um critério"
         ],
         matriculas: ['u00000', 'u00001', 'u00002'],
         unidades: ['Abdon Baptista', 'Aventureiro', 'Boemmewald']
