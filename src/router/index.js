@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
 ///////////////////////////////////////////////////////////////////////////////
 import login from '../views/Auth/Login/index.vue'
 import register from '../views/Auth/Register/index.vue'
@@ -40,6 +39,8 @@ import form from '@/views/User/ResourceForm/index.vue'
 import faqs from '@/views/User/Faqs/index.vue'
 import criteria from '@/views/User/Criteria/index.vue'
 import status from '@/views/User/Status/index.vue'
+import edit from '@/views/User/Edit/index.vue'
+import sucess from '@/views/User/Sucess/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -87,6 +88,8 @@ const router = createRouter({
         { path: 'faqs', name: 'faqs', component: faqs },
         { path: 'criteria', name: 'criteria', component: criteria },
         { path: 'status', name: 'status', component: status },
+        { path: 'edit', name: 'edit', component: edit },
+        { path: 'sucess', name: 'sucess', component: sucess },
       ]
     },
     { path: '/resource', 

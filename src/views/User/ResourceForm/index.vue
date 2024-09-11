@@ -10,13 +10,13 @@
             </p>
 
             <p class="font-bold text-sm mb-8 text-justify pb-4">
-                Observação: Para a efetivação do recurso, é imprescindível anexar documentos que fundamentem e comprovem a justificativa do recurso, bem como as eventuais discrepâncias nos dados utilizados para o cálculo do pagamento.
+                Observação: para a efetivação do recurso, é imprescindível anexar documentos que fundamentem e comprovem a justificativa do recurso, bem como as eventuais discrepâncias nos dados utilizados para o cálculo do pagamento.
             </p>
 
             <div class="flex flex-col space-y-6 border-t-2 py-4">
 
                 <div class="flex items-center border-b-2 py-2 pb-6">
-                    <label class="font-semibold w-1/4 text-sm">Nome Completo</label>
+                    <label class="font-semibold w-1/4 text-sm">Nome completo</label>
                     <span class="text-gray-700 w-3/4 ml-4 text-sm">Tom Cock Harris</span>
                 </div>
                 
@@ -36,15 +36,22 @@
                 </div>
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
-                    <label class="font-semibold w-1/4 text-sm">Unidade de Atuação</label>
+                    <label class="font-semibold w-1/4 text-sm">Unidade de atuação</label>
                     <span class="text-gray-700 w-3/4 ml-4 text-sm">Abdon Batista</span>
                 </div>
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
-                    <label class="font-semibold w-1/4 text-sm">Motivo de Não Recebimento</label>
+                    <label class="font-semibold w-1/4 text-sm">Motivo de não recebimento</label>
                     <RouterLink to="criteria">
-                        <span class="text-blue-700 font-medium w-3/4 ml-4 text-sm cursor-pointer">Não Recebeu? Clique Aqui e veja o Detalhamento</span>
+                        <span class="text-blue-700 font-medium w-3/4 ml-3 text-sm cursor-pointer">Não Recebeu? Clique Aqui e veja o Detalhamento</span>
                     </RouterLink>
+                </div>
+
+                <div class="flex items-center border-b-2 py-0 pb-6">
+                    <label class="font-semibold w-1/4 text-sm">Titulo</label>
+                    <div class="flex w-3/12">
+                        <TextInput class="text-gray-700 ml-3 text-sm"></TextInput>
+                    </div>
                 </div>
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
@@ -75,7 +82,10 @@
                                     <PaperClipIcon class="w-5 h-5 text-gray-500"/> 
                                     <span class="underline"> {{ file.name }} </span>
                                 </div>
-                                <ArrowDownTrayIcon class="w-6 h-6 stroke-gray-700" />
+                                <div class="flex items-center gap-2">
+                                    <ArrowDownTrayIcon class="w-6 h-6 text-gray-700 cursor-pointer" @click="downloadFile(file)" />
+                                    <XMarkIcon class="w-5 h-5 text-red-500 cursor-pointer" @click="removeFile(index)" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,12 +119,12 @@ import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import FileInput from '@/components/Inputs/FileInput.vue';
 import PrimaryButton from '@/components/Buttons/PrimaryButton.vue';
 import Badges from '@/components/Badges/Badges.vue';
-import { ArrowDownTrayIcon, PaperClipIcon, ChevronDownIcon  } from "@heroicons/vue/24/outline";
+import { ArrowDownTrayIcon, PaperClipIcon, ChevronDownIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 import { TransitionRoot, TransitionChild } from '@headlessui/vue';
 
 export default {
     name: "ResourceForm",
-    components: { Sidebar, Whiteboard, TextInput, FileInput, PrimaryButton, ArrowDownTrayIcon, PaperClipIcon, TransitionRoot, TransitionChild, ChevronDownIcon, Badges },
+    components: { Sidebar, Whiteboard, TextInput, FileInput, PrimaryButton, ArrowDownTrayIcon, PaperClipIcon, TransitionRoot, TransitionChild, ChevronDownIcon, Badges, XMarkIcon },
 
     setup() {
         const isSidebarMinimized = inject('isSidebarMinimized');
@@ -127,8 +137,12 @@ export default {
             files.value = Array.from(event.target.files);
         };
 
+        const removeFile = (index) => {
+            files.value.splice(index, 1);
+        };
+
         return {
-            isSidebarMinimized, files, description, selectedMatricula, selectedUnidade, handleFileUpload
+            isSidebarMinimized, files, description, selectedMatricula, selectedUnidade, handleFileUpload, removeFile
         };
     },
     data() {
@@ -136,9 +150,6 @@ export default {
         selectedStatus: 'bg-blue-500', 
         selectedBadge: 'Grupo', 
         isBadgeDropdownOpen: false, 
-        badges: [
-          "Falta", "Formação", "Impostos", "Mudança de matrícula/Unidade","Carga horária", "Grupo", "Tempo de atuação", "Esclarecimento","Discordância", "Pagamento Indevido", "Local","Alega atuação em outra etapa", "Atividades", "Mais de um critério"
-        ],
         matriculas: ['u00000', 'u00001', 'u00002'],
         unidades: ['Abdon Baptista', 'Aventureiro', 'Boemmewald']
       };
@@ -151,6 +162,7 @@ export default {
         this.selectedBadge = badge;
         this.isBadgeDropdownOpen = false;
       },
-    }
+    },
 };
 </script>
+

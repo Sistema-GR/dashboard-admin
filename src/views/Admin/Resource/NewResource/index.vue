@@ -1,5 +1,5 @@
 <template>
-    <Whiteboard title="" class="-translate-y-10">
+    <Whiteboard title="" class="-translate-y-10" :isSidebarMinimized="isSidebarMinimized">
       <div class="flex flex-col w-full 4 gap-10 lg:flex-row">
 
         <div class="flex-1 px-2 border rounded-lg shadow-lg">
@@ -38,10 +38,17 @@
 <script>
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import infoCard from '@/views/Admin/Resource/components/infoCard/index.vue'
+import { FunnelIcon } from "@heroicons/vue/24/outline";
+import { inject } from 'vue';
+
 export default {
-    components: {infoCard, Whiteboard}
+    components: {infoCard, Whiteboard, FunnelIcon},
+    setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized')
+
+    return {
+      isSidebarMinimized
+    }
+  }
 }
 </script>
-<style lang="">
-    
-</style>

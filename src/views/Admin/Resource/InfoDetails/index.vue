@@ -12,9 +12,9 @@
         </select>
       </div>
   
-      <div class="flex flex-row items-center justify-between w-full py-3 mt-1 ">
+      <div class="flex flex-row items-center justify-between w-full py-3 mt-1">
   
-        <div class="flex flex-col w-full justify-between md:flex-row items-center border rounded-lg p-4 shadow-md bg-white">
+        <div class="flex flex-col w-full justify-between md:flex-row items-center border rounded-lg p-4 shadow-md bg-white hover:shadow-xl transition-shadow duration-300">
 
             <div class="flex flex-row">
                 <div class="flex-shrink-0 mb-3 md:mb-0 mr-3">
@@ -59,8 +59,8 @@
        
       </div>
   
-      <div class="flex flex-col w-full py-4 mt-3 p-4 bg-white border rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
-        <p class="text-lg font-semibold mb-2">Dados do Servidor</p>
+      <div class="flex flex-col w-full py-4 mt-3 p-4 bg-white border rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <p class="text-lg font-bold mb-2">Dados do Servidor</p>
             <div class="space-y-2">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                     <p class="font-medium">CPF:</p>
@@ -80,8 +80,12 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col w-full mt-3 p-4 bg-white border rounded-lg shadow-lg pb-8 transition-all duration-300 ease-in-out transform hover:scale-105">
-            <p class="text-lg font-semibold mb-2">Dados do Servidor</p>
+        <div class="flex flex-col w-full mt-5 p-4 bg-white border rounded-lg shadow-lg pb-4 hover:shadow-xl transition-shadow duration-300">
+            <p class="text-lg font-bold mb-2">Titulo</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and </p>
+        </div>
+        <div class="flex flex-col w-full mt-5 p-4 bg-white border rounded-lg shadow-lg pb-8 hover:shadow-xl transition-shadow duration-300">
+            <p class="text-lg font-bold mb-2">Descrição</p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         </div>
   

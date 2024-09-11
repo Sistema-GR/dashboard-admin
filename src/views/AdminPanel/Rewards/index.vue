@@ -16,7 +16,7 @@
 
         <div class="flex flex-row w-full items-center bg-solitude-200">
             <div class="flex w-full items-center justify-center">
-                <img src="../../../assets/images/Ilustração.png" class="w-3/4 lg:-translate-x-8 pt-4"/>
+                <img src="../../../assets/images/Ilustração.png" class="w-2/4 lg:-translate-x-8 pt-4"/>
             </div>
 
             <div class="flex flex-col items-center justify-center w-full text-normal mx-2 lg:text-2xl gap-3 lg:gap-0">
@@ -147,14 +147,14 @@ export default {
                 { key: 'matricula', label: 'Matrícula' },
                 { key: 'unidade', label: 'Unidade' },
                 { key: 'funcao', label: 'Função' },
-                { key: 'valorMaximo', label: 'Valor Máximo Unidade' }
+                { key: 'valorMaximo', label: 'Valor máximo unidade' }
             ],
             unitValueData: [
                 {
                     matricula: 'u04444',
                     unidade: 'SED - Sede',
                     funcao: 'Analista',
-                    valorMaximo: 'R$ 1000,00'
+                    valorMaximo: 'R$ 4.867,00'
                 },
                 
             ],
@@ -162,48 +162,48 @@ export default {
             redeValue: [
                 { key: 'matricula', label: 'Matrícula' },
                 { key: 'funcao', label: 'Função' },
-                { key: 'valorMaximo', label: 'Valor Máximo Unidade' }
+                { key: 'valorMaximo', label: 'Valor máximo unidade' }
             ],
             redeValueData: [
                 {
                     matricula: 'u04444',
                     funcao: 'Analista',
-                    valorMaximo: 'R$ 1000,00'
+                    valorMaximo: 'R$ 4.867,00'
                 }
             ],
 
             grValue: [
                 { key: 'matricula', label: 'Matrícula' },
                 { key: 'funcao', label: 'Função' },
-                { key: 'valorMaximo', label: 'Valor Máximo Unidade' }
+                { key: 'valorMaximo', label: 'Valor máximo unidade' }
             ],
             grValueData: [
                 {
                     matricula: 'u04444',
                     funcao: 'Analista',
-                    valorMaximo: 'R$ 1000,00'
+                    valorMaximo: 'R$ 4.867,00'
                 }
             ],
 
             serviceValue: [
                 { key: 'matricula', label: 'Matrícula' },
-                { key: 'service', label: 'Tempo de Atuação' },
-                { key: 'bonus', label: 'Recebimento da Gratificação' }
+                { key: 'service', label: 'Tempo de atuação' },
+                { key: 'bonus', label: 'Recebimento da gratificação' }
             ],
             serviceValueData: [
                 {
                     matricula: 'u04444',
                     service: 'Não atua há mais de 6 meses na rede',
-                    bonus: 'R$ 1000,00'
+                    bonus: 'R$ 4.867,00'
                 }
             ],
 
             freqValue: [
                 { key: 'matricula', label: 'Matrícula' },
-                { key: 'name', label: 'Nome do Colaborador' },
+                { key: 'name', label: 'Nome do colaborador' },
                 { key: 'dias_totais_afastamento', label: 'Dias totais de afastamento' },
                 { key: 'freq', label: '% Frequência' },
-                { key: 'freq_percent', label: '% De recebimento da Gratificação' }
+                { key: 'freq_percent', label: '% De recebimento da gratificação' }
             ],
             freqValueData: [
                 {
@@ -217,7 +217,7 @@ export default {
 
             leaveValue: [
                 { key: 'matricula', label: 'Matrícula' },
-                { key: 'name', label: 'Nome do Colaborador' },
+                { key: 'name', label: 'Nome do colaborador' },
                 { key: 'reason', label: 'Motivo' },
                 { key: 'data_init', label: 'Data Início' },
                 { key: 'data_end', label: 'Data Fim' },
@@ -238,7 +238,7 @@ export default {
             trainingValue: [
                 { key: 'matricula', label: 'Matrícula' },
                 { key: 'name', label: 'Nome' },
-                { key: 'completed_training', label: 'Realizou as formações oferecidas?' },
+                { key: 'completed_training', label: 'Realizou as formações oferecidas' },
                 { key: 'bonus', label: 'Recebimento da gratificação' },
                 
             ],
@@ -255,7 +255,7 @@ export default {
             activitiesValue: [
                 { key: 'matricula', label: 'Matrícula' },
                 { key: 'name', label: 'Nome' },
-                { key: 'completed_activities', label: 'Realizou as Atividades oferecidas?' },
+                { key: 'completed_activities', label: 'Realizou as atividades oferecidas' },
                 { key: 'bonus', label: 'Recebimento da gratificação' },
                 
             ],
@@ -272,17 +272,17 @@ export default {
             summaryValue: [
                 { key: 'matricula', label: 'Matrícula' },
                 { key: 'name', label: 'Nome' },
-                { key: 'grossValue', label: 'Valor Bruto' },
+                { key: 'grossValue', label: 'Valor bruto' },
                 { key: 'discountByCriteriaValue', label: 'Valor de desconto pelos critérios individuais' },
-                { key: 'amountToReceive', label: 'Valor a Receber' },
+                { key: 'amountToReceive', label: 'Valor a receber' },
             ],
             summaryValueData: [
                 {
                     matricula: 'u04444',
                     name: 'João Silva',
-                    grossValue: 'R$ 1.0000',
+                    grossValue: 'R$ 4.867,00',
                     discountByCriteriaValue: 0,
-                    amountToReceive: 'R$ 1.000'
+                    amountToReceive: 'R$ 4.867,00'
                 }
             ],
         };

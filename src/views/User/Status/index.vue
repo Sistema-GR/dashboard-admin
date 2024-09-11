@@ -1,92 +1,57 @@
 <template>
     <Whiteboard title="Status do Recurso" :isSidebarMinimized="isSidebarMinimized">
+        <div class="flex flex-col items-center justify-start w-full bg-white border border-gray-200 rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+           
+                <div class="flex items-center justify-between w-full pb-3 border-b mb-4">
+                    <p class="text-lg font-semibold text-gray-700">Aberto</p>
+                    <router-link class="flex items-center gap-1 justify-end p-2 hover:bg-slate-300 rounded-lg group duration-100 ease-in-out" to="edit">
+                        <p class="group-hover:text-white">Editar</p>
+                        <PencilSquareIcon class="w-5 h-auto stroke-black group-hover:stroke-white" />
+                    </router-link>
 
-        <div :class="['flex flex-col w-full border rounded-lg p-4 shadow-md', cardColor]">
-            <div class="flex items-center justify-between pb-2 border-b mb-4">
-                <p class="text-lg font-semibold">Solicitação</p>
-                <span :class="statusClass">{{ status }}</span>
-            </div>
-  
-            <div class="flex items-start mb-4">
-
-                <div class="border rounded-lg mr-3 p-2">
-                    <UserIcon class="w-14 h-14 stroke-gray-300" />
-                 </div>
-  
-                <div class="flex flex-col text-sm w-full">
-                    <p class="font-medium">Nome do Solicitante: Matheus Gabriel Grawe</p>
-                    <p>Descrição: Erro no processamento do pagamento</p>
-                    <p>Protocolo: {{ protocol }}</p>
                 </div>
 
-                <div class="flex flex-col text-sm">
+                <div class="flex w-full gap-4">
+                    <div class="p-2 bg-gray-100 rounded-lg">
+                        <UserIcon class="w-16 h-16 text-gray-400"/>
+                    </div>
 
-                    <p class="font-bold">Data de Abertura:</p>
-                    <p>{{ openingDate }}</p>
+                    <div class="flex flex-row items-center justify-between w-full">
+                        <div class="flex flex-col gap-2">
+                            <p class="text-base font-medium text-gray-800">Matheus Gabriel Grawe</p>
+                            <p class="text-sm text-gray-600">Erro no processamento do pagamento</p>
+                        </div>
 
-                    <div class="mt-3">
-                        <Badges :text="selectedBadge" />
+                        <div class="flex flex-col items-end gap-2.5">
+                            <div class="flex flex-col gap-2 items-center"> 
+                                <Badges text="Formação" />
+                                <p class="text-sm font-semibold text-gray-500">01/02/2023</p>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
-
-            </div>
-  
-
-
+            
         </div>
-    
     </Whiteboard>
-  </template>
-  
-  <script>
-  import { UserIcon } from "@heroicons/vue/24/outline";
-  import Whiteboard from "@/components/Whiteboard/Whiteboard.vue";
-  import Badges from "@/components/Badges/Badges.vue";
-  
-  export default {
+</template>
+
+<script>
+import { UserIcon, PencilSquareIcon } from "@heroicons/vue/24/outline";
+import Whiteboard from "@/components/Whiteboard/Whiteboard.vue";
+import Badges from "@/components/Badges/Badges.vue";
+import { inject } from 'vue';
+
+export default {
     name: "Status",
-    components: { UserIcon, Whiteboard, Badges },
-    props: {
-      isSidebarMinimized: Boolean,
-      status: {
-        type: String,
-        default: "Aberto",
-      },
-      protocol: {
-        type: String,
-        default: "#123456",
-      },
-      openingDate: {
-        type: String,
-        default: "01/02/2023",
-      },
-    },
-    data() {
-      return {
-        selectedBadge: "Formação", 
-      };
-    },
-    computed: {
-      cardColor() {
+    components: { UserIcon, Whiteboard, Badges, PencilSquareIcon },
+    setup() {
+        const isSidebarMinimized = inject('isSidebarMinimized');
+
         return {
-          "bg-green-100 border-green-300": this.status === "Finalizado",
-          "bg-blue-100 border-blue-300": this.status === "Em Progresso",
-          "bg-yellow-100 border-yellow-300": this.status === "Pendente",
-          "bg-red-100 border-red-300": this.status === "Reaberto",
-          "bg-gray-100 border-gray-300": this.status === "Cancelado",
-          "bg-white border-gray-300": !["Finalizado", "Em Progresso", "Pendente", "Reaberto", "Cancelado"].includes(this.status),
+            isSidebarMinimized
         };
-      },
-      statusClass() {
-        return {
-          "text-green-600": this.status === "Finalizado",
-          "text-blue-600": this.status === "Em Progresso",
-          "text-yellow-600": this.status === "Pendente",
-          "text-red-600": this.status === "Reaberto",
-          "text-gray-600": ["Cancelado", "Aberto"].includes(this.status),
-        };
-      },
-    },
-  };
-  </script>
+    }
+};
+</script>

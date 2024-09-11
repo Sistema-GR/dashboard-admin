@@ -52,7 +52,7 @@
         <nav class="flex flex-1 flex-col">
           <div class="flex w-full items-center justify-end">
             <div @click="toggleSidebar" class="p-1 my-2 cursor-pointer hover:bg-white/30 rounded-lg transition-all duration-200">
-              <ChevronDoubleLeftIcon :class="['w-5 h-auto stroke-white transition-transform', isSidebarMinimized ? 'rotate-180' : '']"/>
+              <Bars3Icon  :class="['w-5 h-auto stroke-white transition-transform', isSidebarMinimized ? 'rotate-180' : '']"/>
             </div>
           </div>
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -100,7 +100,7 @@ const routes = {
   'admin': [
     { name: 'Novo Cálculo', route: '/home/newcal', icon: CalculatorIcon, current: true },
     { name: 'Cálculo Anteriores', route: '/home/previousresults', icon: ChartBarIcon, current: false },
-    { name: 'Recurso', route: '/resource', icon: ExclamationCircleIcon, current: false },
+    { name: 'Recurso', route: '/resource/new', icon: ExclamationCircleIcon, current: false },
   ],
   'admin-panel': [
     { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },

@@ -1,5 +1,5 @@
 <template>
-    <Sidebar :route="'admin'"/>
+    <Sidebar :route="'admin'" @update:isSidebarMinimized="handleSidebarMinimized"/>
 
         <Whiteboard title="Recurso" :isSidebarMinimized="isSidebarMinimized">
             
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { inject } from 'vue'
+import { inject, provide, ref } from 'vue'
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import Block from '@/views/Admin/Resource/components/Block/index.vue'
 import infoCard from '@/views/Admin/Resource/components/infoCard/index.vue'
@@ -31,16 +31,23 @@ export default {
     components: {Whiteboard, Block, infoCard, FunnelIcon, Sidebar},
 
     setup() {
-    const isSidebarMinimized = inject('isSidebarMinimized')
+    const isSidebarMinimized = ref(false)
     const router = useRouter()
 
     function navigateTo(route) {
         router.push(route)
     }
 
+    function handleSidebarMinimized(value) {
+        isSidebarMinimized.value = value
+    }
+
+    provide('isSidebarMinimized', isSidebarMinimized)
+
     return {
       isSidebarMinimized,
-      navigateTo
+      navigateTo,
+      handleSidebarMinimized
     }
   }
 }

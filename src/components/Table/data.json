@@ -2,11 +2,11 @@
     "Results": {
       "columns": [
         { "key": "unidade", "label": "Unidade Escolar" },
-        { "key": "esperadaEt1", "label": "Esperada % Etapa 1" },
+        { "key": "esperadaEt1", "label": "Bruto % Etapa 1" },
         { "key": "atingidaEt1", "label": "Atingida % Etapa 1" },
-        { "key": "esperadaEt2", "label": "Esperada % Etapa 2" },
+        { "key": "esperadaEt2", "label": "Bruto % Etapa 2" },
         { "key": "atingidaEt2", "label": "Atingida % Etapa 2" },
-        { "key": "esperadaEt3", "label": "Esperada % Etapa 3" },
+        { "key": "esperadaEt3", "label": "Bruto % Etapa 3" },
         { "key": "atingidaEt3", "label": "Atingida % Etapa 3" }
       ],
       "people": [
