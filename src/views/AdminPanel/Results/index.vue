@@ -56,7 +56,6 @@
             
             <div class="w-full pb-5">
                 <PrimaryTable :route="'Results'" />
-                <Pagination />
             </div> 
            
     </Whiteboard>

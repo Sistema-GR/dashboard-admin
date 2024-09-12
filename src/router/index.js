@@ -76,7 +76,7 @@ const router = createRouter({
         { path: 'service', name: 'service', component: service },
         { path: 'training', name: 'training', component: training },
         { path: 'report', name: 'report', component: report },
-        { path: 'rewards', name: 'rewards', component: rewards }
+        { path: 'rewards', name: 'reward', component: rewards },
       ]
     },
     { path: '/user', 

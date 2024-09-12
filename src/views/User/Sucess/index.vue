@@ -1,5 +1,5 @@
 <template>
-        <div class="flex flex-col items-center justify-center h-screen pl-40 py-10 text-center">
+        <div class="flex flex-col items-center justify-center h-screen mx-5 py-10 text-center lg:pl-40">
             <CheckCircleIcon class="w-24 h-auto" />
 
             <h1 class="text-4xl font-semibold text-gray-800 mb-4">Recurso enviado com sucesso!</h1>

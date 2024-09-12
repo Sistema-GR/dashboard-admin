@@ -6,7 +6,6 @@
 
         <div class="w-full pb-5">
             <PrimaryTable :route="'Steps'" />
-            <Pagination />
         </div>
     </Whiteboard>
 </template>

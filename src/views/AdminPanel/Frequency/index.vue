@@ -5,7 +5,6 @@
         </div>   
         <div class="w-full py-5">
              <PrimaryTable :route="'Frequency'"/>
-             <Pagination class="mt-5" />
         </div>
     </Whiteboard>
     

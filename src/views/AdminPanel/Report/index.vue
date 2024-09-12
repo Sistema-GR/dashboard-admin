@@ -6,7 +6,6 @@
         
         <div class="w-full pb-5">
             <PrimaryTable :route="'Report'"/>
-            <Pagination class="mt-2" />
         </div>
     </Whiteboard>
 </template>
@@ -20,7 +19,7 @@ import Pagination from '@/components/Pagination/Pagination.vue';
 import { inject } from 'vue'
 
 export default {
-    name: "Frequência",
+    name: "Report",
     components: {Whiteboard, PrimaryTable, TextInput, Search, Pagination},
     setup() {
     const isSidebarMinimized = inject('isSidebarMinimized')

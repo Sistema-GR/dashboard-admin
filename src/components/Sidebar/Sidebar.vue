@@ -52,14 +52,18 @@
         <nav class="flex flex-1 flex-col">
           <div class="flex w-full items-center justify-end">
             <div @click="toggleSidebar" class="p-1 my-2 cursor-pointer hover:bg-white/30 rounded-lg transition-all duration-200">
-              <Bars3Icon  :class="['w-5 h-auto stroke-white transition-transform', isSidebarMinimized ? 'rotate-180' : '']"/>
+              <Bars3Icon :class="['w-5 h-auto stroke-white transition-transform', isSidebarMinimized ? 'rotate-180' : '']"/>
             </div>
           </div>
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
               <ul role="list" class="-mx-2 space-y-1">
                 <li v-for="item in filteredNavigation" :key="item.name">
-                  <router-link :to="item.route" :class="[item.current ? 'bg-gray-800 text-white' : 'text-white hover:bg-primary-900 hover:text-white', 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all duration-200']">
+                  <router-link
+                    :to="item.route"
+                    class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all duration-200"
+                    :class="{ 'bg-white/30 text-white': $route.path === item.route, 'hover:bg-white/30 hover:text-white text-white': $route.path !== item.route }"
+                  >
                     <component :is="item.icon" class="h-6 w-6 shrink-0 stroke-white" aria-hidden="true" />
                     <span :class="isSidebarMinimized ? 'hidden' : ''">{{ item.name }}</span>
                   </router-link>
@@ -98,7 +102,7 @@ import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, User
 
 const routes = {
   'admin': [
-    { name: 'Novo Cálculo', route: '/home/newcal', icon: CalculatorIcon, current: true },
+    { name: 'Novo Cálculo', route: '/home/newcal', icon: CalculatorIcon, current: false },
     { name: 'Cálculo Anteriores', route: '/home/previousresults', icon: ChartBarIcon, current: false },
     { name: 'Recurso', route: '/resource/new', icon: ExclamationCircleIcon, current: false },
   ],
