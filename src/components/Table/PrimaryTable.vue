@@ -47,6 +47,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
+import { EyeIcon } from "@heroicons/vue/24/outline";
 import Drawer from '../Drawer/Drawer.vue'
 import Pagination from '../Pagination/Pagination.vue';
 
@@ -54,6 +55,10 @@ const props = defineProps({
   route: {
     type: String,
     required: true
+  },
+  searchQuery: {
+    type: String,
+    default: ''
   }
 })
 
@@ -80,7 +85,7 @@ const showGr = computed(() => props.route === 'Report')
 
 const drawerRef = ref(null)
 
-const itemsPerPage = 15 // Número de itens por página
+const itemsPerPage = 10 // Número de itens por página
 const currentPage = ref(1) // Página atual
 const totalPages = computed(() => Math.ceil(filteredPeople.value.length / itemsPerPage))
 
@@ -137,24 +142,33 @@ function loadMore() {
 }
 
 function updateRowData(updatedRowData) {
+  console.log('Updating row data:', updatedRowData)
   const index = filteredPeople.value.findIndex(item => item['Local [nome]'] === updatedRowData['Local [nome]'])
+  console.log('Index of updated row:', index)
   if (index !== -1) {
     filteredPeople.value[index] = updatedRowData
+    console.log('Updated row data in local array:', filteredPeople.value[index])
 
     fetch('/api/update-data', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedRowData)
     })
-      .then(response => response.json())
-      .then(data => console.log('Data updated successfully:', data))
+      .then(response => {
+        console.log('Response from API:', response)
+        return response.json()
+      })
+      .then(data => {
+        console.log('Data updated successfully:', data)
+        // TODO: Update the local array of data with the updated data
+      })
       .catch(error => console.error('Error updating data:', error))
   }
 }
 
 function openDrawer(rowData) {
   selectedRowData.value = rowData
-  drawerRef.value.open()
+  drawerRef.value.openDrawer();
 }
 
 function handleDrawerClosed() {

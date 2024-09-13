@@ -67,16 +67,27 @@ import Pagination from '@/components/Pagination/Pagination.vue';
 import Search from '@/components/Search/Search.vue';
 import PrimaryTable from '@/components/Table/PrimaryTable.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 
 export default {
     name: "Resultados IDEM",
     components: {Whiteboard, PrimaryTable, TextInput, Search, Pagination},
+    
     setup() {
     const isSidebarMinimized = inject('isSidebarMinimized')
+    const textValue = ref('');
+    const errorMessage = ref('');
+    const isSuccess = ref('');
+    const isInfo = ref('');
+    const isWarning = ref('');
 
     return {
-      isSidebarMinimized
+      isSidebarMinimized,
+      textValue,
+      errorMessage,
+      isSuccess,
+      isInfo,
+      isWarning,
     }
   }
 }

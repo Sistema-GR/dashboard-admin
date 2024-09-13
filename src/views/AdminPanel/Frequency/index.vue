@@ -3,9 +3,10 @@
         <div class="flex w-full items-start justify-start px-4 mt-4">
             <Search />
         </div>   
-        <div class="w-full py-5">
+        <div class="w-full pb-5">
              <PrimaryTable :route="'Frequency'"/>
         </div>
+
     </Whiteboard>
     
 </template>
