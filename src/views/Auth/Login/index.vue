@@ -4,7 +4,7 @@
       <div class="flex-1">
         <div class="flex flex-col h-screen items-center justify-center">
           <img src="../../../assets/images/logo.png" alt="" class="w-3/12 scale-90 drop-shadow-lg py-0" />
-          <div class="w-full max-w-md space-y-3 px-2">
+          <div class="w-full max-w-md space-y-3 px-5">
             <TextInput type="text" label="Matrícula" placeholder="00000" />
             <TextInput type="password" label="Senha" placeholder="Senha" />
             <div class="w-full flex justify-end mt-2">

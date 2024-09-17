@@ -11,9 +11,6 @@
         class="w-full pl-10 pr-20 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
         placeholder="Buscar..."
       />
-      <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300">
-        Buscar
-      </button>
     </div>
   </div>
 </template>

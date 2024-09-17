@@ -33,6 +33,7 @@ import training from '@/views/AdminPanel/Training/index.vue'
 import report from '@/views/AdminPanel/Report/index.vue'
 import groups from '@/views/AdminPanel/Groups/index.vue'
 import rewards from '@/views/AdminPanel/Rewards/index.vue'
+import calendar from "@/views/AdminPanel/Calendar/index.vue"
 ///////////////////////////////////////////////////////////////////////////////
 import user from '@/views/User/index.vue'
 import form from '@/views/User/ResourceForm/index.vue'
@@ -77,6 +78,7 @@ const router = createRouter({
         { path: 'training', name: 'training', component: training },
         { path: 'report', name: 'report', component: report },
         { path: 'rewards', name: 'reward', component: rewards },
+        { path: 'calendar', name: 'calendar', component: calendar },
       ]
     },
     { path: '/user', 

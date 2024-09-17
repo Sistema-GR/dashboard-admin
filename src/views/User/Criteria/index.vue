@@ -52,9 +52,6 @@
           { label: 'Tempo de Atuação', value: 'Atuou há mais de 6 meses', status: '', isApto: false, tooltip: 'Deve ter atuado por mais de 6 meses.' },
           { label: 'Formação', value: '100%', status: '', isApto: false, tooltip: 'A formação deve ser 100%.' },
           { label: 'Atividades', value: '100%', status: '', isApto: false, tooltip: 'Atividades devem estar 100% completas.' },
-          { label: 'Resultado IDEM', value: '100%', status: '', isApto: false, tooltip: 'O resultado IDEM deve ser 100%.' },
-          { label: 'Grupo', value: 'I', status: '', isApto: false, tooltip: 'O grupo deve ser do tipo I.' },
-          { label: 'Etapas', value: 'Et1 100%, Et2 100%, Et3 100%', status: '', isApto: false, details: ['Et1 100%', 'Et2 100%', 'Et3 100%'], tooltip: 'Todas as etapas devem estar 100% completas.' },
         ],
         activeTooltip: null
       }

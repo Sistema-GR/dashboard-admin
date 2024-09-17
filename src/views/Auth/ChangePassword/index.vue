@@ -4,8 +4,7 @@
         <div class="flex-1">
           <div class="flex flex-col h-screen items-center justify-center">
             <img src="../../../assets/images/logo.png" alt="" class="w-3/12 scale-75 drop-shadow-lg py-0" />
-            <div class="w-full max-w-md space-y-3 px-2">
-                <!-- <p class="text-sm text-amber-50"></p>-->
+            <div class="w-full max-w-md space-y-3 px-5">
                 <TextInput type="text" label="Nova Senha" placeholder="Nova Senha" />
                 <TextInput type="text" label="Confirmar Senha" placeholder="Confirmar Senha" />
               <router-link to="/"> <PrimaryButton class="mt-8" value="Confirmar" custom-color="bg-[#06A6D8]" /></router-link>"

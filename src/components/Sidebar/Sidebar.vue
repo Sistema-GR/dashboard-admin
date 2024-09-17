@@ -47,10 +47,10 @@
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-[#003965] px-6">
         <div class="flex py-5 shrink-0 items-center justify-center border-b border-white">
           <img v-if="!isSidebarMinimized" class="h-14 w-auto" src="../../assets/images/logo-horinzontal.png" alt="Your Company" />
-          <img v-if="isSidebarMinimized" class="h-8 w-auto" src="../../assets/images/logo.png" alt="Your Company" />
+          <img v-if="isSidebarMinimized" class="h-14 w-auto" src="../../assets/images/logo.png" alt="Your Company" />
         </div>
         <nav class="flex flex-1 flex-col">
-          <div class="flex w-full items-center justify-end">
+          <div :class="['flex w-full items-center justify-end', isSidebarMinimized ? '-translate-x-1' : '']">
             <div @click="toggleSidebar" class="p-1 my-2 cursor-pointer hover:bg-white/30 rounded-lg transition-all duration-200">
               <Bars3Icon :class="['w-5 h-auto stroke-white transition-transform', isSidebarMinimized ? 'rotate-180' : '']"/>
             </div>
@@ -61,10 +61,10 @@
                 <li v-for="item in filteredNavigation" :key="item.name">
                   <router-link
                     :to="item.route"
-                    class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all duration-200"
+                    class="['group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-all duration-200',]"
                     :class="{ 'bg-white/30 text-white': $route.path === item.route, 'hover:bg-white/30 hover:text-white text-white': $route.path !== item.route }"
                   >
-                    <component :is="item.icon" class="h-6 w-6 shrink-0 stroke-white" aria-hidden="true" />
+                    <component :is="item.icon" class="h-auto w-6 shrink-0 stroke-white" aria-hidden="true" />
                     <span :class="isSidebarMinimized ? 'hidden' : ''">{{ item.name }}</span>
                   </router-link>
                 </li>
@@ -98,7 +98,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon, UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon, QuestionMarkCircleIcon  } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon , UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, CalendarIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon, QuestionMarkCircleIcon  } from '@heroicons/vue/24/outline'
 
 const routes = {
   'admin': [
@@ -108,6 +108,7 @@ const routes = {
   ],
   'admin-panel': [
     { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },
+    { name: 'Calendario Escolar', route: '/admin/calendar', icon: CalendarIcon  , current: false },
     { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
     { name: 'Grupos', route: '/admin/groups', icon: UserGroupIcon, current: false },
     { name: 'Etapas Ues', route: '/admin/steps', icon: Square3Stack3DIcon , current: false },

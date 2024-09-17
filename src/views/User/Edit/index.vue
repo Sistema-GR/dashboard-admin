@@ -42,12 +42,6 @@
             <div class="flex flex-col border-t-2 py-1">
 
                 <div class="flex flex-col border-b-2 py-5">
-                    <label class="font-semibold text-sm mb-1">Título do Recurso</label>
-                    <input v-model="title" class="w-full border rounded-md p-2 text-sm" placeholder="Digite o título do recurso":class="{ 'border-red-500': titleError }" @input="validateTitle"/>
-                    <p v-if="titleError" class="text-red-500 text-xs mt-1">O título é obrigatório.</p>
-                </div>
-
-                <div class="flex flex-col border-b-2 py-5">
                     <label class="font-semibold text-sm mb-1">Descrição do Recurso</label>
                     <textarea v-model="description"class="w-full border rounded-md p-2 text-sm" rows="4" placeholder="Descreva o motivo do recurso aqui..." :class="{ 'border-red-500': descriptionError }" @input="validateDescription" />
                     <p v-if="descriptionError" class="text-red-500 text-xs mt-1">A descrição é obrigatória.</p>

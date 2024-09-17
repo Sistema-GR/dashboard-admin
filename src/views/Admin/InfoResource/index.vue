@@ -1,11 +1,13 @@
-<template>
+<template lang="">
     <div>
         
     </div>
 </template>
-
 <script>
 export default {
-    name: "infoResource"
+    
 }
 </script>
+<style lang="">
+    
+</style>

@@ -4,7 +4,7 @@
         <div class="flex-1">
           <div class="flex flex-col h-screen items-center justify-center">
             <img src="../../../assets/images/logo.png" alt="" class="w-3/12 scale-75 drop-shadow-lg py-0" />
-            <div class="w-full max-w-md space-y-3 px-2">
+            <div class="w-full max-w-md space-y-3 px-5">
                 <p class="text-sm text-amber-50">Foi enviado um código de 5 digitos para o e-mail digitado no passo anterior. Por favor, digite o código abaixo. </p>
               <TextInput type="text" label="Código" placeholder="00000" />
               <router-link to="/changepassword"> <PrimaryButton class="mt-8" value="Enviar" custom-color="bg-[#06A6D8]" /></router-link>"

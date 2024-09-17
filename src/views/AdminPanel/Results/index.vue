@@ -51,11 +51,11 @@
             </div>
             
             <div class="flex w-full items-center justify-start px-4 mt-8">
-                <Search />
+                <Search @search="handleSearch" />
             </div>
             
             <div class="w-full pb-5">
-                <PrimaryTable :route="'Results'" />
+                <PrimaryTable :route="'Results'" :searchQuery="searchQuery" />
             </div> 
            
     </Whiteboard>
@@ -81,6 +81,12 @@ export default {
     const isInfo = ref('');
     const isWarning = ref('');
 
+    const searchQuery = ref('')
+
+    const handleSearch = (query) => {
+        searchQuery.value = query
+      }
+
     return {
       isSidebarMinimized,
       textValue,
@@ -88,6 +94,8 @@ export default {
       isSuccess,
       isInfo,
       isWarning,
+      searchQuery,
+      handleSearch
     }
   }
 }

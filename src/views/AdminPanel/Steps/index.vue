@@ -1,11 +1,11 @@
 <template>
     <Whiteboard title="Etapas Ues" :isSidebarMinimized="isSidebarMinimized">
         <div class="flex w-full items-start justify-start px-4 mt-4">
-            <Search />
+            <Search @search="handleSearch" />
         </div>   
 
         <div class="w-full pb-5">
-            <PrimaryTable :route="'Steps'" />
+            <PrimaryTable :route="'Steps'" :searchQuery="searchQuery" />
         </div>
     </Whiteboard>
 </template>
@@ -16,7 +16,7 @@ import PrimaryTable from '@/components/Table/PrimaryTable.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import Search from '@/components/Search/Search.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 
 export default {
     name: "Resultados IDEM",
@@ -25,8 +25,16 @@ export default {
     setup() {
     const isSidebarMinimized = inject('isSidebarMinimized')
 
+    const searchQuery = ref('')
+
+    const handleSearch = (query) => {
+        searchQuery.value = query
+    }
+
     return {
-      isSidebarMinimized
+      isSidebarMinimized,
+      searchQuery,
+      handleSearch
     }
   }
 }
