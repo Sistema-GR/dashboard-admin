@@ -12,7 +12,7 @@ import newcal from '../views/Admin/NewCal/index.vue'
 import previousresults from '@/views/Admin/PreviousResults/index.vue'
 import info from '@/views/Admin/InfoResource/index.vue'
 import inports from "@/views/Admin/Inports/index.vue"
-//
+//////////////////////////////////////////////////////////////////////////////
 import resource from '@/views/Admin/Resource/index.vue'
 import newResource from '@/views/Admin/Resource/NewResource/index.vue'
 import inprogress from '@/views/Admin/Resource/InProgress/index.vue'
@@ -27,11 +27,14 @@ import result from '@/views/AdminPanel/Results/index.vue'
 import professional from '@/views/AdminPanel/Professional/index.vue'
 import steps from '@/views/AdminPanel/Steps/index.vue'
 import frequency from '@/views/AdminPanel/Frequency/index.vue'
+import infrequency from '@/views/AdminPanel/InfrequencyReason/index.vue'
+import resignation from '@/views/AdminPanel/Resignation/index.vue'
 import activities from '@/views/AdminPanel/Activities/index.vue'
 import service from '@/views/AdminPanel/Service/index.vue'
 import training from '@/views/AdminPanel/Training/index.vue'
 import report from '@/views/AdminPanel/Report/index.vue'
 import groups from '@/views/AdminPanel/Groups/index.vue'
+import stagegroup from '@/views/AdminPanel/StageGroup/index.vue'
 import rewards from '@/views/AdminPanel/Rewards/index.vue'
 import calendar from "@/views/AdminPanel/Calendar/index.vue"
 ///////////////////////////////////////////////////////////////////////////////
@@ -72,7 +75,10 @@ const router = createRouter({
         { path: 'professional', name: 'professional', component: professional },
         { path: 'groups', name: 'groups', component: groups },
         { path: 'steps', name: 'steps', component: steps },
+        { path: 'stagegroup', name: 'stagegroup', component: stagegroup },
         { path: 'frequency', name: 'frequency', component: frequency },
+        { path: 'infrequency', name: 'infrequency', component: infrequency },
+        { path: 'resignation', name: 'resignation', component: resignation },
         { path: 'activities', name: 'activities', component: activities },
         { path: 'service', name: 'service', component: service },
         { path: 'training', name: 'training', component: training },

@@ -1,25 +1,9 @@
 <template>
     <Whiteboard title="Grupos" :isSidebarMinimized="isSidebarMinimized">
 
-        <div class="flex flex-col w-full lg:flex-row">
-
-            <div class="flex flex-col w-full items-center justify-center">
-                 <p class="text-xl font-semibold">Resultados</p>
-                 <PrimaryTable :route="'unitMax'" />
-            </div>
-
-                <div class="border-2 mx-4"></div>
-
-            <div class="flex flex-col w-full items-center justify-center">
-                    <p class="text-xl font-semibold">Resultados</p>
-                 <PrimaryTable :route="'redeMax'" />
-            </div>
-
-        </div>
-
         <div class="flex flex-col w-full items-center justify-center mt-5 pb-5">
-            <p class="text-xl font-semibold mt-5">Resultados</p>
-            <PrimaryTable :route="'finalResults'" />
+            <p class="text-xl font-semibold mt-5">Valores</p>
+            <PrimaryTable :route="'Groups'" />
         </div>
 
     </Whiteboard>

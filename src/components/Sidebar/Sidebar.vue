@@ -71,7 +71,7 @@
               </ul>
             </li>
             <li class="-mx-6 mt-auto">
-              <a href="#" class="flex items-center gap-x-4 px-6 py-4 text-sm font-semibold leading-6 text-white hover:bg-gray-800">
+              <a href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800">
                 <img class="h-8 w-8 rounded-full bg-gray-800" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                 <span :class="isSidebarMinimized ? 'hidden' : ''" aria-hidden="true">Tom Cook Harris</span>
               </a>
@@ -98,7 +98,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, XMarkIcon, ChartBarIcon, UserGroupIcon , UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, CalendarIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon, QuestionMarkCircleIcon  } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, BriefcaseIcon, BuildingLibraryIcon , RectangleGroupIcon , XMarkIcon, ChartBarIcon, UserGroupIcon , UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, CalendarIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon, QuestionMarkCircleIcon  } from '@heroicons/vue/24/outline'
 
 const routes = {
   'admin': [
@@ -112,10 +112,13 @@ const routes = {
     { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
     { name: 'Grupos', route: '/admin/groups', icon: UserGroupIcon, current: false },
     { name: 'Etapas Ues', route: '/admin/steps', icon: Square3Stack3DIcon , current: false },
+    { name: 'Etapas Por Grupo', route: '/admin/stagegroup', icon: RectangleGroupIcon  , current: false },
     { name: 'Frequência', route: '/admin/frequency', icon: ChartBarSquareIcon , current: false },
+    { name: 'Demissão', route: '/admin/resignation', icon: BriefcaseIcon , current: false },
     { name: 'Atividades', route: '/admin/activities', icon: DocumentCheckIcon , current: false },
     { name: 'Tempo de Atuação', route: '/admin/service', icon: CalendarDaysIcon , current: false },
     { name: 'Formação', route: '/admin/training', icon: AcademicCapIcon , current: false },
+  
     { name: 'Relatórios Finais', route: '/admin/report', icon: DocumentTextIcon , current: false },
   ],
   'user': [

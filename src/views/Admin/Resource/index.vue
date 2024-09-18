@@ -12,9 +12,9 @@
                 <Block title="Cancelado" number="20" customClass="bg-gray-500 hover:bg-gray-600" @click="navigateTo('/resource/canceled')" />
             </div>
         
-         </Whiteboard>
+        </Whiteboard>
 
-         <router-view></router-view>
+        <router-view></router-view>
 </template>
 
 <script>

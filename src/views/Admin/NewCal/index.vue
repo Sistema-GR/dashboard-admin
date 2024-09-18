@@ -17,7 +17,7 @@
             />
             </div>
             <div class="space-y-2">
-              <p>Selecione a Data Final a considerar</p>
+              <p>Selecione a Data Inícial a considerar</p>
               <TextInput
               v-model="textValue"
               :error="errorMessage"
@@ -48,32 +48,6 @@
           <div class="text-start space-y-5 w-4/6">
             <div class="space-y-2">
               <p>Valor Global</p>
-              <TextInput
-              placeholder="R$:"
-              v-model="textValue"
-              :error="errorMessage"
-              :success="isSuccess"
-              :info="isInfo"
-              :warning="isWarning"
-              :disabled="isDisabled"
-              type="text"
-            />
-            </div>
-            <div class="space-y-2">
-              <p>Valor Rede</p>
-              <TextInput
-              placeholder="R$:"
-              v-model="textValue"
-              :error="errorMessage"
-              :success="isSuccess"
-              :info="isInfo"
-              :warning="isWarning"
-              :disabled="isDisabled"
-              type="text"
-            />
-            </div>
-            <div class="space-y-2">
-              <p>Valor UE</p>
               <TextInput
               placeholder="R$:"
               v-model="textValue"

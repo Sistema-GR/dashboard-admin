@@ -64,15 +64,21 @@ const props = defineProps({
 });
 
 const routeJsonMapping = {
-  'Results': '/data/df_ues_perc_gr.json',
-  'Profissional': '/data/profissional.json',
-  'Groups': '/data/groups.json',
+  'Results': '/data/ues_perc_gr.json',
+  'Calendar': '/data/dias_nao_contabilizados.json',
+  'Profissional': '/data/funcionarios.json',
+  'Groups': '/data/valores_grupo.json',
   'Steps': '/data/etapas_metas_ue.json',
-  'Frequency': '/data/frequency.json',
-  'Activities': '/data/activities.json',
+  'StageGroup': '/data/funcoes_grupos_etapas.json',
+  'Frequency': '/data/frequencia.json',
+  'Infrequency': '/data/motivos_infrequencia.json',
+  'Resignation': '/data/demissoes.json',
+  'Activities': '/data/atividades.json',
   'Service': '/data/service.json',
-  'Training': '/data/training.json',
-  'Report': '/data/resultado_calculo_399.json'
+  'Training': '/data/formacoes.json',
+  'General': '/data/dados_gerais.json',
+  'Local': '/data/tipo_local.json',
+  'Report': '/data/criterios.json'
 };
 
 const itemsPerPage = 10;
@@ -88,6 +94,7 @@ const drawerTitle = computed(() => {
     case 'Groups': return 'Grupos';
     case 'Steps': return 'Etapas';
     case 'Frequency': return 'Frequência';
+    case 'Resignation': return 'Demissão';
     case 'Activities': return 'Atividades';
     case 'Service': return 'Serviço';
     case 'Training': return 'Formação';
@@ -95,7 +102,7 @@ const drawerTitle = computed(() => {
     default: return '';
   }
 });
-const showEdit = computed(() => ['Results', 'Profissional', 'Groups', 'Steps', 'Frequency', 'Activities', 'Service', 'Training'].includes(props.route));
+const showEdit = computed(() => ['Results', 'Profissional', 'Groups', 'Steps', 'Frequency', 'Activities', 'Service', 'Training', 'Report'].includes(props.route));
 const showGr = computed(() => props.route === 'Report');
 
 const filteredPeopleByQuery = computed(() => {

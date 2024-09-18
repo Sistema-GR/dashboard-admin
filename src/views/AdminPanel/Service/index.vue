@@ -1,11 +1,11 @@
 <template>
     <Whiteboard title="Tempo de Atuação" :isSidebarMinimized="isSidebarMinimized">
         <div class="flex w-full items-start justify-start px-4 mt-4">
-            <Search />
+            <Search @search="handleSearch" />
         </div>   
 
         <div class="w-full pb-5">
-            <PrimaryTable :route="'Service'"/>
+            <PrimaryTable :route="'Service'" :searchQuery="searchQuery"/>
         </div>
     </Whiteboard>
 </template>
@@ -25,8 +25,16 @@ export default {
     setup() {
     const isSidebarMinimized = inject('isSidebarMinimized')
 
+    const searchQuery = ref('');
+    const handleSearch = (query) => {
+        searchQuery.value = query
+    }
+
+
     return {
-      isSidebarMinimized
+      isSidebarMinimized,
+      searchQuery,
+      handleSearch,
     }
   }
 }

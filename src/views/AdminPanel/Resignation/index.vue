@@ -1,11 +1,10 @@
 <template>
-    <Whiteboard title="Formação":isSidebarMinimized="isSidebarMinimized">
+    <Whiteboard title="Profissionais" :isSidebarMinimized="isSidebarMinimized">
         <div class="flex w-full items-start justify-start px-4 mt-4">
             <Search @search="handleSearch" />
         </div>   
-
         <div class="w-full pb-5">
-            <PrimaryTable :route="'Training'" :searchQuery="searchQuery"/>
+            <PrimaryTable :route="'Resignation'" :searchQuery="searchQuery"/>
         </div>
     </Whiteboard>
 </template>
@@ -19,8 +18,9 @@ import Pagination from '@/components/Pagination/Pagination.vue';
 import { inject, ref } from 'vue'
 
 export default {
-    name: "Frequência",
+    name: "Demissão",
     components: {Whiteboard, PrimaryTable, TextInput, Search, Pagination},
+
     setup() {
     const isSidebarMinimized = inject('isSidebarMinimized')
 

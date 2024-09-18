@@ -1,13 +1,14 @@
 <template>
-    <Whiteboard title="Formação":isSidebarMinimized="isSidebarMinimized">
+    <Whiteboard title="Etapa por Grupo" :isSidebarMinimized="isSidebarMinimized">
         <div class="flex w-full items-start justify-start px-4 mt-4">
-            <Search @search="handleSearch" />
+            <Search />
         </div>   
-
         <div class="w-full pb-5">
-            <PrimaryTable :route="'Training'" :searchQuery="searchQuery"/>
+             <PrimaryTable :route="'StageGroup'"/>
         </div>
+
     </Whiteboard>
+    
 </template>
 
 <script>
@@ -16,24 +17,17 @@ import PrimaryTable from '@/components/Table/PrimaryTable.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import Search from '@/components/Search/Search.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
-import { inject, ref } from 'vue'
+import { inject } from 'vue'
 
 export default {
     name: "Frequência",
     components: {Whiteboard, PrimaryTable, TextInput, Search, Pagination},
+
     setup() {
     const isSidebarMinimized = inject('isSidebarMinimized')
 
-    const searchQuery = ref('');
-    const handleSearch = (query) => {
-        searchQuery.value = query
-    }
-
-
     return {
-      isSidebarMinimized,
-      searchQuery,
-      handleSearch,
+      isSidebarMinimized
     }
   }
 }
