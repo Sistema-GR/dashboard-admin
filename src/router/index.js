@@ -10,7 +10,6 @@ import admin from '../views/Admin/index.vue'
 import home from "@/views/Admin/Home/index.vue"
 import newcal from '../views/Admin/NewCal/index.vue'
 import previousresults from '@/views/Admin/PreviousResults/index.vue'
-import info from '@/views/Admin/InfoResource/index.vue'
 import inports from "@/views/Admin/Inports/index.vue"
 //Resource
 import resource from '@/views/Admin/Resource/index.vue'
@@ -63,7 +62,6 @@ const router = createRouter({
         { path: 'overview', name: 'overview', component: home },
         { path: 'newcal', name: 'newcal', component: newcal },
         { path: 'previousresults', name: 'previousresults', component: previousresults },
-        { path: 'info', name: 'info', component: info,},
         { path: 'inports', name: 'inports', component: inports }
       ]
     },
