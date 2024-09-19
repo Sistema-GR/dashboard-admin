@@ -1,24 +1,27 @@
 <template>
-  <div :class="`flex flex-col justify-center w-full gap-2 ${containerClassName}`">
-    <label v-if="label" :for="inputId" class="text-amber-50">{{ label }}</label>
+    <div :class="`flex flex-col justify-center w-full gap-2 ${containerClassName}`">
 
-    <div role="input-container" :class="inputContainerClass">
-      <input
-        :id="inputId"
-        :disabled="disabled"
-        :placeholder="placeholder"
-        :type="type"
-        v-model="modelValue"
-        @input="updateInput"
-        v-bind="$attrs"
-        class="bg-transparent appearance-none h-full border-none outline-none w-full"
-      />
-    </div>
+        <label v-if="label" :for="inputId" class="text-amber-50">{{ label }}</label>
 
-    <div v-if="error" class="text-sm font-medium text-label text-red-600 truncate">
-      {{ error }}
+        <div role="input-container" :class="inputContainerClass">
+
+            <input
+              :id="inputId"
+              :disabled="disabled"
+              :placeholder="placeholder"
+              :type="type"
+              v-model="modelValue"
+              @input="updateInput"
+              v-bind="$attrs"
+              class="bg-transparent appearance-none h-full border-none outline-none w-full"
+            />
+
+        </div>
+
+        <div v-if="error" class="text-sm font-medium text-label text-red-600 truncate">{{ error }}</div>
+       
     </div>
-  </div>
+    
 </template>
 
 <script setup>
