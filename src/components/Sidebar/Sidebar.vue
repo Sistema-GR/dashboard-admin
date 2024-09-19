@@ -71,10 +71,10 @@
               </ul>
             </li>
             <li class="-mx-6 mt-auto">
-              <a href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800">
-                <img class="h-8 w-8 rounded-full bg-gray-800" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                <span :class="isSidebarMinimized ? 'hidden' : ''" aria-hidden="true">Tom Cook Harris</span>
-              </a>
+              <router-link to="config" href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800">
+                  <img class="h-8 w-8 rounded-full bg-gray-800" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                  <span :class="isSidebarMinimized ? 'hidden' : ''" aria-hidden="true">Tom Cook Harris</span>
+              </router-link>
             </li>
           </ul>
         </nav>
@@ -98,7 +98,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, BriefcaseIcon, BuildingLibraryIcon , RectangleGroupIcon , XMarkIcon, ChartBarIcon, UserGroupIcon , UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, CalendarIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ChevronDoubleLeftIcon, ShieldExclamationIcon, QuestionMarkCircleIcon  } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, BriefcaseIcon, RectangleGroupIcon , XMarkIcon, ChartBarIcon, UserGroupIcon , UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, CalendarIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ShieldExclamationIcon, QuestionMarkCircleIcon  } from '@heroicons/vue/24/outline'
 
 const routes = {
   'admin': [
@@ -144,8 +144,10 @@ const filteredNavigation = computed(() => {
   return routes[props.route] || []
 })
 
+
 function toggleSidebar() {
   isSidebarMinimized.value = !isSidebarMinimized.value
   emit('update:isSidebarMinimized', isSidebarMinimized.value)
 }
+
 </script>

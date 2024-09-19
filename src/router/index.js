@@ -45,6 +45,7 @@ import criteria from '@/views/User/Criteria/index.vue'
 import status from '@/views/User/Status/index.vue'
 import edit from '@/views/User/Edit/index.vue'
 import sucess from '@/views/User/Sucess/index.vue'
+import config from '@/views/User/Config/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -98,6 +99,7 @@ const router = createRouter({
         { path: 'status', name: 'status', component: status },
         { path: 'edit', name: 'edit', component: edit },
         { path: 'sucess', name: 'sucess', component: sucess },
+        { path: 'config', name: 'config', component: config },
       ]
     },
     { path: '/resource', 
