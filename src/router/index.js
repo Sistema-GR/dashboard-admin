@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-///////////////////////////////////////////////////////////////////////////////
+//Auth
 import login from '../views/Auth/Login/index.vue'
 import register from '../views/Auth/Register/index.vue'
 import forgotpassword from '../views/Auth/ForgotPassword/index.vue'
 import changepassword from '../views/Auth/ChangePassword/index.vue'
 import insertcode from '../views/Auth/InsertCode/index.vue'
-///////////////////////////////////////////////////////////////////////////////
+//Admin
 import admin from '../views/Admin/index.vue'
 import home from "@/views/Admin/Home/index.vue"
 import newcal from '../views/Admin/NewCal/index.vue'
 import previousresults from '@/views/Admin/PreviousResults/index.vue'
 import info from '@/views/Admin/InfoResource/index.vue'
 import inports from "@/views/Admin/Inports/index.vue"
-//////////////////////////////////////////////////////////////////////////////
+//Resource
 import resource from '@/views/Admin/Resource/index.vue'
 import newResource from '@/views/Admin/Resource/NewResource/index.vue'
 import inprogress from '@/views/Admin/Resource/InProgress/index.vue'
@@ -21,7 +21,7 @@ import reopened from '@/views/Admin/Resource/Reopened/index.vue'
 import completed from '@/views/Admin/Resource/Completed/index.vue'
 import cancel from '@/views/Admin/Resource/Cancel/index.vue'
 import infodetails from '@/views/Admin/Resource/InfoDetails/index.vue'
-///////////////////////////////////////////////////////////////////////////////
+//AdminPanel
 import adminPanel from '@/views/AdminPanel/index.vue'
 import result from '@/views/AdminPanel/Results/index.vue'
 import professional from '@/views/AdminPanel/Professional/index.vue'
@@ -37,7 +37,7 @@ import groups from '@/views/AdminPanel/Groups/index.vue'
 import stagegroup from '@/views/AdminPanel/StageGroup/index.vue'
 import rewards from '@/views/AdminPanel/Rewards/index.vue'
 import calendar from "@/views/AdminPanel/Calendar/index.vue"
-///////////////////////////////////////////////////////////////////////////////
+//user
 import user from '@/views/User/index.vue'
 import form from '@/views/User/ResourceForm/index.vue'
 import faqs from '@/views/User/Faqs/index.vue'
