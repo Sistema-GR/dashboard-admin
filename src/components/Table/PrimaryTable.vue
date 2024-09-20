@@ -126,7 +126,7 @@ const drawerTitle = computed(() => {
     default: return '';
   }
 });
-const showEdit = computed(() => ['Results', 'Profissional', 'Groups', 'Steps', 'Frequency', 'Activities', 'Service', 'Training', 'Report'].includes(props.route));
+const showEdit = computed(() => ['Results', 'Profissional','Calendar', 'Groups', 'Steps', 'Frequency', 'Activities', 'Service', 'Training', 'Report'].includes(props.route));
 const showGr = computed(() => props.route === 'Report');
 
 const filteredPeopleByQuery = computed(() => {
