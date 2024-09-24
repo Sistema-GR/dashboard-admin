@@ -1,12 +1,11 @@
 <template>
-
-    <button 
+     <button 
         v-bind="$attrs"
-        :class="`flex w-full px-2 py-4 text-white rounded-xl font-bold${customColor}`">
+        :class="`flex w-full items-center justify-center px-2 py-4 text-white rounded-xl font-bold ${customColor}`">
         {{ value }}
     </button>
-
 </template>
+
 
 <script>
 export default {
@@ -16,6 +15,7 @@ export default {
       customColor: {
         type: String,
         required: false,
+        default: '', 
       },
       value: {
         type: String,

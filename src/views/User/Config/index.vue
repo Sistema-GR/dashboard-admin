@@ -26,7 +26,7 @@
         <div class="flex flex-col w-full gap-6 border-t-2 pt-6">
             <p class="text-xl font-semibold text-gray-800">Dados Cadastrais</p>
   
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-5">
                 <div>
                     <p class="text-sm font-medium text-gray-700 mb-2">Nome</p>
                     <TextInput :modelValue="'Matheus Gabriel Grawe'" disabled class="w-full" />
@@ -47,52 +47,7 @@
                     <TextInput type="password" :modelValue="'*****'" disabled class="w-full" />
                 </div>
             </div>
-        
-            <div class="border-t-2 pt-6">
-
-                <p class="text-xl font-semibold text-gray-800">Dados do servidor</p>
     
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                    <div>
-                        <p class="text-sm font-medium text-gray-700 mt-6 mb-2 ">Cargo</p>
-                        <TextInput :modelValue="'Cargo exemplo'" disabled class="w-full" />
-                    </div>
-    
-                    <div>
-                        <p class="text-sm font-medium text-gray-700 mt-0 mb-2 lg:mt-6">Vínculo</p>
-                        <TextInput :modelValue="'Vínculo exemplo'" disabled class="w-full" />
-                    </div>
-    
-                    <div>
-                        <p class="text-sm font-medium text-gray-700 mb-2">Situação</p>
-                        <TextInput :modelValue="'Situação exemplo'" disabled class="w-full" />
-                    </div>
-    
-                    <div>
-                        <p class="text-sm font-medium text-gray-700 mb-2">Local de Alocação</p>
-                        <TextInput :modelValue="'Local de Alocação exemplo'" disabled class="w-full" />
-                    </div>
-    
-                    <div>
-                        <p class="text-sm font-medium text-gray-700 mb-2">Início da Atividade no local</p>
-                        <TextInput :modelValue="'Data exemplo'" disabled class="w-full" />
-                    </div>
-    
-                    <div>
-                        <p class="text-sm font-medium text-gray-700 mb-2">Código da Unidade</p>
-                        <TextInput :modelValue="'Código exemplo'" disabled class="w-full" />
-                    </div>
-    
-                    <div class="pb-6">
-                        <p class="text-sm font-medium text-gray-700 mb-2">Nome da Disciplina</p>
-                        <TextInput :modelValue="'Nome da Disciplina exemplo'" disabled class="w-full" />
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
 
     </Whiteboard>

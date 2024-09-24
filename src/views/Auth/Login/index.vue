@@ -10,7 +10,7 @@
             <div class="w-full flex justify-end mt-2">
               <router-link to="/forgotpassword" class="text-sm text-amber-50 hover:underline mt-0">Esqueceu sua senha?</router-link>
             </div>
-            <router-link to="/home/overview"> <PrimaryButton class="mt-8" value="Login" custom-color="bg-[#06A6D8]" /></router-link>"
+            <router-link to="/home/overview"> <PrimaryButton class="mt-8 bg-blue-500" value="Login" custom-color="bg-azure-500" /></router-link>"
             <div class="w-full flex justify-center mt-1">
               <router-link to="/register" class="text-sm text-amber-50 hover:underline mt-0 -translate-y-5">Não possui cadastro? Clique aqui</router-link>
             </div>

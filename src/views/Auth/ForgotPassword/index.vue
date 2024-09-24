@@ -7,7 +7,7 @@
             <div class="w-full max-w-md space-y-3 px-5">
               <p class="text-sm text-amber-50">Digite seu e-mail abaixo. Se existir um usuário cadastrado com essa credencial, vamos enviar um código para o e-mail digitado. </p>
               <TextInput type="text" label="Email" placeholder="E-mail" />
-              <router-link to="/insertcode"> <PrimaryButton class="mt-8" value="Continuar" custom-color="bg-[#06A6D8]" /></router-link>"
+              <router-link to="/insertcode"> <PrimaryButton class="mt-8" value="Continuar" custom-color="bg-azure-500" /></router-link>"
             <div class="w-full flex justify-center mt-1">
               <router-link to="/" class="text-sm text-amber-50 hover:underline -translate-y-5">Possui login? Clique aqui</router-link>
             </div>

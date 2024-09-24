@@ -2,12 +2,21 @@
     <Whiteboard title="" :isSidebarMinimized="isSidebarMinimized" customClass="bg-blue-500 px-0" class="-translate-y-10">
 
         <div class="flex w-full items-center justify-center bg-gradient-to-r from-azure-800 to-primary-900 -translate-y-3">
-            <p class="text-white text-3xl py-5 uppercase font-bold">Painel da Gratificação</p>
+            <p class="text-white text-3xl py-5 uppercase font-bold w-full text-center">Painel da Gratificação</p>
         </div>
 
-        <div class="flex flex-col justify-center items-center w-full mt-10 gap-10 px-5 lg:flex-row lg:px-20">
-            <Card title="Servidor" label="Tom Cook Harris" customClass="text-2xl w-full lg:w-full" />
-            <Card title="Valor" label="R$ 4.867,00" customClass="text-2xl  lg:w-2/6" />
+
+        <div class="flex flex-col justify-center items-center w-full mt-10 gap-10 px-5 lg:flex-row lg:px-10">
+            <div class="w-full -translate-y-2">
+                <Card title="Servidor" label="Tom Cook Harris" customClass="text-2xl w-full lg:w-full" />
+            </div>
+            <div class="flex flex-col items-center w-full lg:w-3/6">
+                <Card title="Valor Total" label="R$ 8.662,00" customClass="text-2xl" />
+                <p class="text-xs font-medium underline cursor-pointer translate-y-1" @click="openDrawer">Exibir Detalhamento</p>
+            </div>
+
+
+            <DetailsDrawer ref="detailsDrawer"/>
         </div>
 
         <div class="flex w-full items-center justify-center py-8 px-5 lg:px-0">
@@ -16,7 +25,7 @@
 
         <div class="flex flex-row w-full items-center bg-solitude-200">
             <div class="flex w-full items-center justify-center">
-                <img src="../../../assets/images/Ilustração.png" class="w-2/4 lg:-translate-x-8 pt-4"/>
+                <img src="../../../assets/images/Ilustração.png" class="w-full lg:w-2/4 lg:-translate-x-8 pt-4"/>
             </div>
 
             <div class="flex flex-col items-center justify-center w-full text-normal mx-2 lg:text-2xl gap-3 lg:gap-0">
@@ -29,7 +38,7 @@
         </div>
 
         <div class="flex w-full items-center justify-center bg-primary-800">
-            <p class="text-white text-3xl py-5">Detalhamento da Gratificação</p>
+            <p class="text-white text-3xl py-5 text-center">Detalhamento da Gratificação</p>
         </div>
 
         <Disclosure>
@@ -39,6 +48,12 @@
                     <ChevronDownIcon :class="`w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}`" />
                 </DisclosureButton>
                 <DisclosurePanel class="w-full py-10 px-5 space-y-10 lg:px-10">
+
+                    <Table 
+                        title="Resumo da Tabela 399" 
+                        :columns="resumo399Columns" 
+                        :data="resumo399Data" 
+                    />
                     <Table 
                         title="Valor máximo pelos resultados das unidades escolares de atuação" 
                         :columns="unitValue" 
@@ -54,6 +69,7 @@
                         :columns="grValue" 
                         :data="grValueData" 
                     />
+
                 </DisclosurePanel>
             </template>
         </Disclosure>
@@ -122,170 +138,196 @@
     </Whiteboard>
 </template>
 
-<script>
-import { inject } from 'vue';
+<script setup>
+import { inject, ref } from 'vue';
+import { ChevronDownIcon, ExclamationCircleIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import Card from './Card/Card.vue';
 import Table from './Table/Table.vue';
-import { ChevronDownIcon, ExclamationCircleIcon, ArrowDownIcon  } from "@heroicons/vue/24/outline";
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import DetailsDrawer from './DetailsDrawer/DetailsDrawer.vue';
 
-export default {
-    components: {
-        Whiteboard,Card, ChevronDownIcon,Table,Disclosure,DisclosureButton,DisclosurePanel,ExclamationCircleIcon,ArrowDownIcon },
+const isSidebarMinimized = inject('isSidebarMinimized');
 
-        setup() {
-        const isSidebarMinimized = inject('isSidebarMinimized')
-        
-        return {
-            isSidebarMinimized
-        }
-    },
-        data() {
-        return {
-            unitValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'unidade', label: 'Unidade' },
-                { key: 'funcao', label: 'Função' },
-                { key: 'valorMaximo', label: 'Valor máximo unidade' }
-            ],
-            unitValueData: [
-                {
-                    matricula: 'u04444',
-                    unidade: 'SED - Sede',
-                    funcao: 'Analista',
-                    valorMaximo: 'R$ 4.867,00'
-                },
-                
-            ],
+const detailsDrawer = ref(null); 
 
-            redeValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'funcao', label: 'Função' },
-                { key: 'valorMaximo', label: 'Valor máximo unidade' }
-            ],
-            redeValueData: [
-                {
-                    matricula: 'u04444',
-                    funcao: 'Analista',
-                    valorMaximo: 'R$ 4.867,00'
-                }
-            ],
-
-            grValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'funcao', label: 'Função' },
-                { key: 'valorMaximo', label: 'Valor máximo unidade' }
-            ],
-            grValueData: [
-                {
-                    matricula: 'u04444',
-                    funcao: 'Analista',
-                    valorMaximo: 'R$ 4.867,00'
-                }
-            ],
-
-            serviceValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'service', label: 'Tempo de atuação' },
-                { key: 'bonus', label: 'Recebimento da gratificação' }
-            ],
-            serviceValueData: [
-                {
-                    matricula: 'u04444',
-                    service: 'Não atua há mais de 6 meses na rede',
-                    bonus: 'R$ 4.867,00'
-                }
-            ],
-
-            freqValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'name', label: 'Nome do colaborador' },
-                { key: 'dias_totais_afastamento', label: 'Dias totais de afastamento' },
-                { key: 'freq', label: '% Frequência' },
-                { key: 'freq_percent', label: '% De recebimento da gratificação' }
-            ],
-            freqValueData: [
-                {
-                    matricula: 'u04444',
-                    name: 'João Silva',
-                    dias_totais_afastamento: 15,
-                    freq: 85,
-                    freq_percent: 75,
-                }
-            ],
-
-            leaveValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'name', label: 'Nome do colaborador' },
-                { key: 'reason', label: 'Motivo' },
-                { key: 'data_init', label: 'Data Início' },
-                { key: 'data_end', label: 'Data Fim' },
-                { key: 'counted_business_days', label: 'Dias úteis de afastamento contabilizados' },
-                
-            ],
-            leaveValueData: [
-                {
-                    matricula: 'u04444',
-                    name: 'João Silva',
-                    reason: 'Doença',
-                    data_init: '01/02/2023',
-                    data_end: '20/12/2024',
-                    counted_business_days: 207,
-                }
-            ],
-
-            trainingValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'name', label: 'Nome' },
-                { key: 'completed_training', label: 'Realizou as formações oferecidas' },
-                { key: 'bonus', label: 'Recebimento da gratificação' },
-                
-            ],
-            trainingValueData: [
-                {
-                    matricula: 'u04444',
-                    name: 'João Silva',
-                    completed_training: 'Sim',
-                    bonus: 'Apto a receber a gratificação',
-                    
-                }
-            ],
-
-            activitiesValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'name', label: 'Nome' },
-                { key: 'completed_activities', label: 'Realizou as atividades oferecidas' },
-                { key: 'bonus', label: 'Recebimento da gratificação' },
-                
-            ],
-            activitiesValueData: [
-                {
-                    matricula: 'u04444',
-                    name: 'João Silva',
-                    completed_activities: 'Sim',
-                    bonus: 'Apto a receber a gratificação',
-                    
-                }
-            ],
-
-            summaryValue: [
-                { key: 'matricula', label: 'Matrícula' },
-                { key: 'name', label: 'Nome' },
-                { key: 'grossValue', label: 'Valor bruto' },
-                { key: 'discountByCriteriaValue', label: 'Valor de desconto pelos critérios individuais' },
-                { key: 'amountToReceive', label: 'Valor a receber' },
-            ],
-            summaryValueData: [
-                {
-                    matricula: 'u04444',
-                    name: 'João Silva',
-                    grossValue: 'R$ 4.867,00',
-                    discountByCriteriaValue: 0,
-                    amountToReceive: 'R$ 4.867,00'
-                }
-            ],
-        };
-    },
+function openDrawer() {
+  if (detailsDrawer.value) {
+    detailsDrawer.value.openDrawer();
+  }
 }
+
+const resumo399Columns = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'ue', label: 'UE' },
+    { key: 'ueDisciplina', label: 'Disciplina ou Função' },
+    { key: 'dataInicio', label: 'Data de Início' },
+    { key: 'dataFim', label: 'Data de Fim' },
+    { key: 'cargaHoraria', label: 'Carga Horária' },
+    { key: 'grupo', label: 'Grupo' },
+    { key: 'etapasAtuacao', label: 'Etapas de Atuação' },
+    { key: 'resultadoAtingimento', label: 'Resultado de Atingimento' }
+]);
+
+const resumo399Data = ref([
+    {
+        matricula: 'u04444',
+        ue: 'EM Prof Saul Santanna O Dias',
+        ueDisciplina: ' Professor - BLOCO 2',
+        dataInicio: '01/01/2023',
+        dataFim: '30/06/2023',
+        cargaHoraria: '220 horas',
+        grupo: 'Grupo III',
+        etapasAtuacao: 'Etapa III',
+        resultadoAtingimento: 'R$ 3.223,26'
+    },
+]);
+
+const unitValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'unidade', label: 'Unidade' },
+    { key: 'funcao', label: 'Função' },
+    { key: 'valorMaximo', label: 'Valor máximo unidade' }
+]);
+
+const unitValueData = ref([
+    {
+        matricula: 'u04444',
+        unidade: 'SED - Sede',
+        funcao: 'Analista',
+        valorMaximo: 'R$ 4.867,00'
+    },
+]);
+
+const redeValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'funcao', label: 'Função' },
+    { key: 'valorMaximo', label: 'Valor máximo unidade' }
+]);
+
+const redeValueData = ref([
+    {
+        matricula: 'u04444',
+        funcao: 'Analista',
+        valorMaximo: 'R$ 4.867,00'
+    }
+]);
+
+const grValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'funcao', label: 'Função' },
+    { key: 'valorMaximo', label: 'Valor máximo unidade' }
+]);
+
+const grValueData = ref([
+    {
+        matricula: 'u04444',
+        funcao: 'Analista',
+        valorMaximo: 'R$ 4.867,00'
+    }
+]);
+
+const serviceValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'service', label: 'Tempo de atuação' },
+    { key: 'bonus', label: 'Recebimento da gratificação' }
+]);
+
+const serviceValueData = ref([
+    {
+        matricula: 'u04444',
+        service: 'Não atua há mais de 6 meses na rede',
+        bonus: 'R$ 4.867,00'
+    }
+]);
+
+const freqValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'name', label: 'Nome do colaborador' },
+    { key: 'dias_totais_afastamento', label: 'Dias totais de afastamento' },
+    { key: 'freq', label: '% Frequência' },
+    { key: 'freq_percent', label: '% De recebimento da gratificação' }
+]);
+
+const freqValueData = ref([
+    {
+        matricula: 'u04444',
+        name: 'João Silva',
+        dias_totais_afastamento: 15,
+        freq: 85,
+        freq_percent: 75,
+    }
+]);
+
+const leaveValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'name', label: 'Nome do colaborador' },
+    { key: 'reason', label: 'Motivo' },
+    { key: 'data_init', label: 'Data Início' },
+    { key: 'data_end', label: 'Data Fim' },
+    { key: 'counted_business_days', label: 'Dias úteis de afastamento contabilizados' },
+]);
+
+const leaveValueData = ref([
+    {
+        matricula: 'u04444',
+        name: 'João Silva',
+        reason: 'Doença',
+        data_init: '01/02/2023',
+        data_end: '20/12/2024',
+        counted_business_days: 207,
+    }
+]);
+
+const trainingValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'name', label: 'Nome' },
+    { key: 'completed_training', label: 'Realizou as formações oferecidas' },
+    { key: 'bonus', label: 'Recebimento da gratificação' },
+]);
+
+const trainingValueData = ref([
+    {
+        matricula: 'u04444',
+        name: 'João Silva',
+        completed_training: 'Sim',
+        bonus: 'Apto a receber a gratificação',
+    }
+]);
+
+const activitiesValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'name', label: 'Nome' },
+    { key: 'completed_activities', label: 'Realizou as atividades oferecidas' },
+    { key: 'bonus', label: 'Recebimento da gratificação' },
+]);
+
+const activitiesValueData = ref([
+    {
+        matricula: 'u04444',
+        name: 'João Silva',
+        completed_activities: 'Sim',
+        bonus: 'Apto a receber a gratificação',
+    }
+]);
+
+const summaryValue = ref([
+    { key: 'matricula', label: 'Matrícula' },
+    { key: 'name', label: 'Nome' },
+    { key: 'grossValue', label: 'Valor bruto' },
+    { key: 'discountByCriteriaValue', label: 'Valor de desconto pelos critérios individuais' },
+    { key: 'amountToReceive', label: 'Valor a receber' },
+]);
+
+const summaryValueData = ref([
+    {
+        matricula: 'u04444',
+        name: 'João Silva',
+        grossValue: 'R$ 4.867,00',
+        discountByCriteriaValue: 0,
+        amountToReceive: 'R$ 4.867,00'
+    }
+]);
+
 </script>
+

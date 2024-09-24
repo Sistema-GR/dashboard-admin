@@ -7,7 +7,7 @@
             <div class="w-full max-w-md space-y-3 px-5">
                 <p class="text-sm text-amber-50">Foi enviado um código de 5 digitos para o e-mail digitado no passo anterior. Por favor, digite o código abaixo. </p>
               <TextInput type="text" label="Código" placeholder="00000" />
-              <router-link to="/changepassword"> <PrimaryButton class="mt-8" value="Enviar" custom-color="bg-[#06A6D8]" /></router-link>"
+              <router-link to="/changepassword"> <PrimaryButton class="mt-8" value="Enviar" custom-color="bg-azure-500" /></router-link>"
             <div class="w-full flex justify-center mt-1">
               <router-link to="/" class="text-sm text-amber-50 hover:underline -translate-y-5">Possui login? Clique aqui</router-link>
             </div>
