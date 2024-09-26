@@ -57,317 +57,292 @@
                             </DisclosureButton>
                             <DisclosurePanel class="w-full">
 
-                                <div class="flex w-full items-center justify-between border">
+                                <table class="w-full border-collapse border">
+                                    <thead>
+                                        <tr class="bg-azure-800">
+                                            <th class="border p-2 font-semibold text-white">Descrição</th>
+                                            <th class="border p-2 font-semibold text-white">Valores a Receber</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border p-2">
+                                                <div class="flex flex-col">
+                                                    <div class="flex flex-row gap-2">
+                                                        <span class="font-semibold">Nome:</span>
+                                                        <span>SUSANA RIBEIRO BERNARDO</span>
+                                                    </div>
+                                                    <div class="flex flex-row gap-2">
+                                                        <span class="font-semibold">Matrícula:</span>
+                                                        <span>56968</span>
+                                                    </div>
+                                                    <div class="flex flex-row gap-2">
+                                                        <span class="font-semibold">Cargo:</span>
+                                                        <span>PROFESSOR 6-9 ANO ENSINO FUNDAMENTAL CIÊNCIAS</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="border p-2">
+                                                <div class="flex flex-col">
+                                                    <div class="flex justify-between">
+                                                        <span class="font-semibold">Rede:</span>
+                                                        <span>R$0,00</span>
+                                                    </div>
+                                                    <div class="flex justify-between">
+                                                        <span class="font-semibold">Unidades:</span>
+                                                        <span>R$0,00</span>
+                                                    </div>
+                                                    <div class="flex justify-between">
+                                                        <span class="font-semibold">Total:</span>
+                                                        <span>R$0,00</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                                    <div class="flex flex-col w-1/3 space-y-2 border">
-                                        <p class="invisible">.</p> 
-                                        <p class="font-semibold">Nome</p>
-                                        <p class="font-semibold">Matrícula</p>
-                                        <p class="font-semibold">Cargo</p>
+                                <table class="w-full border-collapse border ">
+                                    <thead>
+                                        <tr class="bg-azure-800">
+                                            <th class="border-b p-2 text-center text-white">Tempo de Atuação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border p-2 text-center">Não atingiu o mínimo necessário</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="w-full border-collapse border ">
+                                    <thead>
+                                        <tr class="bg-azure-800">
+                                            <th class="border-b p-2 text-center text-white">Formação (Frequência)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border p-2 text-center">Não atingiu o mínimo necessário</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="w-full border-collapse border ">
+                                    <thead>
+                                        <tr class="bg-azure-800">
+                                            <th class="border-b p-2 text-center text-white">Atividades</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border p-2 text-center">Não atingiu o mínimo necessário</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="flex flex-col w-full items-center border -translate-y-0.5">
+                                    <div class="flex w-full border-b items-center justify-center py-3 bg-azure-800">
+                                        <p class="text-xl font-medium text-white">Alocações em 2024</p>
                                     </div>
-
-                                    <div class="flex flex-col w-1/3 space-y-2 border">
-                                        <p class="invisible">.</p>
-                                        <p>SUSANA RIBEIRO BERNARDO</p>
-                                        <p>56968</p>
-                                        <p>PROFESSOR 6-9 ANO ENSINO FUNDAMENTAL CIÊNCIAS</p>
-                                    </div>
-
-                                    <div class="flex flex-col w-1/3 items-end space-y-2 border">
-                                        <p class="font-semibold">Valores a Receber</p>
-                                        <div class="flex flex-row space-x-4">
-                                            <div class="flex flex-col items-end space-y-2">
-                                                <p class="font-semibold">Rede</p>
-                                                <p class="font-semibold">Unidades</p>
-                                                <p class="font-semibold">Total</p>
-                                            </div>
-                                            <div class="flex flex-col items-end space-y-2">
-                                                <p>R$0,00</p>
-                                                <p>R$0,00</p>
-                                                <p>R$0,00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <table class="min-w-full border-collapse border border-gray-200">
+                                        <thead>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">EM Dom Jaime De Barros Camara</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 1<br>80%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 2<br>0%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 3<br>100%</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2">Início</th>
+                                                <th class="border border-gray-200 px-4 py-2">Fim</th>
+                                                <th class="border border-gray-200 px-4 py-2">Função</th>
+                                                <th class="border border-gray-200 px-4 py-2">Carga Horária</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa</th>
+                                                <th class="border border-gray-200 px-4 py-2">Grupo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">01/02/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">02/05/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">Professor - CORREÇÃO DE FLUXO</td>
+                                                <td class="border border-gray-200 px-4 py-2">60:00:00</td>
+                                                <td class="border border-gray-200 px-4 py-2">Etapa 3</td>
+                                                <td class="border border-gray-200 px-4 py-2">Grupo I</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">03/05/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">12/07/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">Professor - CIÊNCIAS</td>
+                                                <td class="border border-gray-200 px-4 py-2">04:00:00</td>
+                                                <td class="border border-gray-200 px-4 py-2">Etapa 3</td>
+                                                <td class="border border-gray-200 px-4 py-2">Grupo I</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">05/05/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">12/07/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">Professor - CORREÇÃO DE FLUXO</td>
+                                                <td class="border border-gray-200 px-4 py-2">15:00:00</td>
+                                                <td class="border border-gray-200 px-4 py-2">Etapa 3</td>
+                                                <td class="border border-gray-200 px-4 py-2">Grupo I</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Tempo de Atuação</p>
+                                    <div class="flex w-full border-b items-center justify-center py-3 bg-azure-800">
+                                        <p class="text-xl font-medium text-white">Alocações em 2024</p>
                                     </div>
-                                    <div class="flex w-full items-center justify-center">
-                                        <p>Não atingiu o mínimo necessário</p>
-                                    </div>
+                                    <table class="min-w-full border-collapse border border-gray-200">
+                                        <thead>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">EM Prof Ada S Da Silveira</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 1<br>80%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 2<br>0%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 3<br>100%</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2">Início</th>
+                                                <th class="border border-gray-200 px-4 py-2">Fim</th>
+                                                <th class="border border-gray-200 px-4 py-2">Função</th>
+                                                <th class="border border-gray-200 px-4 py-2">Carga Horária</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa</th>
+                                                <th class="border border-gray-200 px-4 py-2">Grupo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">01/02/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">02/05/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">Professor - CIÊNCIAS</td>
+                                                <td class="border border-gray-200 px-4 py-2">180:00:00</td>
+                                                <td class="border border-gray-200 px-4 py-2">Etapa 3</td>
+                                                <td class="border border-gray-200 px-4 py-2">Grupo I</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Formação (Frequência)</p>
+                                    <div class="flex w-full border-b items-center justify-center py-3 bg-azure-800">
+                                        <p class="text-xl font-medium text-white">Alocações em 2024</p>
                                     </div>
-                                    <div class="flex w-full items-center justify-center">
-                                        <p>Não atingiu o mínimo necessário</p>
-                                    </div>
+                                    <table class="min-w-full border-collapse border border-gray-200">
+                                        <thead>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">EM Dom Jaime De Barros Camara</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 1<br>80%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 2<br>0%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 3<br>100%</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2">Início</th>
+                                                <th class="border border-gray-200 px-4 py-2">Fim</th>
+                                                <th class="border border-gray-200 px-4 py-2">Função</th>
+                                                <th class="border border-gray-200 px-4 py-2">Carga Horária</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa</th>
+                                                <th class="border border-gray-200 px-4 py-2">Grupo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">12/09/2022</td>
+                                                <td class="border border-gray-200 px-4 py-2">31/01/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">Professor - CIÊNCIAS</td>
+                                                <td class="border border-gray-200 px-4 py-2">55:00:00</td>
+                                                <td class="border border-gray-200 px-4 py-2">Etapa 3</td>
+                                                <td class="border border-gray-200 px-4 py-2">Grupo I</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Atividades</p>
+                                    <div class="flex w-full border-b items-center justify-center py-3 bg-azure-800">
+                                        <p class="text-xl font-medium text-white">Alocações em 2024</p>
                                     </div>
-                                    <div class="flex w-full items-center justify-center">
-                                        <p>Não atingiu o mínimo necessário</p>
-                                    </div>
+                                    <table class="min-w-full border-collapse border border-gray-200">
+                                        <thead>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">EM Dom Jaime De Barros Camara</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 1<br>80%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 2<br>0%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 3<br>100%</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2">Início</th>
+                                                <th class="border border-gray-200 px-4 py-2">Fim</th>
+                                                <th class="border border-gray-200 px-4 py-2">Função</th>
+                                                <th class="border border-gray-200 px-4 py-2">Carga Horária</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa</th>
+                                                <th class="border border-gray-200 px-4 py-2">Grupo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">13/07/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">08/08/2023</td>
+                                                <td class="border border-gray-200 px-4 py-2">Professor - CIÊNCIAS</td>
+                                                <td class="border border-gray-200 px-4 py-2">220:00:00</td>
+                                                <td class="border border-gray-200 px-4 py-2">Rede</td>
+                                                <td class="border border-gray-200 px-4 py-2">Grupo I</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Alocações em 2024</p>
+                                    <div class="flex w-full border-b items-center justify-center bg-azure-800 py-3">
+                                        <p class="text-xl font-medium text-white">Critério de Frequência (Afastamentos)</p>
                                     </div>
-                                    <div class="flex w-full items-center justify-between">
-                                        <div class="w-6/12 border-r">
-                                            <p>EM Dom Jaime De Barros Camara</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 1 80%</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 2 0%</p>
-                                        </div>
-                                        <div class="w-2/12">
-                                            <p>Etapa 3 100%</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex w-full justify-center">
-                                        <div class="flex flex-row w-6/12">
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Início</p>
-                                                <p>01/02/2023</p>
-                                                <p>03/05/2023</p>
-                                                <p>05/05/2023</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Fim</p>
-                                                <p>02/05/2023</p>
-                                                <p>12/07/2023</p>
-                                                <p>12/07/2023</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Função</p>
-                                                <p>Professor - CORREÇÃO DE FLUXO</p>
-                                                <p>Professor - CIÊNCIAS</p>
-                                                <p>Professor - CORREÇÃO DE FLUXO</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Carga Horário</p>
-                                            <p>60:00:00.00</p>
-                                            <p>04:00:00</p>
-                                            <p>15:00:00</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Etapa</p>
-                                            <p>Etapa 3</p>
-                                            <p>Etapa 3</p>
-                                            <p>Etapa 3</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Grupo</p>
-                                            <p>Grupo I</p>
-                                            <p>Grupo I</p>
-                                            <p>Grupo I</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Alocações em 2024</p>
-                                    </div>
-                                    <div class="flex w-full items-center justify-between">
-                                        <div class="w-6/12 border-r">
-                                            <p>EM Prof Ada S Da Silveira</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 1 80%</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 2 0%</p>
-                                        </div>
-                                        <div class="w-2/12">
-                                            <p>Etapa 3 100%</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex w-full justify-center">
-                                        <div class="flex flex-row w-6/12">
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Início</p>
-                                                <p>01/02/2023</p>
-                                                <p>03/05/2023</p>
-                                                <p>05/05/2023</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Fim</p>
-                                                <p>02/05/2023</p>
-                                                <p>12/07/2023</p>
-                                                <p>12/07/2023</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Função</p>
-                                                <p>Professor - CORREÇÃO DE FLUXO</p>
-
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Carga Horário</p>
-                                            <p>60:00:00.00</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Etapa</p>
-                                            <p>Etapa 3</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Grupo</p>
-                                            <p>Grupo I</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Alocações em 2024</p>
-                                    </div>
-                                    <div class="flex w-full items-center justify-between">
-                                        <div class="w-6/12 border-r">
-                                            <p>Caic Prof Mariano Costa</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 1 80%</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 2 0%</p>
-                                        </div>
-                                        <div class="w-2/12">
-                                            <p>Etapa 3 100%</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex w-full justify-center">
-                                        <div class="flex flex-row w-6/12">
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Início</p>
-                                                <p>12/09/2022</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Fim</p>
-                                                <p>31/01/2023</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Função</p>
-                                                <p>Professor - CIÊNCIAS</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Carga Horário</p>
-                                            <p>55:00:00.00</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Etapa</p>
-                                            <p>Etapa 3</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Grupo</p>
-                                            <p>Grupo I</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Alocações em 2024</p>
-                                    </div>
-                                    <div class="flex w-full items-center justify-between">
-                                        <div class="w-6/12 border-r">
-                                            <p>Escola Municipal de Jovens e Adultos</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 1 80%</p>
-                                        </div>
-                                        <div class="w-2/12 border-r">
-                                            <p>Etapa 2 0%</p>
-                                        </div>
-                                        <div class="w-2/12">
-                                            <p>Etapa 3 100%</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex w-full justify-center">
-                                        <div class="flex flex-row w-6/12">
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Início</p>
-                                                <p>13/07/2023</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Fim</p>
-                                                <p>08/08/2023</p>
-                                            </div>
-                                            <div class="flex flex-col items-start w-full">
-                                                <p>Função</p>
-                                                <p>Professor - CIÊNCIAS</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Carga Horário</p>
-                                            <p>220:00:00.000</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Etapa</p>
-                                            <p>Rede</p>
-                                        </div>
-                                        <div class="flex flex-col w-2/12 border-r">
-                                            <p>Grupo</p>
-                                            <p>Grupo IV</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="flex flex-col w-full items-center border -translate-y-0.5">
-                                    <div class="flex w-full border-b items-center justify-center">
-                                        <p>Criterio de Frequência (Afastamentos)</p>
-                                    </div>
-                                    <div class="flex w-full items-center border-b">
-                                        <div class="flex w-full items-center justify-center">
-                                            <p>90,82%</p>
+                                    
+                                    <div class="flex w-full items-center justify-center border">
+                                        <div class="flex w-full items-center justify-center border-r py-2">
+                                            <p class="text-xl font-semibold">90,82%</p>
                                         </div>
                                         <div class="flex w-full items-center justify-center">
-                                            <p>Não atingiu</p>
+                                            <p class="text-xl font-semibold">Não atingiu</p>
                                         </div>
                                     </div>
 
-                                    <div class="flex flex-row w-full items-center justify-center">
-                                        <div class="flex flex-col w-full items-center justify-center">
-                                            <p>Início</p>
-                                        </div>
-                                        <div class="flex flex-col w-full items-center justify-center">
-                                            <p>Fim</p>
-                                        </div>
-                                        <div class="flex flex-col w-full items-center justify-center">
-                                            <p>Tipo de afastamento</p>
-                                        </div>
-                                        <div class="flex flex-col w-full items-center justify-center">
-                                            <p>Total Dias</p>
-                                        </div>
-                                        <div class="flex flex-col w-full items-center justify-center">
-                                            <p>Contabilizados</p>
-                                        </div>
-                                    </div>
-
+                                    <table class="min-w-full border-collapse border">
+                                        <thead>
+                                            <tr class="">
+                                                <th class="border border-gray-200 px-4 py-2">Início</th>
+                                                <th class="border border-gray-200 px-4 py-2">Fim</th>
+                                                <th class="border border-gray-200 px-4 py-2">Tipo de Afastamento</th>
+                                                <th class="border border-gray-200 px-4 py-2">Total Dias</th>
+                                                <th class="border border-gray-200 px-4 py-2">Contabilizados</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">01/01/2024</td>
+                                                <td class="border border-gray-200 px-4 py-2">10/01/2024</td>
+                                                <td class="border border-gray-200 px-4 py-2">Afastamento Médico</td>
+                                                <td class="border border-gray-200 px-4 py-2">10</td>
+                                                <td class="border border-gray-200 px-4 py-2">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">15/01/2024</td>
+                                                <td class="border border-gray-200 px-4 py-2">20/01/2024</td>
+                                                <td class="border border-gray-200 px-4 py-2">Licença</td>
+                                                <td class="border border-gray-200 px-4 py-2">5</td>
+                                                <td class="border border-gray-200 px-4 py-2">5</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-gray-200 px-4 py-2">25/01/2024</td>
+                                                <td class="border border-gray-200 px-4 py-2">30/01/2024</td>
+                                                <td class="border border-gray-200 px-4 py-2">Férias</td>
+                                                <td class="border border-gray-200 px-4 py-2">5</td>
+                                                <td class="border border-gray-200 px-4 py-2">5</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-
 
                             </DisclosurePanel>
                         </template>
