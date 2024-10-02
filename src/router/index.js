@@ -22,6 +22,7 @@ import cancel from '@/views/Admin/Resource/Cancel/index.vue'
 import infodetails from '@/views/Admin/Resource/InfoDetails/index.vue'
 //AdminPanel
 import adminPanel from '@/views/AdminPanel/index.vue'
+import dash from '@/views/AdminPanel/Dashboard/index.vue'
 import result from '@/views/AdminPanel/Results/index.vue'
 import professional from '@/views/AdminPanel/Professional/index.vue'
 import steps from '@/views/AdminPanel/Steps/index.vue'
@@ -70,6 +71,7 @@ const router = createRouter({
       name: 'adminPanel',
       component: adminPanel,
       children: [
+        { path: 'dash', name: 'dash', component: dash },
         { path: 'results', name: 'results', component: result },
         { path: 'professional', name: 'professional', component: professional },
         { path: 'groups', name: 'groups', component: groups },
