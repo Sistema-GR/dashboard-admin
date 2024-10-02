@@ -86,22 +86,45 @@
 </template>
 
 <script>
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import PrimaryButton from "@/components/Buttons/PrimaryButton.vue";
 import TextInput from "@/components/Inputs/TextInput.vue";
 import Whiteboard from "@/components/Whiteboard/Whiteboard.vue";
   
- export default {
-    name: "NewCal",
-    components: {TextInput, Whiteboard, PrimaryButton },
+export default {
+  name: "NewCal",
+  components: { TextInput, Whiteboard, PrimaryButton },
 
+  setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized');
 
-    setup() {
-    const isSidebarMinimized = inject('isSidebarMinimized')
+    const textValue = ref('');
+    const startDate = ref('');
+    const endDate = ref('');
+    const globalValue = ref('');
+    const errorMessage = ref('');
+    const isSuccess = ref(false);
+    const isInfo = ref(false);
+    const isWarning = ref(false);
+    const isDisabled = ref(false);
+
+    const handleClick = () => {
+      
+    };
 
     return {
-      isSidebarMinimized
-    }
-  }
+      isSidebarMinimized,
+      textValue,
+      startDate,
+      endDate,
+      globalValue,
+      errorMessage,
+      isSuccess,
+      isInfo,
+      isWarning,
+      isDisabled,
+      handleClick,
+    };
+  },
 }
 </script>

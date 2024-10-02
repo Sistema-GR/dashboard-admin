@@ -38,9 +38,11 @@ import FileInput from '@/components/Inputs/FileInput.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import PrimaryButton from '@/components/Buttons/PrimaryButton.vue';
 import Loading from '@/components/Loading/Loading.vue';
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.vue';
 
 export default {
   components: { FileInput, Whiteboard, PrimaryButton, Loading },
+
   data() {
     return {
       files: {
