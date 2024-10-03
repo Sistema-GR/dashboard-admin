@@ -82,7 +82,7 @@ const routeJsonMapping = {
   'Infrequency': '/data/motivos_infrequencia.json',
   'Resignation': '/data/demissoes.json',
   'Activities': '/data/atividades.json',
-  'Service': '/data/service.json',
+  'Service': '/data/tempo_de_atuacao.json',
   'Training': '/data/formacoes.json',
   'General': '/data/dados_gerais.json',
   'Local': '/data/tipo_local.json',

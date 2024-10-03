@@ -141,7 +141,7 @@ const routes = {
     { name: 'Recurso', route: '/resource/new', icon: ExclamationCircleIcon, current: false },
   ],
   'admin-panel': [
-    { name: 'Dashboard', route: '/admin/dash', icon: Squares2X2Icon, current: false },
+    { name: 'Dashboard', route: '/admin/dashboard', icon: Squares2X2Icon, current: false },
     { name: 'Resultados IDEM', route: '/admin/results', icon: CalculatorIcon, current: false },
     { name: 'Calendario Escolar', route: '/admin/calendar', icon: CalendarIcon  , current: false },
     { name: 'Profissionais', route: '/admin/professional', icon: UsersIcon , current: false },
@@ -181,7 +181,7 @@ const filteredNavigation = computed(() => {
 
 const route = useRoute(); 
 const hiddenRoutes = [
-  '/admin/dash',
+  '/admin/dashboard',
   '/admin/results',
   '/admin/calendar',
   '/admin/professional',
