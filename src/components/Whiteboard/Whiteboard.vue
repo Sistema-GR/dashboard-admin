@@ -39,33 +39,32 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const breadcrumbPages = ref([{ name: 'Home', href: '/home/overview', current: false }]); // Inicializa com a rota Home
+    const breadcrumbPages = ref([{ name: 'Home', href: '/home/overview', current: false }]); // Página inicial
 
     // Função para atualizar os breadcrumbs
     const updateBreadcrumbs = () => {
-      // Limpa as páginas, mantendo a página inicial
-      breadcrumbPages.value = [{ name: 'Home', href: '/home/overview', current: false }];
-      
-      // Divide o caminho da rota atual em segmentos
       const segments = route.path.split('/').filter(segment => segment); // Remove segmentos vazios
+      const newBreadcrumbs = [{ name: 'Home', href: '/home/overview', current: false }]; // Reseta com Home
 
       let currentPath = '';
-      
+
       // Adiciona cada segmento como uma página nos breadcrumbs
       segments.forEach((segment, index) => {
         currentPath += `/${segment}`;
-        breadcrumbPages.value.push({
+        newBreadcrumbs.push({
           name: segment.charAt(0).toUpperCase() + segment.slice(1), // Capitaliza o primeiro caractere
           href: currentPath,
           current: index === segments.length - 1 // Marca como atual se for o último segmento
         });
       });
+
+      breadcrumbPages.value = newBreadcrumbs; // Atualiza breadcrumbs
     };
 
     // Chama a função de atualização ao carregar a rota inicial
     updateBreadcrumbs();
 
-    // Observa mudanças na rota atual e atualiza os breadcrumbs
+    // Observa mudanças na rota e atualiza os breadcrumbs
     watch(route, updateBreadcrumbs);
 
     return {
