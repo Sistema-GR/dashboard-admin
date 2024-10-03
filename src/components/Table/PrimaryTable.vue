@@ -29,7 +29,7 @@
                                 </td>
 
                                 <td v-if="showGr" class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
-                                    <RouterLink to="/admin/rewards" class="text-indigo-600 hover:text-indigo-900">
+                                    <RouterLink to="/admin/rewards" class="text-indigo-600 hover:text-indigo-900" @click.prevent="saveRowData(person)">
                                       <EyeIcon class="w-5 h-5" />
                                       <span class="sr-only">Visualização da Gratificação</span>
                                     </RouterLink>
@@ -129,6 +129,8 @@ const totalPages = computed(() => Math.ceil(filteredPeopleByQuery.value.length /
 
 const drawerRef = ref(null);
 
+const savedRowData = ref([]);
+
 onMounted(async () => {
   try {
     const jsonUrl = routeJsonMapping[props.route];
@@ -163,6 +165,8 @@ onMounted(async () => {
     filteredPeople.value = [];
     filteredColumns.value = [];
   }
+
+  loadSavedData();
 });
 
 watch(() => props.searchQuery, () => {
@@ -204,6 +208,37 @@ function openDrawer(person) {
 
 function handleDrawerClosed() {
   selectedRowData.value = {};
+}
+
+function saveRowData(person) {
+  // Estrutura os dados de forma detalhada
+  const detailedData = {};
+  filteredColumns.value.forEach(column => {
+    detailedData[column.label] = person[column.key];
+  });
+
+  // Salva apenas a nova linha
+  localStorage.setItem('savedRowData', JSON.stringify([detailedData]));
+
+  // Exibir uma mensagem de confirmação ou feedback se necessário
+  console.log('Dados salvos:', detailedData);
+  
+  // Redireciona para a página de visualização
+
+}
+
+function loadSavedData() {
+  const data = JSON.parse(localStorage.getItem('savedRowData'));
+  if (data) {
+    savedRowData.value = data;
+  }
+
+  // Limpar dados após carregar, se necessário
+  clearSavedData();
+}
+
+function clearSavedData() {
+  localStorage.removeItem('savedRowData');
 }
 
 </script>

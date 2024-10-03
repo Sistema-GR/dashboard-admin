@@ -194,6 +194,7 @@ const hiddenRoutes = [
   '/admin/service',
   '/admin/training',
   '/admin/report',
+  '/admin/rewards'
 ];
 
 const showConfigLink = !hiddenRoutes.includes(route.path); 

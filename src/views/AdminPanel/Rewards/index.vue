@@ -1,21 +1,33 @@
 <template>
     <Whiteboard title="" :isSidebarMinimized="isSidebarMinimized" customClass="bg-blue-500 px-0" class="-translate-y-10">
-
         <div class="flex w-full items-center justify-center bg-gradient-to-r from-azure-800 to-primary-900 -translate-y-3">
             <p class="text-white text-3xl py-5 uppercase font-bold w-full text-center">Painel da Gratificação</p>
         </div>
+        <!-- ######################################################################################################### -->
+        <div class="flex flex-row items-center w-full px-10 gap-10 pt-8 pb-4">
 
-
-        <div class="flex flex-col justify-center items-center w-full mt-10 gap-10 px-5 lg:flex-row lg:px-10">
-            <div class="w-full -translate-y-2">
-                <Card title="Servidor" label="Tom Cook Harris" customClass="text-2xl w-full lg:w-full" />
+            <div class="w-full" v-for="row in savedData" :key="row.id">
+                <div :class="`flex flex-col items-center justify-center bg-transparent rounded-lg ${customClass}`">
+                    <div class="flex items-center justify-center w-full py-3 rounded-lg bg-azure-800">
+                        <p class="text-white text-lg font-medium">Nome Do Servidor</p>
+                    </div>
+                    <div class="flex w-full items-center justify-center py-2.5 rounded-b-lg -translate-y-1 bg-solitude-100 shadow-lg shadow-slate-200">
+                        <p class="font-medium whitespace-nowrap">{{ row.Nome }}</p>
+                    </div>  
+                </div>
             </div>
-            <div class="flex flex-col items-center w-full lg:w-3/6">
-                <Card title="Valor Total" label="R$ 8.662,00" customClass="text-2xl" />
-                <p class="text-xs font-medium underline cursor-pointer translate-y-1" @click="openDrawer">Exibir Detalhamento</p>
+
+            <div class="w-full" v-for="row in savedData" :key="row.id">
+                <div :class="`flex flex-col items-center justify-center  bg-transparent rounded-lg ${customClass}`">
+                    <div class="flex items-center justify-center w-full py-3 rounded-lg bg-azure-800">
+                        <p class="text-white text-lg font-medium">Valor</p>
+                    </div>
+                    <div class="flex w-full items-center justify-center py-2.5 rounded-b-lg -translate-y-1 bg-solitude-100 shadow-lg shadow-slate-200">
+                        <p class="font-medium">R$ {{ row['Valor Total (bruto)'] }}</p>
+                    </div>  
+                </div>
             </div>
 
-            <DetailsDrawer ref="detailsDrawer"/>
         </div>
 
         <div class="flex w-full items-center justify-center py-8 px-5 lg:px-0">
@@ -36,23 +48,19 @@
             </div>
         </div>
 
-        <div class="flex w-full items-center justify-center bg-primary-800">
-            <p class="text-white text-3xl py-5 text-center">Detalhamento da Gratificação</p>
-        </div>
-
         <Disclosure>
             <template #default="{ open }">
                 <DisclosureButton class="flex flex-row w-full items-center justify-between mt-0.5 py-4 px-5 bg-solitude-200 hover:bg-gray-400 ease-in-out duration-200 cursor-pointer">
                     <p class="text-lg font-medium">Detalhamento por Matrícula</p>
-                    <ChevronDownIcon :class="`w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}`" />
+                    <ChevronDownIcon class="w-6 h-auto transform transition-transform" />
                 </DisclosureButton>
                 <DisclosurePanel class="w-full py-8 px-3">
 
-                    <Disclosure>
+                    <Disclosure v-for="row in savedData" :key="row.id">
                         <template #default="{open}">
                             <DisclosureButton class="flex flex-row w-full items-center justify-between mt-0.5 py-4 px-5 bg-solitude-200 hover:bg-gray-400 ease-in-out duration-200 cursor-pointer">
-                                <p class="text-lg font-medium">Matrícula 56968</p>
-                                <ChevronDownIcon :class="`w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}`" />
+                                <p class="text-lg font-medium">Matrícula {{ row.Matricula }}</p>
+                                <ChevronDownIcon class="w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}" />
                             </DisclosureButton>
                             <DisclosurePanel class="w-full">
 
@@ -74,8 +82,8 @@
                                                     <p>Cargo:</p>
                                                 </td>
                                                 <td class="border p-3">
-                                                    <p class="whitespace-nowrap">SUSANA RIBEIRO BERNARDO</p>
-                                                    <p>56968</p>
+                                                    <p class="whitespace-nowrap">{{ row.Nome }}</p>
+                                                    <p>{{ row.Matricula }}</p>
                                                     <p class="whitespace-nowrap">PROFESSOR 6-9 ANO ENSINO FUNDAMENTAL CIÊNCIAS</p>
                                                 </td>
                                                 <td class="border p-3">
@@ -86,7 +94,7 @@
                                                 <td class="border p-3">
                                                     <p>R$0,00</p>
                                                     <p>R$0,00</p>
-                                                    <p>R$0,00</p>
+                                                    <p class="whitespace-nowrap">R$ {{ row['Valor Total (bruto)'] }}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -101,7 +109,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="border p-2 text-center">Não atingiu o mínimo necessário</td>
+                                            <td class="border p-2 text-center">{{ row['Atua a mais de 6 meses?'] }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -114,7 +122,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="border p-2 text-center">Não atingiu o mínimo necessário</td>
+                                            <td class="border p-2 text-center">{{ row.Formações }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -127,7 +135,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="border p-2 text-center">Não atingiu o mínimo necessário</td>
+                                            <td class="border p-2 text-center">{{ row.Atividades }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -244,109 +252,44 @@
                 </div>
             </router-link>
         </div>
-
+      
     </Whiteboard>
-</template>
-
-<script setup>
-import { inject, ref } from 'vue';
-import { ChevronDownIcon, ExclamationCircleIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
-import Card from './Card/Card.vue';
-import DetailsDrawer from './DetailsDrawer/DetailsDrawer.vue';
-
-const isSidebarMinimized = inject('isSidebarMinimized');
-
-const detailsDrawer = ref(null); 
-
-function openDrawer() {
-  if (detailsDrawer.value) {
-    detailsDrawer.value.openDrawer();
+  </template>
+  
+  <script setup>
+  import { inject, ref } from 'vue';
+  import { ChevronDownIcon, ExclamationCircleIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";
+  import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+  import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
+  import DetailsDrawer from './DetailsDrawer/DetailsDrawer.vue';
+  
+  const isSidebarMinimized = inject('isSidebarMinimized');
+  const detailsDrawer = ref(null); 
+  const savedData = JSON.parse(localStorage.getItem('savedRowData')) || [];
+  
+  // Variável reativa para armazenar a linha selecionada
+  const selectedRow = ref(null); // Inicialmente, nenhuma linha está selecionada
+  
+  // Função para abrir o Drawer
+  function openDrawer() {
+    if (detailsDrawer.value) {
+      detailsDrawer.value.openDrawer(); // Verifique se openDrawer está definido no DetailsDrawer
+    }
   }
-}
-
-const institutions = ref([
-  {
-    name: "EM Dom Jaime De Barros Camara",
-    etapas: [
-      { name: "Etapa 1", percent: "80%" },
-      { name: "Etapa 2", percent: "0%" },
-      { name: "Etapa 3", percent: "100%" }
-    ],
-    rows: [
-      ["01/02/2023", "02/05/2023", "Professor - CORREÇÃO DE FLUXO", "60:00:00", "Etapa 3", "Grupo I"],
-      ["03/05/2023", "12/07/2023", "Professor - CIÊNCIAS", "04:00:00", "Etapa 3", "Grupo I"],
-      ["05/05/2023", "12/07/2023", "Professor - CORREÇÃO DE FLUXO", "15:00:00", "Etapa 3", "Grupo I"]
-    ]
-  },
-  {
-    name: "EM Prof Ada S Da Silveira",
-    etapas: [
-      { name: "Etapa 1", percent: "80%" },
-      { name: "Etapa 2", percent: "0%" },
-      { name: "Etapa 3", percent: "100%" }
-    ],
-    rows: [
-      ["01/02/2023", "02/05/2023", "Professor - CIÊNCIAS", "180:00:00", "Etapa 3", "Grupo I"]
-    ]
-  },
-  {
-    name: "Caic Prof Mariano Costa",
-    etapas: [
-      { name: "Etapa 1", percent: "80%" },
-      { name: "Etapa 2", percent: "0%" },
-      { name: "Etapa 3", percent: "100%" }
-    ],
-    rows: [
-      ["12/09/2022", "31/01/2023", "Professor - CIÊNCIAS", "55:00:00.000", "Etapa 3", "Grupo I"]
-    ]
-  },
-  {
-    name: "Escola Municipal de Jovens e Adultos",
-    etapas: [
-      { name: "Etapa 1", percent: "80%" },
-      { name: "Etapa 2", percent: "0%" },
-      { name: "Etapa 3", percent: "100%" }
-    ],
-    rows: [
-      ["13/07/2023", "08/08/2023", "Professor - CIÊNCIAS", "220:00:00.000", "Rede", "Grupo IV"]
-    ]
-  }
-]);
-
-const headers = ["Início", "Fim", "Função", "Carga Horária", "Etapa", "Grupo"];
-
-const afastamentos = ref([
-  {
-    inicio: "01/01/2024",
-    fim: "10/01/2024",
-    tipo: "Afastamento Médico",
-    totalDias: 10,
-    contabilizados: 10,
-  },
-  {
-    inicio: "15/01/2024",
-    fim: "20/01/2024",
-    tipo: "Licença",
-    totalDias: 5,
-    contabilizados: 5,
-  },
-  {
-    inicio: "25/01/2024",
-    fim: "30/01/2024",
-    tipo: "Férias",
-    totalDias: 5,
-    contabilizados: 5,
-  },
-]);
-
-const criterios = ref([
-  { criterio: 'Frequência', valor: '92%', status: 'Não Apto' },
-  { criterio: 'Tempo de Atuação', valor: 'Atuou há mais de 6 meses', status: 'Apto a Receber Gratificação' },
-  { criterio: 'Formação', valor: '100%', status: 'Apto a Receber Gratificação' },
-  { criterio: 'Atividades', valor: '100%', status: 'Apto a Receber Gratificação' },
-]);
-</script>
-
-
+  
+  // Função para selecionar um servidor
+  const selectServer = (row) => {
+    if (selectedRow.value && selectedRow.value.id === row.id) {
+      // Se a linha clicada já estiver selecionada, não faça nada
+      return;
+    }
+  
+    selectedRow.value = row; // Atualiza a linha selecionada
+  
+    // Salva a linha selecionada no localStorage
+    localStorage.setItem('selectedServer', JSON.stringify(row));
+    
+    console.log("Servidor selecionado:", row); // Log para verificação
+  };
+  </script>
+  

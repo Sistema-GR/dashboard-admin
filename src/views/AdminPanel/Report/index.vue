@@ -1,6 +1,5 @@
 <template>
   <Whiteboard title="Relatório Final" :isSidebarMinimized="isSidebarMinimized">
-
     <div class="flex flex-row w-full items-start justify-between px-4 mt-4">
       <Search @search="handleSearch" />
       <div class="flex flex-row gap-1 cursor-pointer group" @click="downloadCSV">
@@ -24,53 +23,53 @@ import { ref, inject } from 'vue';
 import { DocumentArrowDownIcon } from "@heroicons/vue/24/outline";
 
 export default {
-name: "Report",
-components: { Whiteboard, PrimaryTable, TextInput, Search, DocumentArrowDownIcon },
-setup() {
-  const isSidebarMinimized = inject('isSidebarMinimized');
-  const searchQuery = ref('');
+  name: "Report",
+  components: { Whiteboard, PrimaryTable, TextInput, Search, DocumentArrowDownIcon },
+  
+  setup() {
+    const isSidebarMinimized = inject('isSidebarMinimized');
+    const searchQuery = ref('');
 
-  const handleSearch = (query) => {
-    searchQuery.value = query;
-  };
+    const handleSearch = (query) => {
+      searchQuery.value = query;
+    };
 
-  const downloadCSV = () => {
-    const tableData = [
-      // Substitua com os dados reais da tabela
-      { name: 'Example', start_date: '01/01/2023', end_date: '01/02/2023' },
-      // Adicione mais dados conforme necessário
-    ];
+    const downloadCSV = () => {
+      const tableData = [
+        { name: 'Example', start_date: '01/01/2023', end_date: '01/02/2023' },
+        // Adicione mais dados conforme necessário
+      ];
 
-    if (!tableData.length) return;
+      if (!tableData.length) return;
 
-    const csvRows = [];
-    const headers = Object.keys(tableData[0]);
-    csvRows.push(headers.join(','));
+      const csvRows = [];
+      const headers = Object.keys(tableData[0]);
+      csvRows.push(headers.join(',')); // Adiciona os cabeçalhos ao CSV
 
-    for (const row of tableData) {
-      const values = headers.map(header => {
-        const escaped = ('' + row[header]).replace(/"/g, '\\"');
-        return "${escaped}";
-      });
-      csvRows.push(values.join(','));
-    }
+      for (const row of tableData) {
+        const values = headers.map(header => {
+          const escaped = ('' + row[header]).replace(/"/g, '\\"'); // Escape para aspas
+          return `"${escaped}"`; // Corrigido para usar aspas ao redor dos valores
+        });
+        csvRows.push(values.join(',')); // Adiciona a linha ao CSV
+      }
 
-    const csvString = csvRows.join('\n');
-    const blob = new Blob([csvString], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'report.csv';
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+      const csvString = csvRows.join('\n');
+      const blob = new Blob([csvString], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'report.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
 
-  return {
-    isSidebarMinimized,
-    searchQuery,
-    handleSearch,
-    downloadCSV
-  };
-}
+    return {
+      isSidebarMinimized,
+      searchQuery,
+      handleSearch,
+      downloadCSV
+    };
+  }
 };
 </script>
