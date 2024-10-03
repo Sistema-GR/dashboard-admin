@@ -22,7 +22,7 @@ import cancel from '@/views/Admin/Resource/Cancel/index.vue'
 import infodetails from '@/views/Admin/Resource/InfoDetails/index.vue'
 //AdminPanel
 import adminPanel from '@/views/AdminPanel/index.vue'
-import dash from '@/views/AdminPanel/Dashboard/index.vue'
+import dash from '@/views/AdminPanel/Results/index.vue'
 import result from '@/views/AdminPanel/Results/index.vue'
 import professional from '@/views/AdminPanel/Professional/index.vue'
 import steps from '@/views/AdminPanel/Steps/index.vue'
@@ -63,7 +63,8 @@ const router = createRouter({
         { path: 'overview', name: 'overview', component: home },
         { path: 'newcal', name: 'newcal', component: newcal },
         { path: 'previousresults', name: 'previousresults', component: previousresults },
-        { path: 'inports', name: 'inports', component: inports }
+        { path: 'inports', name: 'inports', component: inports },
+        { path: 'config', name: 'configs', component: config }
       ]
     },
     {
@@ -99,7 +100,7 @@ const router = createRouter({
         { path: 'status', name: 'status', component: status },
         { path: 'edit', name: 'edit', component: edit },
         { path: 'sucess', name: 'sucess', component: sucess },
-        { path: 'config', name: 'config', component: config },
+        { path: 'config', name: 'configss', component: config },
       ]
     },
     { path: '/resource', 
