@@ -131,7 +131,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, CalculatorIcon, BriefcaseIcon, RectangleGroupIcon , XMarkIcon, ChartBarIcon, UserGroupIcon , UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, CalendarIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, ShieldExclamationIcon, QuestionMarkCircleIcon, Squares2X2Icon   } from '@heroicons/vue/24/outline'
+import { Bars3Icon, CalculatorIcon, BriefcaseIcon, RectangleGroupIcon , XMarkIcon, ChartBarIcon, UserGroupIcon , UsersIcon, AcademicCapIcon, DocumentTextIcon, CalendarDaysIcon, CalendarIcon, DocumentCheckIcon, ChartBarSquareIcon, Square3Stack3DIcon, ExclamationCircleIcon, InboxIcon , QuestionMarkCircleIcon, Squares2X2Icon   } from '@heroicons/vue/24/outline'
 import { useRoute } from 'vue-router';
 
 const routes = {
@@ -158,7 +158,7 @@ const routes = {
   ],
   'user': [
     { name: 'Resultados', route: '/user/rewards', icon: ChartBarIcon, current: true },
-    { name: 'Status', route: '/user/status', icon: ShieldExclamationIcon , current: false },
+    { name: 'Status', route: '/user/status', icon: InboxIcon  , current: false },
     { name: 'FAq', route: '/user/faqs', icon: QuestionMarkCircleIcon , current: false },
   ],
 }
