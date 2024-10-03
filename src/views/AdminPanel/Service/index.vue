@@ -16,7 +16,7 @@ import PrimaryTable from '@/components/Table/PrimaryTable.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import Search from '@/components/Search/Search.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 
 export default {
     name: "Frequência",

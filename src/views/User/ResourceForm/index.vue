@@ -1,9 +1,14 @@
 <template>
     <Whiteboard title="Formulário de Recurso" :isSidebarMinimized="isSidebarMinimized">
-
         <div class="flex flex-col w-full px-4">
-
             <div class="flex flex-col space-y-6 py-4">
+
+                <div class="flex items-center border-b-2 py-0 pb-6">
+                    <label class="font-semibold w-1/4 text-sm">Motivo de não recebimento</label>
+                    <RouterLink to="criteria">
+                        <span class="text-blue-700 font-medium w-3/4 ml-3 text-sm cursor-pointer">Não Recebeu? Clique Aqui e veja o Detalhamento</span>
+                    </RouterLink>
+                </div>
 
                 <div class="flex items-center border-b-2 py-2 pb-6">
                     <label class="font-semibold w-1/4 text-sm">Nome completo</label>
@@ -29,14 +34,6 @@
                     <label class="font-semibold w-1/4 text-sm">Unidade de atuação</label>
                     <span class="text-gray-700 w-3/4 ml-4 text-sm">Abdon Batista</span>
                 </div>
-
-                <div class="flex items-center border-b-2 py-0 pb-6">
-                    <label class="font-semibold w-1/4 text-sm">Motivo de não recebimento</label>
-                    <RouterLink to="criteria">
-                        <span class="text-blue-700 font-medium w-3/4 ml-3 text-sm cursor-pointer">Não Recebeu? Clique Aqui e veja o Detalhamento</span>
-                    </RouterLink>
-                </div>
-
 
                 <div class="flex items-center border-b-2 py-0 pb-6">
                     <label class="font-semibold w-1/4 text-sm">Descrição</label>
@@ -77,17 +74,16 @@
                 </div>
 
                 <div class="flex flex-col items-start mt-6 space-y-4 md:space-x-3">
-
                     <div class="space-y-4 px-4 md:px-0">
 
-                        <p class="font-medium text-sm text-start ">
-                            Este formulário destina-se à interposição de recursos por parte dos profissionais vinculados à Secretaria de Educação de Joinville, relacionados à Gratificação por Resultados, conforme estipulado pela Lei nº 9.214/2022 e pelo Decreto Municipal nº 49.309/2022.
+                        <p class="font-medium text-sm text-start">
+                            Este formulário é destinado à interposição de recursos por parte dos profissionais vinculados à Secretaria de Educação de Joinville, referente à Gratificação por Resultados, conforme estabelecido pela Lei nº 9.214/2022 e pelo Decreto Municipal nº 49.309/2022.
                             <br><br>
-                            O período para submissão de respostas neste formulário é de 17/05/2024 até 16/06/2024, encerrando-se às 23h59 do último dia.
+                            O período para submissão de recursos neste formulário é de 17/05/2024 a 16/06/2024, encerrando-se às 23h59 do último dia.
                         </p>
 
                         <p class="font-bold text-sm text-start">
-                            Observação: para a efetivação do recurso, é imprescindível anexar documentos que fundamentem e comprovem a justificativa do recurso, bem como as eventuais discrepâncias nos dados utilizados para o cálculo do pagamento.
+                            Atenção: Para a validação do recurso, é imprescindível anexar documentos que justifiquem e comprovem as alegações, incluindo eventuais divergências nos dados utilizados no cálculo da Gratificação por Resultados.
                         </p>
 
                         <div class="flex items-center gap-2">
@@ -98,18 +94,20 @@
                                 class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" 
                             >
                             <label for="terms" class="text-sm">
-                                Li e aceito os termos acima.
+                                Declaro que li e aceito os termos acima.
                             </label>
                         </div>
+
                     </div>
                 </div>
 
-
                 <div class="flex w-full justify-end">
+
                     <PrimaryButton
                         customColor="bg-blue-500 text-sm w-6/12 md:w-3/12"
                         value="Enviar"
                     />
+
                 </div>
 
             </div>

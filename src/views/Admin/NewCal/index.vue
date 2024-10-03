@@ -53,6 +53,20 @@
           <div class="flex-1 flex items-center justify-center my-36">
               <div class="text-start space-y-5 w-4/6">
                   <div class="space-y-2">
+                    <p>Nome Da Versão</p>
+                        <TextInput
+                        placeholder="Primeira versão..."
+                        v-model="textValue"
+                        :error="errorMessage"
+                        :success="isSuccess"
+                        :info="isInfo"
+                        :warning="isWarning"
+                        :disabled="isDisabled"
+                        type="text"
+                      />
+                  </div>
+
+                  <div class="space-y-2">
                     <p>Valor Global</p>
                         <TextInput
                         placeholder="R$:"

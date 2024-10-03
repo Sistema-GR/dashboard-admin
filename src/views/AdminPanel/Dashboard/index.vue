@@ -37,6 +37,24 @@
           <BarChart :chart-data="faixaPaymentsData" :options="faixaOptions" />
         </div>
       </div>
+      
+      <div class="flex w-full">
+        <div>
+            <p>Relatorios</p>
+            <div>
+                <p>399</p>
+                <div class="flex flex-row gap-1 cursor-pointer group" @click="downloadCSV">
+                    <p class="text-blue-800 group-hover:text-blue-900">Emitir Relatório</p>
+                    <DocumentArrowDownIcon class="w-5 h-auto stroke-blue-600 group-hover:stroke-blue-600" />
+                </div>
+                <p>Criterios</p>
+                <div class="flex flex-row gap-1 cursor-pointer group" @click="downloadCSV">
+                    <p class="text-blue-800 group-hover:text-blue-900">Emitir Relatório</p>
+                    <DocumentArrowDownIcon class="w-5 h-auto stroke-blue-600 group-hover:stroke-blue-600" />
+                </div>
+            </div>
+        </div>
+      </div>
     </Whiteboard>
   </template>
   
@@ -46,6 +64,8 @@
   import Sidebar from '@/components/Sidebar/Sidebar.vue';
   import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
   import { DoughnutChart, BarChart } from 'vue-chart-3';
+  import { DocumentArrowDownIcon } from "@heroicons/vue/24/outline";
+
   
   import {
     Chart as ChartJS,
@@ -66,7 +86,7 @@
   
   export default {
     name: "AdminPanel",
-    components: { Sidebar, Whiteboard, DoughnutChart, BarChart },
+    components: { Sidebar, Whiteboard, DoughnutChart, BarChart, DocumentArrowDownIcon },
   
     data() {
       return {
