@@ -1,5 +1,5 @@
 <template>
-    <Whiteboard title="" :isSidebarMinimized="isSidebarMinimized" customClass="bg-blue-500 px-0" class="-translate-y-10">
+    <Whiteboard title="" :isSidebarMinimized="isSidebarMinimized" class="-translate-y-10">
         <div class="flex w-full items-center justify-center bg-gradient-to-r from-azure-800 to-primary-900 -translate-y-3">
             <p class="text-white text-3xl py-5 uppercase font-bold w-full text-center">Painel da Gratificação</p>
         </div>
@@ -7,7 +7,7 @@
         <div class="flex flex-row items-center w-full px-10 gap-10 pt-8 pb-4">
 
             <div class="w-full" v-for="row in savedData" :key="row.id">
-                <div :class="`flex flex-col items-center justify-center bg-transparent rounded-lg ${customClass}`">
+                <div :class="`flex flex-col items-center justify-center bg-transparent rounded-lg`">
                     <div class="flex items-center justify-center w-full py-3 rounded-lg bg-azure-800">
                         <p class="text-white text-lg font-medium">Nome Do Servidor</p>
                     </div>
@@ -18,7 +18,7 @@
             </div>
 
             <div class="w-full" v-for="row in savedData" :key="row.id">
-                <div :class="`flex flex-col items-center justify-center  bg-transparent rounded-lg ${customClass}`">
+                <div :class="`flex flex-col items-center justify-center  bg-transparent rounded-lg`">
                     <div class="flex items-center justify-center w-full py-3 rounded-lg bg-azure-800">
                         <p class="text-white text-lg font-medium">Valor</p>
                     </div>
@@ -84,7 +84,7 @@
                                                 <td class="border p-3">
                                                     <p class="whitespace-nowrap">{{ row.Nome }}</p>
                                                     <p>{{ row.Matricula }}</p>
-                                                    <p class="whitespace-nowrap">PROFESSOR 6-9 ANO ENSINO FUNDAMENTAL CIÊNCIAS</p>
+                                                    <p class="whitespace-nowrap">{{ row.Cargo }}</p>
                                                 </td>
                                                 <td class="border p-3">
                                                     <p>Rede:</p>
@@ -92,8 +92,8 @@
                                                     <p>Total:</p>
                                                 </td>
                                                 <td class="border p-3">
-                                                    <p>R$0,00</p>
-                                                    <p>R$0,00</p>
+                                                    <p>R$ {{ row['Valor GR '] }}</p>
+                                                    <p>R$ {{ row['Valor GR Un'] }}</p>
                                                     <p class="whitespace-nowrap">R$ {{ row['Valor Total (bruto)'] }}</p>
                                                 </td>
                                             </tr>
@@ -140,35 +140,44 @@
                                     </tbody>
                                 </table>
 
-                                <div class="flex flex-col w-full items-center border -translate-y-0.5 overflow-x-auto">
-                                    <div class="flex w-full border-b items-center justify-center py-3 bg-azure-800">
-                                        <p class="text-xl text-center font-medium text-white">Alocações em 2024</p>
-                                    </div>
+                                <div class="flex flex-col w-full items-center border -translate-y-0.5">
 
-                                    <div v-for="(institutionData, index) in institutions" :key="index" class="w-full">
-                                        <div class="overflow-x-auto"> 
-                                            <table class="min-w-full border-collapse border border-gray-200">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">{{ institutionData.name }}</th>
-                                                        <th v-for="(etapa, etapaIndex) in institutionData.etapas" :key="etapaIndex" class="border border-gray-200 px-4 py-2 whitespace-nowrap">
-                                                        {{ etapa.name }}<br>{{ etapa.percent }}
-                                                        </th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th v-for="header in headers" :key="header" class="border border-gray-200 px-4 py-2">{{ header }}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="(row, rowIndex) in institutionData.rows" :key="rowIndex">
-                                                        <td v-for="(cell, cellIndex) in row" :key="cellIndex" class="border border-gray-200 px-4 py-2 whitespace-nowrap">{{ cell }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div v-if="index < institutions.length - 1" class="w-full bg-azure-800 py-3"></div>
+                                    <div class="flex w-full items-center justify-center py-3 bg-azure-800">
+                                        <p class="text-xl font-medium text-white">Alocações em 2024</p>
                                     </div>
+                           
+
+                                    <table class="min-w-full border-collapse border border-gray-200">
+                                        <thead>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">{{ row['NM_Local de alocação'] }}</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 1<br>80%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 2<br>0%</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa 3<br>100%</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2">Início</th>
+                                                <th class="border border-gray-200 px-4 py-2">Fim</th>
+                                                <th class="border border-gray-200 px-4 py-2">Função</th>
+                                                <th class="border border-gray-200 px-4 py-2">Carga Horária</th>
+                                                <th class="border border-gray-200 px-4 py-2">Etapa</th>
+                                                <th class="border border-gray-200 px-4 py-2">Grupo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center">
+                                                <td class="border border-gray-200 px-4 py-2">{{ row['Data de Início Ajustada'] }}</td>
+                                                <td class="border border-gray-200 px-4 py-2">{{ row['Data fim alocações FINAL'] }}</td>
+                                                <td class="border border-gray-200 px-4 py-2">{{ row['NM_Disciplina'] }}</td>
+                                                <td class="border border-gray-200 px-4 py-2">{{ row['Real'] }}</td>
+                                                <td class="border border-gray-200 px-4 py-2">Etapa 3</td>
+                                                <td class="border border-gray-200 px-4 py-2">{{ row['Grupos GR'] }}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
+
 
 
                                 <div class="flex flex-col w-full items-center border -translate-y-0.5 overflow-x-auto">
