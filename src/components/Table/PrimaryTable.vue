@@ -198,7 +198,6 @@ visiblePeople.value = filteredPeopleByQuery.value.slice(start, end);
 function updateRowData(updatedRowData) {
 const index = filteredPeople.value.findIndex(person => person.matricula === updatedRowData.matricula);
 if (index !== -1) {
-  // Atualiza dados na filteredPeople
   filteredPeople.value[index] = { ...filteredPeople.value[index], ...updatedRowData };
   loadMore(); 
 } else {
@@ -217,69 +216,60 @@ function handleDrawerClosed() {
 selectedRowData.value = {};
 }
 
+
 async function saveRowData(person) {
-    const detailedData = {};
-    filteredColumns.value.forEach(column => {
-        detailedData[column.label] = person[column.key];
-    });
+  const detailedData = {};
+  filteredColumns.value.forEach(column => {
+    detailedData[column.label] = person[column.key];
+  });
 
-    const matricula = person.matricula;
-    const Nome = person.Nome; // Supondo que o nome está disponível em person
-    let dadosProfissional = {};
-    let dadosFrequencia = {};
+  const matricula = person.matricula;
+  const nome = person.Nome;
 
-    try {
-        const response= await fetch('/data/funcionarios.json'); 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+  let dadosProfissional = [];
+  let dadosFrequencia = [];
 
-        // Busca os dados do profissional utilizando tanto a matrícula quanto o nome
-        dadosProfissional = data.find(prof => prof.matricula === matricula && prof.Nome === Nome);
-        if (dadosProfissional) {
-            console.log('Dados do profissional encontrados:', dadosProfissional);
-        } else {
-            console.error('Dados do profissional não encontrados para a matrícula e nome:', matricula, Nome);
-        }
-    } catch (error) {
-        console.error('Erro ao buscar dados do profissional:', error);
-    }
+  // Busca todos os dados do profissional com base na matrícula e no nome
+  try {
+    const response = await fetch('/data/funcionarios.json');
+    const data = await response.json();
 
-    try {
-        const response= await fetch('/data/frequencia.json'); 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+    dadosProfissional = data.filter(prof => prof.matricula === matricula && prof.Nome === nome);
+    console.log('Dados do(s) profissional(is) encontrados:', dadosProfissional);
+  } catch (error) {
+    console.error('Erro ao buscar dados do profissional:', error);
+  }
 
-        // Busca os dados do profissional utilizando tanto a matrícula quanto o nome
-        dadosFrequencia = data.find(prof => prof.matricula === matricula && prof.Nome === Nome);
-        if (dadosFrequencia) {
-            console.log('Dados do frequencia encontrados:', dadosFrequencia);
-        } else {
-            console.error('Dados do frequencia não encontrados para a matrícula e nome:', matricula, Nome);
-        }
-    } catch (error) {
-        console.error('Erro ao buscar dados do frequencia:', error);
-    }
+  // Busca todos os dados de frequência para o profissional
+  try {
+    const response = await fetch('/data/frequencia.json');
+    const data = await response.json();
 
-    // Combine os dados do profissional com os dados detalhados
-    const dadosCombinados = { ...dadosProfissional, ...dadosFrequencia, ...detailedData };
+    dadosFrequencia = data.filter(frequencia => frequencia.matricula === matricula && frequencia.Nome === nome);
+    console.log('Dados de frequência encontrados:', dadosFrequencia);
+  } catch (error) {
+    console.error('Erro ao buscar dados de frequência:', error);
+  }
 
-    // Adicionando ou atualizando o savedRowData
-    const existingIndex = savedRowData.value.findIndex(item => item.matricula === matricula);
-    if (existingIndex !== -1) {
-        savedRowData.value[existingIndex] = dadosCombinados; // Atualiza se já existir
-    } else {
-        savedRowData.value.push(dadosCombinados); // Adiciona novo
-    }
+  // Monta o objeto de dados combinados
+  const dadosCombinados = { 
+    profissional: dadosProfissional, // Lista de profissionais encontrados
+    frequencia: dadosFrequencia,      // Lista de frequências encontradas
+    ...detailedData                  // Dados detalhados da linha atual
+  };
 
-    // Salva os dados no localStorage
-    localStorage.setItem('savedRowData', JSON.stringify(savedRowData.value));
-    console.log('Dados salvos:', dadosCombinados);
+  // Verifica se a matrícula já existe nos dados salvos
+  const existingIndex = savedRowData.value.findIndex(item => item.matricula === matricula);
+  if (existingIndex !== -1) {
+    savedRowData.value[existingIndex] = dadosCombinados; 
+  } else {
+    savedRowData.value.push(dadosCombinados); 
+  }
+
+  // Salva os dados no localStorage
+  localStorage.setItem('savedRowData', JSON.stringify(savedRowData.value));
+  console.log('Dados salvos:', dadosCombinados);
 }
-
 
 function loadSavedData() {
 const savedData = localStorage.getItem('savedRowData');

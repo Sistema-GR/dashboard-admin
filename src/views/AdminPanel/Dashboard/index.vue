@@ -105,7 +105,7 @@
           plugins: {
             legend: {
               display: true,
-              position: 'bottom', 
+              position: 'top', 
             },
           },
         },
@@ -131,7 +131,7 @@
           plugins: {
             legend: {
               display: true,
-              position: 'none', 
+              position: 'top', 
             },
           },
         },

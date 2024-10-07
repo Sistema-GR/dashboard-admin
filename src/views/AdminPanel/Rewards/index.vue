@@ -54,7 +54,7 @@
                     <p class="text-lg font-medium">Detalhamento por Matrícula</p>
                     <ChevronDownIcon class="w-6 h-auto transform transition-transform" />
                 </DisclosureButton>
-                <DisclosurePanel class="w-full py-8 px-3">
+                <DisclosurePanel class="w-full py-8">
 
                     <Disclosure v-for="row in savedData" :key="row.id">
                         <template #default="{open}">
@@ -92,7 +92,7 @@
                                                     <p>Total:</p>
                                                 </td>
                                                 <td class="border p-3">
-                                                    <p>R$ {{ row['Valor GR '] }}</p>
+                                                    <p>R$ {{ row['Valor GR R'] }}</p>
                                                     <p>R$ {{ row['Valor GR Un'] }}</p>
                                                     <p class="whitespace-nowrap">R$ {{ row['Valor Total (bruto)'] }}</p>
                                                 </td>
@@ -101,7 +101,7 @@
                                     </table>
                                 </div>
 
-                                <table class="w-full border-collapse border ">
+                                <table class="w-full border-collapse border mt-8">
                                     <thead>
                                         <tr class="bg-azure-800">
                                             <th class="border-b p-2 text-center text-white">Tempo de Atuação</th>
@@ -127,7 +127,7 @@
                                     </tbody>
                                 </table>
 
-                                <table class="w-full border-collapse border ">
+                                <table class="w-full border-collapse border mb-8">
                                     <thead>
                                         <tr class="bg-azure-800">
                                             <th class="border-b p-2 text-center text-white">Atividades</th>
@@ -170,7 +170,7 @@
                                                 <td class="border border-gray-200 px-4 py-2">{{ row['Data fim alocações FINAL'] }}</td>
                                                 <td class="border border-gray-200 px-4 py-2">{{ row['NM_Disciplina'] }}</td>
                                                 <td class="border border-gray-200 px-4 py-2">{{ row['Real'] }}</td>
-                                                <td class="border border-gray-200 px-4 py-2">Etapa 3</td>
+                                                <td class="border border-gray-200 px-4 py-2"></td>
                                                 <td class="border border-gray-200 px-4 py-2">{{ row['Grupos GR'] }}</td>
                                             </tr>
 
@@ -206,12 +206,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(afastamento, index) in afastamentos" :key="index">
-                                                    <td class="border border-gray-200 px-4 py-2">{{ afastamento.inicio }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ afastamento.fim }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ afastamento.tipo }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ afastamento.totalDias }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ afastamento.contabilizados }}</td>
+                                                <tr v-for="frequencia in row.frequencia" :key="frequencia.id" class="text-center">
+                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Início Afas.'] }}</td> 
+                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Fim Afas.'] }}</td> 
+                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Motivo'] }}</td> 
+                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Qtde Dias Afast'] }}</td> 
+                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Contabiliza?'] }}</td> 
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -234,10 +234,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(item, index) in criterios" :key="index" class="hover:bg-gray-50">
-                                                    <td class="border border-gray-200 px-4 py-2">{{ item.criterio }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ item.valor }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ item.status }}</td>
+                                                <tr v-for="row in savedData" :key="row.id" class="hover:bg-gray-50">
+                                                    <td class="border border-gray-200 px-4 py-2">{{ row.criterio }}</td>
+                                                    <td class="border border-gray-200 px-4 py-2">{{ row.valor }}</td>
+                                                    <td class="border border-gray-200 px-4 py-2">{{ row.status }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
