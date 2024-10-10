@@ -118,6 +118,9 @@ export default {
         }
 
         alert('Arquivos enviados com sucesso!');
+
+        // Redirecionar para a página de administração
+        this.$router.push({ path: '/admin' }); // Adicionada a linha para redirecionar
       } catch (error) {
         console.error('Erro ao carregar os arquivos:', error);
         alert(

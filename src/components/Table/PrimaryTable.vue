@@ -161,7 +161,7 @@ async function loadPeople() {
       filteredColumns.value = [];
       return;
     }
-
+    
     const response = await fetch(jsonUrl, {
       method: 'GET'
     });
@@ -169,18 +169,17 @@ async function loadPeople() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log('Dados recebidos da API:', data);
 
-    if (Array.isArray(data) && data.length > 0) {
-      const sample = data[0];
-      filteredColumns.value = Object.keys(sample).map(key => ({ key, label: key }));
-
-      // Atualizar filteredPeople sem criar duplicatas
-      filteredPeople.value = data.map(item => ({
+    // Ajuste aqui para acessar o array de dados diretamente
+    if (data && Array.isArray(data.data)) {
+      filteredColumns.value = Object.keys(data.data[0]).map(key => ({ key, label: key }));
+      filteredPeople.value = data.data.map(item => ({
         ...item,
         matricula: item.matricula // Usando 'matricula' como chave única
       }));
     } else {
-      console.error('Unexpected data format');
+      console.error('Unexpected data format', data);
       filteredPeople.value = [];
       filteredColumns.value = [];
     }
