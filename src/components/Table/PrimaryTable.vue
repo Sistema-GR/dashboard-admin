@@ -61,32 +61,35 @@ import Drawer from '../Drawer/Drawer.vue';
 import Pagination from '../Pagination/Pagination.vue';
 
 const props = defineProps({
-route: {
-  type: String,
-  required: true
-},
-searchQuery: {
-  type: String,
-  default: ''
-}
+  route: {
+    type: String,
+    required: true
+  },
+  searchQuery: {
+    type: String,
+    default: ''
+  }
 });
 
+// Define a URL base
+const BASE_URL = "http://localhost:8000/csv";
+
 const routeJsonMapping = {
-'Results': '/data/ues_perc_gr.json',
-'Calendar': '/data/dias_nao_contabilizados.json',
-'Profissional': '/data/funcionarios.json',
-'Groups': '/data/valores_grupo.json',
-'Steps': '/data/etapas_metas_ue.json',
-'StageGroup': '/data/funcoes_grupos_etapas.json',
-'Frequency': '/data/frequencia.json',
-'Infrequency': '/data/motivos_infrequencia.json',
-'Resignation': '/data/demissoes.json',
-'Activities': '/data/atividades.json',
-'Service': '/data/tempo_de_atuacao.json',
-'Training': '/data/formacoes.json',
-'General': '/data/dados_gerais.json',
-'Local': '/data/tipo_local.json',
-'Report': '/data/criterios.json'
+  'Results': `${BASE_URL}/process/percentual-gratificacao/`,
+  'Calendar': `${BASE_URL}/process/dias-nao-contabilizados/`,       
+  'Profissional': `${BASE_URL}/process/funcionarios/`,              
+  'Groups': `${BASE_URL}/process/valores-grupo/`,
+  'Steps': `${BASE_URL}/process/etapas-metas/`,
+  'StageGroup': `${BASE_URL}/process/funcoes-grupo/`,
+  'Frequency': `${BASE_URL}/process/frequencia/`,                   
+  'Infrequency': `${BASE_URL}/process/motivos-infrequencia/`,       
+  'Resignation': `${BASE_URL}/process/demissoes/`,                  
+  'Activities': `${BASE_URL}/process/atividades/`,                  
+  'Service': `${BASE_URL}/data/tempo_de_atuacao.json`,
+  'Training': `${BASE_URL}/process/formacoes/`,                     
+  'General': `${BASE_URL}/process/dados-gerais/`,
+  'Local': `${BASE_URL}/process/tipo-local/`,
+  'Report': `${BASE_URL}/data/criterios.json`
 };
 
 const itemsPerPage = 10;
@@ -96,186 +99,199 @@ const filteredPeople = ref([]);
 const visiblePeople = ref([]);
 const selectedRowData = ref({});
 const drawerTitle = computed(() => {
-switch (props.route) {
-  case 'Results': return 'Resultados';
-  case 'Profissional': return 'Profissional';
-  case 'Groups': return 'Grupos';
-  case 'Steps': return 'Etapas';
-  case 'Frequency': return 'Frequência';
-  case 'Resignation': return 'Demissão';
-  case 'Activities': return 'Atividades';
-  case 'Service': return 'Serviço';
-  case 'Training': return 'Formação';
-  case 'Report': return 'Relatório';
-  default: return '';
-}
+  switch (props.route) {
+    case 'Results': return 'Resultados';
+    case 'Profissional': return 'Profissional';
+    case 'Groups': return 'Grupos';
+    case 'Steps': return 'Etapas';
+    case 'Frequency': return 'Frequência';
+    case 'Resignation': return 'Demissão';
+    case 'Activities': return 'Atividades';
+    case 'Service': return 'Serviço';
+    case 'Training': return 'Formação';
+    case 'Report': return 'Relatório';
+    default: return '';
+  }
 });
-const showEdit = computed(() => ['Results', 'Profissional','Calendar', 'Groups', 'Steps', 'Frequency', 'Activities', 'Service', 'Training', 'Report'].includes(props.route));
+
+const showEdit = computed(() => ['Results', 'Profissional', 'Calendar', 'Groups', 'Steps', 'Frequency', 'Activities', 'Service', 'Training', 'Report'].includes(props.route));
 const showGr = computed(() => props.route === 'Report');
 
 const filteredPeopleByQuery = computed(() => {
-if (!props.searchQuery) {
-  return filteredPeople.value;
-}
-const query = props.searchQuery.toLowerCase();
-return filteredPeople.value.filter(person =>
-  Object.values(person).some(value =>
-    String(value).toLowerCase().includes(query)
-  )
-);
+  if (!props.searchQuery) {
+    return filteredPeople.value;
+  }
+  const query = props.searchQuery.toLowerCase();
+  return filteredPeople.value.filter(person =>
+    Object.values(person).some(value =>
+      String(value).toLowerCase().includes(query)
+    )
+  );
 });
 
 const totalPages = computed(() => Math.ceil(filteredPeopleByQuery.value.length / itemsPerPage));
 
 const drawerRef = ref(null);
-
 const savedRowData = ref([]);
 
 onMounted(async () => {
-await loadPeople();
-loadSavedData();
+  await loadPeople();
+  loadSavedData();
 });
 
 watch(() => props.searchQuery, () => {
-currentPage.value = 1; 
-loadMore();
+  currentPage.value = 1; 
+  loadMore();
 });
 
 watch(() => filteredPeopleByQuery.value.length, () => {
-totalPages.value = Math.ceil(filteredPeopleByQuery.value.length / itemsPerPage);
-loadMore();
+  loadMore();
 });
 
 watch(currentPage, () => {
-loadMore();
+  loadMore();
 });
 
 async function loadPeople() {
-try {
-  const jsonUrl = routeJsonMapping[props.route];
-  if (!jsonUrl) {
-    console.error('No JSON URL found for route:', props.route);
+  try {
+    const jsonUrl = routeJsonMapping[props.route];
+    if (!jsonUrl) {
+      console.error('No JSON URL found for route:', props.route);
+      filteredPeople.value = [];
+      filteredColumns.value = [];
+      return;
+    }
+
+    const response = await fetch(jsonUrl, {
+      method: 'GET'
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+
+    if (Array.isArray(data) && data.length > 0) {
+      const sample = data[0];
+      filteredColumns.value = Object.keys(sample).map(key => ({ key, label: key }));
+
+      // Atualizar filteredPeople sem criar duplicatas
+      filteredPeople.value = data.map(item => ({
+        ...item,
+        matricula: item.matricula // Usando 'matricula' como chave única
+      }));
+    } else {
+      console.error('Unexpected data format');
+      filteredPeople.value = [];
+      filteredColumns.value = [];
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
     filteredPeople.value = [];
     filteredColumns.value = [];
-    return;
   }
 
-  const response = await fetch(jsonUrl);
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const data = await response.json();
-
-  if (Array.isArray(data) && data.length > 0) {
-    const sample = data[0];
-    filteredColumns.value = Object.keys(sample).map(key => ({ key, label: key }));
-
-    // Atualizar filteredPeople sem criar duplicatas
-    filteredPeople.value = data.map(item => ({
-      ...item,
-      matricula: item.matricula // Usando 'matricula' como chave única
-    }));
-  } else {
-    console.error('Unexpected data format');
-    filteredPeople.value = [];
-    filteredColumns.value = [];
-  }
-} catch (error) {
-  console.error('Error fetching data:', error);
-  filteredPeople.value = [];
-  filteredColumns.value = [];
-}
-
-loadMore();
+  loadMore();
 }
 
 function loadMore() {
-const start = (currentPage.value - 1) * itemsPerPage;
-const end = start + itemsPerPage;
-visiblePeople.value = filteredPeopleByQuery.value.slice(start, end);
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  visiblePeople.value = filteredPeopleByQuery.value.slice(start, end);
 }
 
 function updateRowData(updatedRowData) {
-const index = filteredPeople.value.findIndex(person => person.matricula === updatedRowData.matricula);
-if (index !== -1) {
-  filteredPeople.value[index] = { ...filteredPeople.value[index], ...updatedRowData };
-  loadMore(); 
-} else {
-  console.error("No matching row found for matricula:", updatedRowData.matricula);
-}
+  const index = filteredPeople.value.findIndex(person => person.matricula === updatedRowData.matricula);
+  if (index !== -1) {
+    filteredPeople.value[index] = { ...filteredPeople.value[index], ...updatedRowData };
+    loadMore(); 
+  } else {
+    console.error("No matching row found for matricula:", updatedRowData.matricula);
+  }
 }
 
 function openDrawer(person) {
-selectedRowData.value = { ...person };
-if (drawerRef.value) {
-  drawerRef.value.openDrawer();
-}
+  selectedRowData.value = { ...person };
+  if (drawerRef.value) {
+    drawerRef.value.openDrawer();
+  }
 }
 
 function handleDrawerClosed() {
-selectedRowData.value = {};
+  selectedRowData.value = {};
 }
 
-
 async function saveRowData(person) {
-  const detailedData = {};
-  filteredColumns.value.forEach(column => {
-    detailedData[column.label] = person[column.key];
-  });
-
   const matricula = person.matricula;
   const nome = person.Nome;
 
   let dadosProfissional = [];
   let dadosFrequencia = [];
+  let dadosCriterios = [];
+  const dadosUser = {}; // Estrutura para armazenar os dados organizados por ID
 
   // Busca todos os dados do profissional com base na matrícula e no nome
   try {
-    const response = await fetch('/data/funcionarios.json');
+    const response = await fetch(routeJsonMapping['Profissional']);
     const data = await response.json();
-
     dadosProfissional = data.filter(prof => prof.matricula === matricula && prof.Nome === nome);
-    console.log('Dados do(s) profissional(is) encontrados:', dadosProfissional);
   } catch (error) {
     console.error('Erro ao buscar dados do profissional:', error);
   }
 
   // Busca todos os dados de frequência para o profissional
   try {
-    const response = await fetch('/data/frequencia.json');
+    const response = await fetch(routeJsonMapping['Frequency']);
     const data = await response.json();
-
-    dadosFrequencia = data.filter(frequencia => frequencia.matricula === matricula && frequencia.Nome === nome);
-    console.log('Dados de frequência encontrados:', dadosFrequencia);
+    dadosFrequencia = data.filter(frequencia => frequencia.Nome === nome);
   } catch (error) {
     console.error('Erro ao buscar dados de frequência:', error);
   }
 
-  // Monta o objeto de dados combinados
-  const dadosCombinados = { 
-    profissional: dadosProfissional, // Lista de profissionais encontrados
-    frequencia: dadosFrequencia,      // Lista de frequências encontradas
-    ...detailedData                  // Dados detalhados da linha atual
-  };
-
-  // Verifica se a matrícula já existe nos dados salvos
-  const existingIndex = savedRowData.value.findIndex(item => item.matricula === matricula);
-  if (existingIndex !== -1) {
-    savedRowData.value[existingIndex] = dadosCombinados; 
-  } else {
-    savedRowData.value.push(dadosCombinados); 
+  // Busca todos os dados de critérios para o profissional
+  try {
+    const response = await fetch(routeJsonMapping['Report']);
+    const data = await response.json();
+    dadosCriterios = data.filter(criterio => criterio.matricula === matricula && criterio.Nome === nome);
+  } catch (error) {
+    console.error('Erro ao buscar dados de critérios:', error);
   }
 
-  // Salva os dados no localStorage
-  localStorage.setItem('savedRowData', JSON.stringify(savedRowData.value));
-  console.log('Dados salvos:', dadosCombinados);
+  // Estruturar dados com base nos critérios encontrados
+  for (let i = 0; i < dadosCriterios.length; i++) {
+    const criterio = dadosCriterios[i];
+    const id = `id${i + 1}`;
+
+    // Filtra frequências específicas para o critério atual
+    const frequenciasFiltradas = dadosFrequencia.filter(frequencia => frequencia.matricula === criterio.matricula);
+
+    // Estrutura os dados conforme solicitado
+    dadosUser[id] = {
+      dados: criterio,
+      frequencia: frequenciasFiltradas,
+      profissionais: dadosProfissional,
+    };
+  }
+
+  // Verifica se já existe um objeto "rowSave" no localStorage, senão cria um novo
+  const savedRowData = JSON.parse(localStorage.getItem('rowSave')) || {};
+  
+  // Se já existir dados para a matrícula, mescla com os dados novos
+  if (savedRowData[matricula]) {
+    savedRowData[matricula] = { ...savedRowData[matricula], ...dadosUser };
+  } else {
+    savedRowData[matricula] = dadosUser;
+  }
+
+  // Salva os dados atualizados no localStorage
+  localStorage.setItem('rowSave', JSON.stringify(savedRowData));
+  console.log('Dados salvos:', savedRowData[matricula]);
 }
 
 function loadSavedData() {
-const savedData = localStorage.getItem('savedRowData');
-if (savedData) {
-  savedRowData.value = JSON.parse(savedData);
-  console.log('Dados salvos carregados:', savedRowData.value);
-}
+  const savedData = localStorage.getItem('savedRowData');
+  if (savedData) {
+    savedRowData.value = JSON.parse(savedData);
+    console.log('Dados salvos carregados:', savedRowData.value);
+  }
 }
 </script>

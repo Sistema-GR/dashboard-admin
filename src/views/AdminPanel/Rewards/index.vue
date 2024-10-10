@@ -6,24 +6,24 @@
         <!-- ######################################################################################################### -->
         <div class="flex flex-row items-center w-full px-10 gap-10 pt-8 pb-4">
 
-            <div class="w-full" v-for="row in savedData" :key="row.id">
+            <div class="w-full" v-for="(item, index) in savedData" :key="index">
                 <div :class="`flex flex-col items-center justify-center bg-transparent rounded-lg`">
                     <div class="flex items-center justify-center w-full py-3 rounded-lg bg-azure-800">
                         <p class="text-white text-lg font-medium">Nome Do Servidor</p>
                     </div>
                     <div class="flex w-full items-center justify-center py-2.5 rounded-b-lg -translate-y-1 bg-solitude-100 shadow-lg shadow-slate-200">
-                        <p class="font-medium whitespace-nowrap">{{ row.Nome }}</p>
+                        <p class="font-medium whitespace-nowrap">{{ item?.dados?.Nome || 'Nome não disponível' }}</p>
                     </div>  
                 </div>
             </div>
 
-            <div class="w-full" v-for="row in savedData" :key="row.id">
-                <div :class="`flex flex-col items-center justify-center  bg-transparent rounded-lg`">
+            <div class="w-full" v-for="(item, index) in savedData" :key="index">
+                <div :class="`flex flex-col items-center justify-center bg-transparent rounded-lg`">
                     <div class="flex items-center justify-center w-full py-3 rounded-lg bg-azure-800">
                         <p class="text-white text-lg font-medium">Valor</p>
                     </div>
                     <div class="flex w-full items-center justify-center py-2.5 rounded-b-lg -translate-y-1 bg-solitude-100 shadow-lg shadow-slate-200">
-                        <p class="font-medium">R$ {{ row['Valor Total (bruto)'] }}</p>
+                        <p class="font-medium">R$ {{ item?.dados?.['Valor Total (bruto)'] || 'Valor não disponível' }}</p>
                     </div>  
                 </div>
             </div>
@@ -56,15 +56,15 @@
                 </DisclosureButton>
                 <DisclosurePanel class="w-full py-8">
 
-                    <Disclosure v-for="row in savedData" :key="row.id">
+                    <Disclosure v-for="(item, index) in savedData" :key="index">
                         <template #default="{open}">
                             <DisclosureButton class="flex flex-row w-full items-center justify-between mt-0.5 py-4 px-5 bg-solitude-200 hover:bg-gray-400 ease-in-out duration-200 cursor-pointer">
-                                <p class="text-lg font-medium">Matrícula {{ row.Matricula }}</p>
+                                <p class="text-lg font-medium">Matrícula {{ item?.dados?.Matricula }}</p>
                                 <ChevronDownIcon class="w-6 h-auto transform transition-transform ${open ? 'rotate-180' : 'rotate-0'}" />
                             </DisclosureButton>
                             <DisclosurePanel class="w-full">
 
-                                <div class="overflow-x-auto w-full">
+                                <div class="overflow-x-auto w-full" v-for="(prof, profIndex) in item.profissionais" :key="profIndex">
                                     <table class="min-w-full border-collapse rounded-lg shadow-lg">
                                         <thead>
                                             <tr class="bg-azure-800">
@@ -82,9 +82,9 @@
                                                     <p>Cargo:</p>
                                                 </td>
                                                 <td class="border p-3">
-                                                    <p class="whitespace-nowrap">{{ row.Nome }}</p>
-                                                    <p>{{ row.Matricula }}</p>
-                                                    <p class="whitespace-nowrap">{{ row.Cargo }}</p>
+                                                    <p class="whitespace-nowrap">{{ item?.dados?.Nome }}</p>
+                                                    <p class="whitespace-nowrap">{{ item?.dados?.Matricula }}</p>
+                                                    <p class="whitespace-nowrap">{{ prof['Cargo'] }}</p>
                                                 </td>
                                                 <td class="border p-3">
                                                     <p>Rede:</p>
@@ -92,9 +92,9 @@
                                                     <p>Total:</p>
                                                 </td>
                                                 <td class="border p-3">
-                                                    <p>R$ {{ row['Valor GR R'] }}</p>
-                                                    <p>R$ {{ row['Valor GR Un'] }}</p>
-                                                    <p class="whitespace-nowrap">R$ {{ row['Valor Total (bruto)'] }}</p>
+                                                    <p class="whitespace-nowrap">R$ {{ prof['Valor GR R']}}</p>
+                                                    <p class="whitespace-nowrap">R$ {{ prof['Valor GR Un']}}</p>
+                                                    <p class="whitespace-nowrap">R$ {{ item?.dados?.['Valor Total (bruto)']}}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -109,7 +109,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="border p-2 text-center">{{ row['Atua a mais de 6 meses?'] }}</td>
+                                            <td class="border p-2 text-center">{{ item?.dados?.['Atua a mais de 6 meses?']}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -122,7 +122,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="border p-2 text-center">{{ row.Formações }}</td>
+                                            <td class="border p-2 text-center">{{ item?.dados?.Formações }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -135,63 +135,60 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="border p-2 text-center">{{ row.Atividades }}</td>
+                                            <td class="border p-2 text-center">{{ item?.dados?.Atividades }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
 
-                                <div class="flex flex-col w-full items-center border -translate-y-0.5">
+                                <div v-for="(item, itemIndex) in savedData" :key="itemIndex" class="flex flex-col w-full items-center border -translate-y-0.5">
 
                                     <div class="flex w-full items-center justify-center py-3 bg-azure-800">
                                         <p class="text-xl font-medium text-white">Alocações em 2024</p>
                                     </div>
                            
 
-                                    <table class="min-w-full border-collapse border border-gray-200">
-                                        <thead>
-                                            <tr>
-                                                <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">{{ row['NM_Local de alocação'] }}</th>
-                                                <th class="border border-gray-200 px-4 py-2">Etapa 1<br>80%</th>
-                                                <th class="border border-gray-200 px-4 py-2">Etapa 2<br>0%</th>
-                                                <th class="border border-gray-200 px-4 py-2">Etapa 3<br>100%</th>
-                                            </tr>
-                                            <tr>
-                                                <th class="border border-gray-200 px-4 py-2">Início</th>
-                                                <th class="border border-gray-200 px-4 py-2">Fim</th>
-                                                <th class="border border-gray-200 px-4 py-2">Função</th>
-                                                <th class="border border-gray-200 px-4 py-2">Carga Horária</th>
-                                                <th class="border border-gray-200 px-4 py-2">Etapa</th>
-                                                <th class="border border-gray-200 px-4 py-2">Grupo</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="text-center">
-                                                <td class="border border-gray-200 px-4 py-2">{{ row['Data de Início Ajustada'] }}</td>
-                                                <td class="border border-gray-200 px-4 py-2">{{ row['Data fim alocações FINAL'] }}</td>
-                                                <td class="border border-gray-200 px-4 py-2">{{ row['NM_Disciplina'] }}</td>
-                                                <td class="border border-gray-200 px-4 py-2">{{ row['Real'] }}</td>
-                                                <td class="border border-gray-200 px-4 py-2"></td>
-                                                <td class="border border-gray-200 px-4 py-2">{{ row['Grupos GR'] }}</td>
-                                            </tr>
+                                    <div class="w-full">
+                                        <div v-if="item.profissionais && item.profissionais.length > 0">
+                                            <div v-for="(prof, profIndex) in item.profissionais" :key="profIndex">
+                                                <table class="min-w-full border-collapse border border-gray-200 mb-4">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="border border-gray-200 px-4 py-2 w-6/12 text-lg" colspan="3">
+                                                            {{ prof?.['NM_Local de alocação'] || 'Sem Local de Alocação' }}
+                                                            </th>
+                                                            <th class="border border-gray-200 px-4 py-2">Etapa 1<br>80%</th>
+                                                            <th class="border border-gray-200 px-4 py-2">Etapa 2<br>0%</th>
+                                                            <th class="border border-gray-200 px-4 py-2">Etapa 3<br>100%</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="border border-gray-200 px-4 py-2">Início</th>
+                                                            <th class="border border-gray-200 px-4 py-2">Fim</th>
+                                                            <th class="border border-gray-200 px-4 py-2">Função</th>
+                                                            <th class="border border-gray-200 px-4 py-2">Carga Horária</th>
+                                                            <th class="border border-gray-200 px-4 py-2">Etapa</th>
+                                                            <th class="border border-gray-200 px-4 py-2">Grupo</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="text-center">
+                                                            <td class="border border-gray-200 px-4 py-2">{{ item?.dados?.['Data de Início Ajustada'] || 'N/A' }}</td>
+                                                            <td class="border border-gray-200 px-4 py-2">{{ item?.dados?.['Data fim alocações FINAL'] || 'N/A' }}</td>
+                                                            <td class="border border-gray-200 px-4 py-2">{{ prof['NM_Disciplina'] || 'N/A' }}</td>
+                                                            <td class="border border-gray-200 px-4 py-2">{{ prof['Real'] || 'N/A' }}</td>
+                                                            <td class="border border-gray-200 px-4 py-2"></td>
+                                                            <td class="border border-gray-200 px-4 py-2">{{ prof['Grupos GR'] || 'N/A' }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        </tbody>
-                                    </table>
                                 </div>
-
-
 
                                 <div class="flex flex-col w-full items-center border -translate-y-0.5 overflow-x-auto">
                                     <div class="flex w-full border-b items-center justify-center bg-azure-800 py-3">
                                         <p class="text-xl text-center font-medium text-white">Critério de Frequência (Afastamentos)</p>
-                                    </div>
-
-                                    <div class="flex w-full items-center justify-center border">
-                                        <div class="flex w-full items-center justify-center border-r py-2">
-                                            <p class="text-xl font-semibold">90,82%</p>
-                                        </div>
-                                        <div class="flex w-full items-center justify-center">
-                                            <p class="text-xl font-semibold">Não atingiu</p>
-                                        </div>
                                     </div>
 
                                     <div class="overflow-x-auto w-full"> 
@@ -206,12 +203,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="frequencia in row.frequencia" :key="frequencia.id" class="text-center">
-                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Início Afas.'] }}</td> 
-                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Fim Afas.'] }}</td> 
-                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Motivo'] }}</td> 
-                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Qtde Dias Afast'] }}</td> 
-                                                    <td class="border border-gray-200 px-4 py-2">{{ frequencia['Contabiliza?'] }}</td> 
+                                                <tr v-for="(freq, freqIndex) in item.frequencia" :key="freqIndex" class="text-center">
+                                                    <td class="border border-gray-200 px-4 py-2">{{ freq['Início Afas.'] }}</td>
+                                                    <td class="border border-gray-200 px-4 py-2">{{ freq['Fim Afas.'] }}</td>
+                                                    <td class="border border-gray-200 px-4 py-2">{{ freq.Motivo }}</td>
+                                                    <td class="border border-gray-200 px-4 py-2">{{ freq['Qtde Dias Afast'] }}</td>
+                                                    <td class="border border-gray-200 px-4 py-2">{{ freq['Contabiliza?'] }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -219,31 +216,51 @@
                                 </div>
 
 
-                                <div class="flex flex-col w-full items-center border -translate-y-0.5 overflow-auto">
-                                    <div class="flex w-full border-b items-center justify-center py-3 bg-azure-800">
+                                <div class="overflow-x-auto w-full">
+                                    <div class="flex w-full border-b items-center justify-center bg-azure-800 py-3">
                                         <p class="text-xl text-center font-medium text-white">Critérios de Verificação para Gratificação</p>
                                     </div>
 
-                                    <div class="overflow-x-auto w-full">
-                                        <table class="min-w-full border-collapse border whitespace-nowrap">
-                                            <thead>
-                                                <tr class="">
-                                                    <th class="border border-gray-200 px-4 py-2 text-left">Critério</th>
-                                                    <th class="border border-gray-200 px-4 py-2 text-left">Valor</th>
-                                                    <th class="border border-gray-200 px-4 py-2 text-left">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr v-for="row in savedData" :key="row.id" class="hover:bg-gray-50">
-                                                    <td class="border border-gray-200 px-4 py-2">{{ row.criterio }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ row.valor }}</td>
-                                                    <td class="border border-gray-200 px-4 py-2">{{ row.status }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <table class="min-w-full border-collapse border whitespace-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="border border-gray-200 px-4 py-2 text-left">Critério</th>
+                                                <th class="border border-gray-200 px-4 py-2 text-left">Valor</th>
+                                                <th class="border border-gray-200 px-4 py-2 text-left">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(freq, freqIndex) in item.frequencia" :key="freqIndex" class="hover:bg-gray-50">
+                                                <td class="border border-gray-200 px-4 py-2" v-if="freqIndex === 0">Frequência</td>
+                                                <td class="border border-gray-200 px-4 py-2" v-if="freqIndex === 0" :class="{ 'text-red-500': freq['% frequencia para GR / profissional'] < 0.96, 'text-black': freq['% frequencia para GR / profissional'] >= 0.96 }">
+                                                    {{ (freq['% frequencia para GR / profissional'] * 100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}%
+                                                </td>
+                                                <td class="border border-gray-200 px-4 py-2" v-if="freqIndex === 0">
+                                                    {{ freq['% frequencia para GR / profissional'] < 0.96 ? 'Não Apto' : 'Apto a Receber Gratificação' }}
+                                                </td>
+                                            </tr>
+                                            <tr class="hover:bg-gray-50">
+                                                <td class="border border-gray-200 px-4 py-2">Tempo de Atuação</td>
+                                                <td class="border border-gray-200 px-4 py-2" :class="{ 'text-red-500': item?.dados?.['Atua a mais de 6 meses?'] === 'Não atua há mais de 6 meses na rede', 'text-black': item?.dados?.['Atua a mais de 6 meses?'] === 'Atua há mais de 6 meses na rede' }">
+                                                    {{ item?.dados?.['Atua a mais de 6 meses?'] }}
+                                                </td>
+                                                <td class="border border-gray-200 px-4 py-2">
+                                                    {{ item?.dados?.['Atua a mais de 6 meses?'] === 'Atua há mais de 6 meses na rede' ? 'Apto a Receber Gratificação' : 'Não Apto' }}
+                                                </td>
+                                            </tr>
+                                            <tr class="hover:bg-gray-50">
+                                                <td class="border border-gray-200 px-4 py-2">Formação</td>
+                                                <td class="border border-gray-200 px-4 py-2">{{ item?.dados?.['Formações']}}</td>
+                                                <td class="border border-gray-200 px-4 py-2">Apto a Receber Gratificação</td>
+                                            </tr>
+                                            <tr class="hover:bg-gray-50">
+                                                <td class="border border-gray-200 px-4 py-2">Atividades</td>
+                                                <td class="border border-gray-200 px-4 py-2">{{ item?.dados?.['Atividades']}}</td>
+                                                <td class="border border-gray-200 px-4 py-2">Apto a Receber Gratificação</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-
 
                             </DisclosurePanel>
                         </template>
@@ -263,42 +280,37 @@
         </div>
       
     </Whiteboard>
-  </template>
+</template>
   
-  <script setup>
-  import { inject, ref } from 'vue';
-  import { ChevronDownIcon, ExclamationCircleIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";
-  import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-  import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
-  import DetailsDrawer from './DetailsDrawer/DetailsDrawer.vue';
+<script setup>
+import { inject, ref, onMounted, onBeforeUnmount } from 'vue';
+import { ChevronDownIcon, ExclamationCircleIcon, ArrowDownIcon } from "@heroicons/vue/24/outline";
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
+
   
-  const isSidebarMinimized = inject('isSidebarMinimized');
-  const detailsDrawer = ref(null); 
-  const savedData = JSON.parse(localStorage.getItem('savedRowData')) || [];
-  
-  // Variável reativa para armazenar a linha selecionada
-  const selectedRow = ref(null); // Inicialmente, nenhuma linha está selecionada
-  
-  // Função para abrir o Drawer
-  function openDrawer() {
-    if (detailsDrawer.value) {
-      detailsDrawer.value.openDrawer(); // Verifique se openDrawer está definido no DetailsDrawer
+const isSidebarMinimized = inject('isSidebarMinimized');; 
+const savedData = ref([]); 
+const groupedProfessionals = ref([]); // Profissionais agrupados
+
+const groupProfessionals = () => {
+  savedData.value.forEach(item => {
+    if (item?.profissionais?.length > 0) {
+      groupedProfessionals.value.push(item.profissionais);
     }
-  }
-  
-  // Função para selecionar um servidor
-  const selectServer = (row) => {
-    if (selectedRow.value && selectedRow.value.id === row.id) {
-      // Se a linha clicada já estiver selecionada, não faça nada
-      return;
-    }
-  
-    selectedRow.value = row; // Atualiza a linha selecionada
-  
-    // Salva a linha selecionada no localStorage
-    localStorage.setItem('selectedServer', JSON.stringify(row));
-    
-    console.log("Servidor selecionado:", row); // Log para verificação
-  };
-  </script>
+  });
+};
+
+onMounted(() => {
+  const savedRowData = JSON.parse(localStorage.getItem('rowSave')) || {};
+  savedData.value = Object.values(savedRowData).flatMap(item => Object.values(item));
+  console.log('Dados recuperados do localStorage:', savedData.value);
+});
+
+onBeforeUnmount(() => {
+  localStorage.removeItem('rowSave');
+  console.log('Dados do localStorage limpos.');
+});
+
+</script>
   

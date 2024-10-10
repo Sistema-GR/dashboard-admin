@@ -20,9 +20,9 @@
         <div>
           <PrimaryButton
             :disabled="isUploading"
-            @click="uploadFilesAndProcess"
+            @click="uploadFiles"
             class="bg-blue-500 py-2 px-3 text-sm"
-            value="Continuar"
+            value="Enviar"
           />
           <Loading v-if="isUploading" />
         </div>
@@ -38,7 +38,6 @@ import FileInput from '@/components/Inputs/FileInput.vue';
 import Whiteboard from '@/components/Whiteboard/Whiteboard.vue';
 import PrimaryButton from '@/components/Buttons/PrimaryButton.vue';
 import Loading from '@/components/Loading/Loading.vue';
-import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.vue';
 
 export default {
   components: { FileInput, Whiteboard, PrimaryButton, Loading },
@@ -61,26 +60,25 @@ export default {
         motivosInfrequencia: null,
         frequencia: null,
       },
-      BASE_URL: "http://localhost:8000/api",
+      BASE_URL: "http://localhost:8000/csv",
       endpoint: {
-        funcionarios: "/upload/funcionarios/",
-        atividades: "/upload/atividades/",
-        tipoLocal: "/upload/tipo-local/",
-        dadosGerais: "/upload/dados-gerais/",
-        funcoesGruposEtapas: "/upload/funcoes-grupos-etapas/",
-        valoresGrupo: "/upload/valores-grupo/",
-        etapasMetas: "/upload/etapas-metas/",
-        uesPercGr: "/upload/ues-perc-gr/",
-        definicaoEtapas: "/upload/definicao-etapas/",
-        diasNaoContabilizados: "/upload/dias-nao-contabilizados/",
-        demissoes: "/upload/demissoes/",
-        formacoes: "/upload/formacoes/",
-        motivosInfrequencia: "/upload/motivos-infrequencia/",
-        frequencia: "/upload/frequencia/",
+        funcionarios: "/process/funcionarios/",
+        atividades: "/process/atividades/",
+        tipoLocal: "/process/tipo-local/",
+        dadosGerais: "/process/dados-gerais/",
+        funcoesGruposEtapas: "/process/funcoes-grupo/",
+        valoresGrupo: "/process/valores-grupo/",
+        etapasMetas: "/process/etapas-metas/",
+        uesPercGr: "/process/percentual-gratificacao/",
+        definicaoEtapas: "/process/definicao-etapas/",
+        diasNaoContabilizados: "/process/dias-nao-contabilizados/",
+        demissoes: "/process/demissoes/",
+        formacoes: "/process/formacoes/",
+        motivosInfrequencia: "/process/motivos-infrequencia/",
+        frequencia: "/process/frequencia/"
       },
       isUploading: false,
-      uploadSuccess: false,
-      isSidebarMinimized: null, 
+      isSidebarMinimized: null,
     };
   },
   created() {
@@ -96,7 +94,7 @@ export default {
       this.files[fileType] = file;
       console.log(`${fileType} selecionado:`, file);
     },
-    async uploadFilesAndProcess() {
+    async uploadFiles() {
       const filesToUpload = Object.entries(this.files).filter(
         ([key, value]) => value !== null
       );
@@ -110,7 +108,7 @@ export default {
       try {
         for (const [key, file] of filesToUpload) {
           const formData = new FormData();
-          formData.append('file', file); 
+          formData.append('file', file);
 
           const response = await axios.post(
             `${this.BASE_URL}${this.endpoint[key]}`,
@@ -119,28 +117,16 @@ export default {
           console.log(`${key} arquivo carregado com sucesso`, response.data);
         }
 
-        // Chamar o endpoint final-processing para processar os arquivos
-        const processingResponse = await axios.get(
-          `${this.BASE_URL}/final-processing/`
-        );
-        console.log('Final processing response:', processingResponse.data);
-
-        alert('Arquivos processados com sucesso! Verifique o log.');
-        this.showProcessingLog(processingResponse.data);
-
-        this.uploadSuccess = true;
+        alert('Arquivos enviados com sucesso!');
       } catch (error) {
-        console.error('Erro ao carregar/processar arquivos:', error);
+        console.error('Erro ao carregar os arquivos:', error);
         alert(
-          'Erro ao carregar/processar arquivos: ' +
+          'Erro ao carregar os arquivos: ' +
             (error.response?.data?.error || error.message)
         );
       } finally {
         this.isUploading = false;
       }
-    },
-    showProcessingLog(data) {
-      console.log('Log de processamento:', data);
     },
   },
 };
